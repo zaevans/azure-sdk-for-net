@@ -132,12 +132,10 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
         {
             Assert.Null(result);
             Assert.Null(user);
-/* BUGBUG
-            Assert.Equal(remoteAppType, result.Error.Type);
-            Assert.Equal(location, result.Error.Location);
-            Assert.Equal(collectionName, result.Error.Name);
-            Assert.NotNull(result.Error.Id);
-*/
+            Assert.Equal(remoteAppType, result.Type);
+            Assert.Equal(location, result.Location);
+            Assert.Equal(collectionName, result.Name);
+            Assert.NotNull(result.Id);
             Assert.Equal(user.Name, result.SecurityPrincipal);
             Assert.NotNull(result.Error);
             Assert.NotNull(result.ErrorDetails);

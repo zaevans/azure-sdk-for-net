@@ -11,10 +11,10 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 {
     public class PublishingTests : RemoteAppTestBase
     {
-// BUGBUG        string location = "West US";
+        string location = "West US";
         string groupName = "Default-RemoteApp-WestUS";
         string collectionName = "ybtest";
-// BUGBUG        string remoteAppType = "microsoft.remoteapp/collections";
+        string remoteAppType = "microsoft.remoteapp/collections";
         string armNamespace = "Microsoft.RemoteApp";
         string apiVersion = "2014-09-01";
 
@@ -35,13 +35,10 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 foreach (StartMenuApplication sa in startMenuList)
                 {
-/* BUGBUG
                     Assert.Equal(remoteAppType, sa.Type);
                     Assert.Equal(location, sa.Location);
                     Assert.Equal(collectionName, sa.Name);
                     Assert.NotNull(sa.Id);
- */
-                    Assert.NotNull(sa);
                     Assert.NotNull(sa.StartMenuApplicationName);
                     Assert.NotNull(sa.StartMenuApplicationId);
                     Assert.NotNull(sa.VirtualPath);
@@ -66,12 +63,11 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 appId = startMenuList[0].StartMenuApplicationId;
 
                 startMenu = raClient.Collection.GetStartMenuApp(groupName, armNamespace, collectionName, appId, apiVersion);
-/* BUGBUG
+
                 Assert.Equal(remoteAppType, startMenu.Type);
                 Assert.Equal(location, startMenu.Location);
                 Assert.Equal(collectionName, startMenu.Name);
                 Assert.NotNull(startMenu.Id);
- */
                 Assert.NotNull(startMenu);
                 Assert.Equal(startMenuList[0].StartMenuApplicationName, startMenu.StartMenuApplicationName);
                 Assert.Equal(startMenuList[0].StartMenuApplicationId, startMenu.StartMenuApplicationId);
@@ -97,12 +93,10 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 foreach (PublishedApplicationDetails app in pubApps)
                 {
-/* BUGBUG
                     Assert.Equal(remoteAppType, app.Type);
                     Assert.Equal(location, app.Location);
                     Assert.Equal(collectionName, app.Name);
                     Assert.NotNull(app.Id);
- */
                     Assert.NotNull(app);
                     Assert.NotNull(app.PublishedApplicationDetailsName);
                     Assert.NotNull(app.Alias);
@@ -132,12 +126,10 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 pubApp = raClient.Collection.GetPublishedApp(groupName, armNamespace, collectionName, alias, apiVersion);
 
                 Assert.NotNull(pubApp);
-/* BUGBUG
                 Assert.Equal(remoteAppType, pubApp.Type);
                 Assert.Equal(location, pubApp.Location);
                 Assert.Equal(collectionName, pubApp.Name);
                 Assert.NotNull(pubApp.Id);
- */
                 Assert.NotNull(pubApp);
                 Assert.NotNull(pubApp.PublishedApplicationDetailsName);
                 Assert.NotNull(pubApp.Alias);
