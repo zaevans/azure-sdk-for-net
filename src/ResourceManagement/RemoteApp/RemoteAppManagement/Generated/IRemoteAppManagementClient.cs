@@ -40,16 +40,20 @@ namespace Microsoft.Azure.Management.RemoteApp
         ServiceClientCredentials Credentials { get; }
 
         /// <summary>
-        /// Gets subscription credentials which uniquely identify Microsoft
-        /// Azure subscription. The subscription ID forms part of the URI for
-        /// every service call.
+        /// Client Api Version.
+        /// </summary>
+        string ApiVersion { get; }
+
+        /// <summary>
+        /// A Microsoft Azure subscription ID.
         /// </summary>
         string SubscriptionId { get; set; }
 
         /// <summary>
-        /// Client Api Version.
+        /// Azure Resource Manager namespace for RemoteApp service
+        /// environments.
         /// </summary>
-        string ApiVersion { get; }
+        string ArmNamespace { get; set; }
 
         /// <summary>
         /// Gets or sets the preferred language for the response.
@@ -64,12 +68,9 @@ namespace Microsoft.Azure.Management.RemoteApp
 
         IAccountOperations Account { get; }
 
-        ICollectionOperations Collection { get; }
-
         ITemplateImageOperations TemplateImage { get; }
 
-        // BUGBUG
-//        ITemplateImageOperations TemplateImageOperations { get; }
+        ICollectionOperations Collection { get; }
 
     }
 }

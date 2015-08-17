@@ -46,16 +46,20 @@ namespace Microsoft.Azure.Management.RemoteApp
         public ServiceClientCredentials Credentials { get; private set; }
 
         /// <summary>
-        /// Gets subscription credentials which uniquely identify Microsoft
-        /// Azure subscription. The subscription ID forms part of the URI for
-        /// every service call.
+        /// Client Api Version.
+        /// </summary>
+        public string ApiVersion { get; private set; }
+
+        /// <summary>
+        /// A Microsoft Azure subscription ID.
         /// </summary>
         public string SubscriptionId { get; set; }
 
         /// <summary>
-        /// Client Api Version.
+        /// Azure Resource Manager namespace for RemoteApp service
+        /// environments.
         /// </summary>
-        public string ApiVersion { get; private set; }
+        public string ArmNamespace { get; set; }
 
         /// <summary>
         /// Gets or sets the preferred language for the response.
@@ -69,9 +73,9 @@ namespace Microsoft.Azure.Management.RemoteApp
 
         public virtual IAccountOperations Account { get; private set; }
 
-        public virtual ICollectionOperations Collection { get; private set; }
-
         public virtual ITemplateImageOperations TemplateImage { get; private set; }
+
+        public virtual ICollectionOperations Collection { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the RemoteAppManagementClient class.
@@ -179,8 +183,8 @@ namespace Microsoft.Azure.Management.RemoteApp
         private void Initialize()
         {
             this.Account = new AccountOperations(this);
-            this.Collection = new CollectionOperations(this);
             this.TemplateImage = new TemplateImageOperations(this);
+            this.Collection = new CollectionOperations(this);
             this.BaseUri = new Uri("https://management.azure.net");
             this.ApiVersion = "2014-09-01";
             this.AcceptLanguage = "en-US";

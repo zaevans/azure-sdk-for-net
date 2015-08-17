@@ -16,8 +16,6 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
         const string groupName = "Default-RemoteApp-WestUS";
         const string collectionName = "ybtest";
         const string userUpn = "test";
-        string armNamespace = "Microsoft.RemoteApp";
-        string apiVersion = "2014-09-01";
 
         [Fact]
         public void GetSessionTest()
@@ -27,7 +25,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
             raClient = GetClient();
 
-            sessions = raClient.Collection.SessionList(groupName, armNamespace, collectionName, apiVersion);
+            sessions = raClient.Collection.SessionList(collectionName, groupName);
 
             Assert.NotNull(sessions);
             foreach (SessionWrapper session in sessions)
@@ -44,9 +42,9 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
             raClient = GetClient();
 
-            raClient.Collection.SessionLogOff(groupName, armNamespace, collectionName, userUpn, apiVersion);
+            raClient.Collection.SessionLogOff(collectionName, userUpn, groupName);
 
-            sessions = raClient.Collection.SessionList(groupName, armNamespace, collectionName, apiVersion);
+            sessions = raClient.Collection.SessionList(collectionName, groupName);
 
             Assert.NotNull(sessions);
             foreach (SessionWrapper session in sessions)
@@ -63,9 +61,9 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
             raClient = GetClient();
 
-            raClient.Collection.SessionDisconnect(groupName, armNamespace, collectionName, userUpn, apiVersion);
+            raClient.Collection.SessionDisconnect(collectionName, userUpn, groupName);
 
-            sessions = raClient.Collection.SessionList(groupName, armNamespace, collectionName, apiVersion);
+            sessions = raClient.Collection.SessionList(collectionName, groupName);
 
             Assert.NotNull(sessions);
             foreach (SessionWrapper session in sessions)
@@ -85,9 +83,9 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
             SessionSendMessageCommandParameter param = new SessionSendMessageCommandParameter();
             param.Message = "hello";
 
-            raClient.Collection.SessionSendMessage(groupName, armNamespace, collectionName, userUpn, apiVersion, param);
+            raClient.Collection.SessionSendMessage(param, collectionName, userUpn, groupName);
 
-            sessions = raClient.Collection.SessionList(groupName, armNamespace, collectionName, apiVersion);
+            sessions = raClient.Collection.SessionList(collectionName, groupName);
 
             Assert.NotNull(sessions);
             foreach (SessionWrapper session in sessions)

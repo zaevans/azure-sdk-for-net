@@ -14,7 +14,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     /// <summary>
     /// Contains details of a billing plan.
     /// </summary>
-    public partial class RemoteAppBillingPlan
+    public partial class BillingPlan
     {
         /// <summary>
         /// Unique identifier of billing plan.

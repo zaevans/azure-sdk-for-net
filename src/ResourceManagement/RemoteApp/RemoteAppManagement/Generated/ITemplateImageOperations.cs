@@ -22,21 +22,12 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <summary>
         /// Gets available template images
         /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<IList<TemplateImage>>> GetTemplateImagesWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<IList<TemplateImage>>> GetTemplateImagesWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

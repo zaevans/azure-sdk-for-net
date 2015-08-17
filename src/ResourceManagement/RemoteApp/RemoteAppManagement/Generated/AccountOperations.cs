@@ -47,26 +47,21 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <summary>
         /// Gets the account associated with the subscription id.
         /// </summary>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service environments.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<GetRemoteAppAccount>> GetAccountInfoWithHttpMessagesAsync(string armNamespace, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<AccountDetailsWrapper>> GetAccountInfoWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (armNamespace == null)
+            if (this.Client.ArmNamespace == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "armNamespace");
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ArmNamespace");
             }
-            if (apiVersion == null)
+            if (this.Client.ApiVersion == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "apiVersion");
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ApiVersion");
             }
             if (this.Client.SubscriptionId == null)
             {
@@ -79,19 +74,17 @@ namespace Microsoft.Azure.Management.RemoteApp
             {
                 invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("armNamespace", armNamespace);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(invocationId, this, "GetAccountInfo", tracingParameters);
             }
             // Construct URL
             var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/account").ToString();
-            url = url.Replace("{armNamespace}", Uri.EscapeDataString(armNamespace));
+            url = url.Replace("{armNamespace}", Uri.EscapeDataString(this.Client.ArmNamespace));
             url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
             List<string> queryParameters = new List<string>();
-            if (apiVersion != null)
+            if (this.Client.ApiVersion != null)
             {
-                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(apiVersion)));
+                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(this.Client.ApiVersion)));
             }
             if (queryParameters.Count > 0)
             {
@@ -161,7 +154,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 throw ex;
             }
             // Create Result
-            var result = new AzureOperationResponse<GetRemoteAppAccount>();
+            var result = new AzureOperationResponse<AccountDetailsWrapper>();
             result.Request = httpRequest;
             result.Response = httpResponse;
             if (httpResponse.Headers.Contains("x-ms-request-id"))
@@ -172,7 +165,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             if (statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK"))
             {
                 string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                result.Body = JsonConvert.DeserializeObject<GetRemoteAppAccount>(responseContent, this.Client.DeserializationSettings);
+                result.Body = JsonConvert.DeserializeObject<AccountDetailsWrapper>(responseContent, this.Client.DeserializationSettings);
             }
             if (shouldTrace)
             {
@@ -184,11 +177,6 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <summary>
         /// Updates the account PrivacyUrl and WorkspaceName.
         /// </summary>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service environments.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
         /// <param name='accountInfo'>
         /// The new PrivacyUrl and WorkspaceName
         /// </param>
@@ -198,15 +186,15 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<GetRemoteAppAccount>> UpdateAccountWithHttpMessagesAsync(string armNamespace, string apiVersion, UpdateRemoteAppAccount accountInfo, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<AccountDetailsWrapper>> UpdateAccountWithHttpMessagesAsync(AccountDetailsWrapper accountInfo, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (armNamespace == null)
+            if (this.Client.ArmNamespace == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "armNamespace");
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ArmNamespace");
             }
-            if (apiVersion == null)
+            if (this.Client.ApiVersion == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "apiVersion");
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ApiVersion");
             }
             if (accountInfo == null)
             {
@@ -227,20 +215,18 @@ namespace Microsoft.Azure.Management.RemoteApp
             {
                 invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("armNamespace", armNamespace);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("accountInfo", accountInfo);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(invocationId, this, "UpdateAccount", tracingParameters);
             }
             // Construct URL
             var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/account").ToString();
-            url = url.Replace("{armNamespace}", Uri.EscapeDataString(armNamespace));
+            url = url.Replace("{armNamespace}", Uri.EscapeDataString(this.Client.ArmNamespace));
             url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
             List<string> queryParameters = new List<string>();
-            if (apiVersion != null)
+            if (this.Client.ApiVersion != null)
             {
-                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(apiVersion)));
+                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(this.Client.ApiVersion)));
             }
             if (queryParameters.Count > 0)
             {
@@ -314,7 +300,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 throw ex;
             }
             // Create Result
-            var result = new AzureOperationResponse<GetRemoteAppAccount>();
+            var result = new AzureOperationResponse<AccountDetailsWrapper>();
             result.Request = httpRequest;
             result.Response = httpResponse;
             if (httpResponse.Headers.Contains("x-ms-request-id"))
@@ -325,281 +311,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             if (statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK"))
             {
                 string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                result.Body = JsonConvert.DeserializeObject<GetRemoteAppAccount>(responseContent, this.Client.DeserializationSettings);
-            }
-            if (shouldTrace)
-            {
-                ServiceClientTracing.Exit(invocationId, result);
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Gets the available billing plans for the account.
-        /// </summary>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service environments.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
-        /// <param name='customHeaders'>
-        /// Headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        public async Task<AzureOperationResponse<BillingPlanPropertiesWrapper>> PlansWithHttpMessagesAsync(string armNamespace, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (armNamespace == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "armNamespace");
-            }
-            if (apiVersion == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "apiVersion");
-            }
-            if (this.Client.SubscriptionId == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.SubscriptionId");
-            }
-            // Tracing
-            bool shouldTrace = ServiceClientTracing.IsEnabled;
-            string invocationId = null;
-            if (shouldTrace)
-            {
-                invocationId = ServiceClientTracing.NextInvocationId.ToString();
-                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("armNamespace", armNamespace);
-                tracingParameters.Add("apiVersion", apiVersion);
-                tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(invocationId, this, "Plans", tracingParameters);
-            }
-            // Construct URL
-            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/account/billingPlans").ToString();
-            url = url.Replace("{armNamespace}", Uri.EscapeDataString(armNamespace));
-            url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
-            List<string> queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(apiVersion)));
-            }
-            if (queryParameters.Count > 0)
-            {
-                url += "?" + string.Join("&", queryParameters);
-            }
-            // Create HTTP transport objects
-            HttpRequestMessage httpRequest = new HttpRequestMessage();
-            httpRequest.Method = new HttpMethod("GET");
-            httpRequest.RequestUri = new Uri(url);
-            // Set Headers
-            httpRequest.Headers.TryAddWithoutValidation("x-ms-client-request-id", Guid.NewGuid().ToString());
-            if (this.Client.AcceptLanguage != null)
-            {
-                if (httpRequest.Headers.Contains("accept-language"))
-                {
-                    httpRequest.Headers.Remove("accept-language");
-                }
-                httpRequest.Headers.TryAddWithoutValidation("accept-language", this.Client.AcceptLanguage);
-            }
-            if (customHeaders != null)
-            {
-                foreach(var header in customHeaders)
-                {
-                    if (httpRequest.Headers.Contains(header.Key))
-                    {
-                        httpRequest.Headers.Remove(header.Key);
-                    }
-                    httpRequest.Headers.TryAddWithoutValidation(header.Key, header.Value);
-                }
-            }
-
-            // Set Credentials
-            if (this.Client.Credentials != null)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                await this.Client.Credentials.ProcessHttpRequestAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            }
-            // Send Request
-            if (shouldTrace)
-            {
-                ServiceClientTracing.SendRequest(invocationId, httpRequest);
-            }
-            cancellationToken.ThrowIfCancellationRequested();
-            HttpResponseMessage httpResponse = await this.Client.HttpClient.SendAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            if (shouldTrace)
-            {
-                ServiceClientTracing.ReceiveResponse(invocationId, httpResponse);
-            }
-            HttpStatusCode statusCode = httpResponse.StatusCode;
-            cancellationToken.ThrowIfCancellationRequested();
-            if (!(statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK") || statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "Accepted")))
-            {
-                var ex = new CloudException(string.Format("Operation returned an invalid status code '{0}'", statusCode));
-                string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                CloudError errorBody = JsonConvert.DeserializeObject<CloudError>(responseContent, this.Client.DeserializationSettings);
-                if (errorBody != null)
-                {
-                    ex = new CloudException(errorBody.Message);
-                    ex.Body = errorBody;
-                }
-                ex.Request = httpRequest;
-                ex.Response = httpResponse;
-                if (shouldTrace)
-                {
-                    ServiceClientTracing.Error(invocationId, ex);
-                }
-                throw ex;
-            }
-            // Create Result
-            var result = new AzureOperationResponse<BillingPlanPropertiesWrapper>();
-            result.Request = httpRequest;
-            result.Response = httpResponse;
-            if (httpResponse.Headers.Contains("x-ms-request-id"))
-            {
-                result.RequestId = httpResponse.Headers.GetValues("x-ms-request-id").FirstOrDefault();
-            }
-            // Deserialize Response
-            if (statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK"))
-            {
-                string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                result.Body = JsonConvert.DeserializeObject<BillingPlanPropertiesWrapper>(responseContent, this.Client.DeserializationSettings);
-            }
-            if (shouldTrace)
-            {
-                ServiceClientTracing.Exit(invocationId, result);
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Gets the supported locations to create collections.
-        /// </summary>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service environments.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
-        /// <param name='customHeaders'>
-        /// Headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        public async Task<AzureOperationResponse<LocationPropertiesWrapper>> LocationsWithHttpMessagesAsync(string armNamespace, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (armNamespace == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "armNamespace");
-            }
-            if (apiVersion == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "apiVersion");
-            }
-            if (this.Client.SubscriptionId == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.SubscriptionId");
-            }
-            // Tracing
-            bool shouldTrace = ServiceClientTracing.IsEnabled;
-            string invocationId = null;
-            if (shouldTrace)
-            {
-                invocationId = ServiceClientTracing.NextInvocationId.ToString();
-                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("armNamespace", armNamespace);
-                tracingParameters.Add("apiVersion", apiVersion);
-                tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(invocationId, this, "Locations", tracingParameters);
-            }
-            // Construct URL
-            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/account/locations").ToString();
-            url = url.Replace("{armNamespace}", Uri.EscapeDataString(armNamespace));
-            url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
-            List<string> queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(apiVersion)));
-            }
-            if (queryParameters.Count > 0)
-            {
-                url += "?" + string.Join("&", queryParameters);
-            }
-            // Create HTTP transport objects
-            HttpRequestMessage httpRequest = new HttpRequestMessage();
-            httpRequest.Method = new HttpMethod("GET");
-            httpRequest.RequestUri = new Uri(url);
-            // Set Headers
-            httpRequest.Headers.TryAddWithoutValidation("x-ms-client-request-id", Guid.NewGuid().ToString());
-            if (this.Client.AcceptLanguage != null)
-            {
-                if (httpRequest.Headers.Contains("accept-language"))
-                {
-                    httpRequest.Headers.Remove("accept-language");
-                }
-                httpRequest.Headers.TryAddWithoutValidation("accept-language", this.Client.AcceptLanguage);
-            }
-            if (customHeaders != null)
-            {
-                foreach(var header in customHeaders)
-                {
-                    if (httpRequest.Headers.Contains(header.Key))
-                    {
-                        httpRequest.Headers.Remove(header.Key);
-                    }
-                    httpRequest.Headers.TryAddWithoutValidation(header.Key, header.Value);
-                }
-            }
-
-            // Set Credentials
-            if (this.Client.Credentials != null)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                await this.Client.Credentials.ProcessHttpRequestAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            }
-            // Send Request
-            if (shouldTrace)
-            {
-                ServiceClientTracing.SendRequest(invocationId, httpRequest);
-            }
-            cancellationToken.ThrowIfCancellationRequested();
-            HttpResponseMessage httpResponse = await this.Client.HttpClient.SendAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            if (shouldTrace)
-            {
-                ServiceClientTracing.ReceiveResponse(invocationId, httpResponse);
-            }
-            HttpStatusCode statusCode = httpResponse.StatusCode;
-            cancellationToken.ThrowIfCancellationRequested();
-            if (!(statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "Accepted") || statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK")))
-            {
-                var ex = new CloudException(string.Format("Operation returned an invalid status code '{0}'", statusCode));
-                string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                CloudError errorBody = JsonConvert.DeserializeObject<CloudError>(responseContent, this.Client.DeserializationSettings);
-                if (errorBody != null)
-                {
-                    ex = new CloudException(errorBody.Message);
-                    ex.Body = errorBody;
-                }
-                ex.Request = httpRequest;
-                ex.Response = httpResponse;
-                if (shouldTrace)
-                {
-                    ServiceClientTracing.Error(invocationId, ex);
-                }
-                throw ex;
-            }
-            // Create Result
-            var result = new AzureOperationResponse<LocationPropertiesWrapper>();
-            result.Request = httpRequest;
-            result.Response = httpResponse;
-            if (httpResponse.Headers.Contains("x-ms-request-id"))
-            {
-                result.RequestId = httpResponse.Headers.GetValues("x-ms-request-id").FirstOrDefault();
-            }
-            // Deserialize Response
-            if (statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK"))
-            {
-                string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                result.Body = JsonConvert.DeserializeObject<LocationPropertiesWrapper>(responseContent, this.Client.DeserializationSettings);
+                result.Body = JsonConvert.DeserializeObject<AccountDetailsWrapper>(responseContent, this.Client.DeserializationSettings);
             }
             if (shouldTrace)
             {
@@ -611,26 +323,21 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <summary>
         /// Activates billing for the account
         /// </summary>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service environments.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse> ActivateAccountBillingWithHttpMessagesAsync(string armNamespace, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse> ActivateAccountBillingWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (armNamespace == null)
+            if (this.Client.ArmNamespace == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "armNamespace");
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ArmNamespace");
             }
-            if (apiVersion == null)
+            if (this.Client.ApiVersion == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "apiVersion");
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ApiVersion");
             }
             if (this.Client.SubscriptionId == null)
             {
@@ -643,19 +350,17 @@ namespace Microsoft.Azure.Management.RemoteApp
             {
                 invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("armNamespace", armNamespace);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(invocationId, this, "ActivateAccountBilling", tracingParameters);
             }
             // Construct URL
             var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/account/billing").ToString();
-            url = url.Replace("{armNamespace}", Uri.EscapeDataString(armNamespace));
+            url = url.Replace("{armNamespace}", Uri.EscapeDataString(this.Client.ArmNamespace));
             url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
             List<string> queryParameters = new List<string>();
-            if (apiVersion != null)
+            if (this.Client.ApiVersion != null)
             {
-                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(apiVersion)));
+                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(this.Client.ApiVersion)));
             }
             if (queryParameters.Count > 0)
             {
@@ -733,143 +438,27 @@ namespace Microsoft.Azure.Management.RemoteApp
         }
 
         /// <summary>
-        /// Gets the account associated with the subscription id.
-        /// </summary>
-        /// <param name='nextPageLink'>
-        /// The NextLink from the previous successful call to List operation.
-        /// </param>
-        /// <param name='customHeaders'>
-        /// Headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        public async Task<AzureOperationResponse<GetRemoteAppAccount>> GetAccountInfoNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (nextPageLink == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "nextPageLink");
-            }
-            // Tracing
-            bool shouldTrace = ServiceClientTracing.IsEnabled;
-            string invocationId = null;
-            if (shouldTrace)
-            {
-                invocationId = ServiceClientTracing.NextInvocationId.ToString();
-                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("nextPageLink", nextPageLink);
-                tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(invocationId, this, "GetAccountInfoNext", tracingParameters);
-            }
-            // Construct URL
-            string url = "{nextLink}";
-            url = url.Replace("{nextLink}", nextPageLink);
-            List<string> queryParameters = new List<string>();
-            if (queryParameters.Count > 0)
-            {
-                url += "?" + string.Join("&", queryParameters);
-            }
-            // Create HTTP transport objects
-            HttpRequestMessage httpRequest = new HttpRequestMessage();
-            httpRequest.Method = new HttpMethod("GET");
-            httpRequest.RequestUri = new Uri(url);
-            // Set Headers
-            httpRequest.Headers.TryAddWithoutValidation("x-ms-client-request-id", Guid.NewGuid().ToString());
-            if (this.Client.AcceptLanguage != null)
-            {
-                if (httpRequest.Headers.Contains("accept-language"))
-                {
-                    httpRequest.Headers.Remove("accept-language");
-                }
-                httpRequest.Headers.TryAddWithoutValidation("accept-language", this.Client.AcceptLanguage);
-            }
-            if (customHeaders != null)
-            {
-                foreach(var header in customHeaders)
-                {
-                    if (httpRequest.Headers.Contains(header.Key))
-                    {
-                        httpRequest.Headers.Remove(header.Key);
-                    }
-                    httpRequest.Headers.TryAddWithoutValidation(header.Key, header.Value);
-                }
-            }
-
-            // Set Credentials
-            if (this.Client.Credentials != null)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                await this.Client.Credentials.ProcessHttpRequestAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            }
-            // Send Request
-            if (shouldTrace)
-            {
-                ServiceClientTracing.SendRequest(invocationId, httpRequest);
-            }
-            cancellationToken.ThrowIfCancellationRequested();
-            HttpResponseMessage httpResponse = await this.Client.HttpClient.SendAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            if (shouldTrace)
-            {
-                ServiceClientTracing.ReceiveResponse(invocationId, httpResponse);
-            }
-            HttpStatusCode statusCode = httpResponse.StatusCode;
-            cancellationToken.ThrowIfCancellationRequested();
-            if (!(statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK") || statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "Accepted")))
-            {
-                var ex = new CloudException(string.Format("Operation returned an invalid status code '{0}'", statusCode));
-                string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                CloudError errorBody = JsonConvert.DeserializeObject<CloudError>(responseContent, this.Client.DeserializationSettings);
-                if (errorBody != null)
-                {
-                    ex = new CloudException(errorBody.Message);
-                    ex.Body = errorBody;
-                }
-                ex.Request = httpRequest;
-                ex.Response = httpResponse;
-                if (shouldTrace)
-                {
-                    ServiceClientTracing.Error(invocationId, ex);
-                }
-                throw ex;
-            }
-            // Create Result
-            var result = new AzureOperationResponse<GetRemoteAppAccount>();
-            result.Request = httpRequest;
-            result.Response = httpResponse;
-            if (httpResponse.Headers.Contains("x-ms-request-id"))
-            {
-                result.RequestId = httpResponse.Headers.GetValues("x-ms-request-id").FirstOrDefault();
-            }
-            // Deserialize Response
-            if (statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK"))
-            {
-                string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                result.Body = JsonConvert.DeserializeObject<GetRemoteAppAccount>(responseContent, this.Client.DeserializationSettings);
-            }
-            if (shouldTrace)
-            {
-                ServiceClientTracing.Exit(invocationId, result);
-            }
-            return result;
-        }
-
-        /// <summary>
         /// Gets the available billing plans for the account.
         /// </summary>
-        /// <param name='nextPageLink'>
-        /// The NextLink from the previous successful call to List operation.
-        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<BillingPlanPropertiesWrapper>> PlansNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<BillingPlanPropertiesWrapper>> PlansWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (nextPageLink == null)
+            if (this.Client.ArmNamespace == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "nextPageLink");
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ArmNamespace");
+            }
+            if (this.Client.ApiVersion == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ApiVersion");
+            }
+            if (this.Client.SubscriptionId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.SubscriptionId");
             }
             // Tracing
             bool shouldTrace = ServiceClientTracing.IsEnabled;
@@ -878,14 +467,18 @@ namespace Microsoft.Azure.Management.RemoteApp
             {
                 invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("nextPageLink", nextPageLink);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(invocationId, this, "PlansNext", tracingParameters);
+                ServiceClientTracing.Enter(invocationId, this, "Plans", tracingParameters);
             }
             // Construct URL
-            string url = "{nextLink}";
-            url = url.Replace("{nextLink}", nextPageLink);
+            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/account/billingPlans").ToString();
+            url = url.Replace("{armNamespace}", Uri.EscapeDataString(this.Client.ArmNamespace));
+            url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
             List<string> queryParameters = new List<string>();
+            if (this.Client.ApiVersion != null)
+            {
+                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(this.Client.ApiVersion)));
+            }
             if (queryParameters.Count > 0)
             {
                 url += "?" + string.Join("&", queryParameters);
@@ -977,20 +570,25 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <summary>
         /// Gets the supported locations to create collections.
         /// </summary>
-        /// <param name='nextPageLink'>
-        /// The NextLink from the previous successful call to List operation.
-        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<LocationPropertiesWrapper>> LocationsNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<LocationPropertiesWrapper>> LocationsWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (nextPageLink == null)
+            if (this.Client.ArmNamespace == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "nextPageLink");
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ArmNamespace");
+            }
+            if (this.Client.ApiVersion == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ApiVersion");
+            }
+            if (this.Client.SubscriptionId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.SubscriptionId");
             }
             // Tracing
             bool shouldTrace = ServiceClientTracing.IsEnabled;
@@ -999,14 +597,18 @@ namespace Microsoft.Azure.Management.RemoteApp
             {
                 invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("nextPageLink", nextPageLink);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(invocationId, this, "LocationsNext", tracingParameters);
+                ServiceClientTracing.Enter(invocationId, this, "Locations", tracingParameters);
             }
             // Construct URL
-            string url = "{nextLink}";
-            url = url.Replace("{nextLink}", nextPageLink);
+            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/account/locations").ToString();
+            url = url.Replace("{armNamespace}", Uri.EscapeDataString(this.Client.ArmNamespace));
+            url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
             List<string> queryParameters = new List<string>();
+            if (this.Client.ApiVersion != null)
+            {
+                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(this.Client.ApiVersion)));
+            }
             if (queryParameters.Count > 0)
             {
                 url += "?" + string.Join("&", queryParameters);

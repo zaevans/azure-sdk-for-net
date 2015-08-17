@@ -35,8 +35,11 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public string PublishedApplicationDetailsName { get; set; }
 
         /// <summary>
-        /// The application image path on the destination machine specified
-        /// with environment variables for the drive and known system path.
+        /// Path to the application.  The path should reference default
+        /// operating system environment variables such as %ProgramFiles%,
+        /// %ProgramFiles(x86)%, %SystemRoot%, etc. where possible.  For
+        /// example, use '%SystemRoot%\\\\notepad.exe' rather than
+        /// 'C:\\\\Windows\\\\notepad.exe'.
         /// </summary>
         [JsonProperty(PropertyName = "properties.virtualPath")]
         public string VirtualPath { get; set; }
@@ -48,14 +51,13 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public string Alias { get; set; }
 
         /// <summary>
-        /// A flag to denote if the application will be available to the end
-        /// user.
+        /// A flag to denote if the application will be available to end users.
         /// </summary>
         [JsonProperty(PropertyName = "properties.availableToUsers")]
         public bool? AvailableToUsers { get; set; }
 
         /// <summary>
-        /// The command line arguments to launch the application.
+        /// Optional command-line arguments to pass to the application.
         /// </summary>
         [JsonProperty(PropertyName = "properties.commandLineArguments")]
         public string CommandLineArguments { get; set; }

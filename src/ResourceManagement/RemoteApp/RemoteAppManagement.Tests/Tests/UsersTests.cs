@@ -16,8 +16,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
         string groupName = "Default-RemoteApp-WestUS";
         string collectionName = "ybtest";
         string remoteAppType = "microsoft.remoteapp/collections";
-        string armNamespace = "Microsoft.RemoteApp";
-        string apiVersion = "2014-09-01";
+        
 
         [Fact]
         public void GetUsersTest()
@@ -30,7 +29,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 undoContext.Start();
                 raClient = GetClient();
 
-                userConsentList = raClient.Collection.GetUsers(groupName, armNamespace, collectionName, apiVersion);
+                userConsentList = raClient.Collection.GetUsers(collectionName, groupName);
 
                 Assert.NotNull(userConsentList);
   
@@ -80,7 +79,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 foreach(SecurityPrincipal user in users)
                 {
-                    result = raClient.Collection.AddSecurityPrincipal(groupName, armNamespace, collectionName, user.Name,apiVersion, user);
+                    result = raClient.Collection.AddSecurityPrincipal(user, collectionName, user.Name, groupName);
                     Assert.NotNull(result);
                     IsExpectedUser(result, user);
                 }
@@ -109,19 +108,19 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                     UserIdType = PrincipalProviderType.OrgId
                 };
 
-                userConsentListOrig = raClient.Collection.GetUsers(groupName, armNamespace, collectionName, apiVersion);
+                userConsentListOrig = raClient.Collection.GetUsers(collectionName, groupName);
 
-                result = raClient.Collection.AddSecurityPrincipal(groupName, armNamespace, collectionName, userToRemove.Name, apiVersion, userToRemove);
+                result = raClient.Collection.AddSecurityPrincipal(userToRemove, collectionName, userToRemove.Name, groupName);
                 Assert.NotNull(result);
                 
 
 
-                result = raClient.Collection.DeleteSecurityPrincipal(groupName, armNamespace, collectionName, userToRemove.Name, apiVersion, userToRemove);
+                result = raClient.Collection.DeleteSecurityPrincipal(userToRemove, collectionName, userToRemove.Name, groupName);
 
                 Assert.NotNull(result);
            
 
-                userConsentListAfterDelete = raClient.Collection.GetUsers(groupName, armNamespace, collectionName, apiVersion);
+                userConsentListAfterDelete = raClient.Collection.GetUsers(collectionName, groupName);
 
                 Assert.NotNull(userConsentListAfterDelete);
                 Assert.Equal(userConsentListOrig.UserConsentStatuses.Count, userConsentListAfterDelete.UserConsentStatuses.Count);

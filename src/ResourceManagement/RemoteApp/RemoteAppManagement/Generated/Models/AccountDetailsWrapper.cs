@@ -12,9 +12,9 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// The response for the get account operation.
+    /// A wrapper for account details to be used as a parameter and a response.
     /// </summary>
-    public partial class UpdateRemoteAppAccount : Resource
+    public partial class AccountDetailsWrapper : Resource
     {
         /// <summary>
         /// The etag of the resource.
@@ -32,7 +32,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// The account subscriptionId
         /// </summary>
         [JsonProperty(PropertyName = "properties.id")]
-        public string UpdateRemoteAppAccountId { get; set; }
+        public string AccountDetailsWrapperId { get; set; }
 
         /// <summary>
         /// Name of the workspace
@@ -80,7 +80,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// The home region for the account
         /// </summary>
         [JsonProperty(PropertyName = "properties.location")]
-        public string UpdateRemoteAppAccountLocation { get; set; }
+        public string AccountDetailsWrapperLocation { get; set; }
 
         /// <summary>
         /// Validate the object. Throws ArgumentException or ArgumentNullException if validation fails.

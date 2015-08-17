@@ -20,132 +20,26 @@ namespace Microsoft.Azure.Management.RemoteApp
     public partial interface ICollectionOperations
     {
         /// <summary>
-        /// Create or update a collection.
-        /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='collectionName'>
-        /// The name of the collection
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
-        /// <param name='details'>
-        /// The details of the created or updated collection
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<CollectionCreationDetailsWrapper>> CreateOrUpdateWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CollectionCreationDetailsWrapper details, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Create or update a collection.
-        /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='collectionName'>
-        /// The name of the collection
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
-        /// <param name='details'>
-        /// The details of the created or updated collection
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<CollectionCreationDetailsWrapper>> BeginCreateOrUpdateWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CollectionCreationDetailsWrapper details, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Gets the collection details.
-        /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='collectionName'>
-        /// Name of the RemoteApp collection
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<Collection>> GetWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Delete the collection
-        /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='collectionName'>
-        /// Name of the RemoteApp collection
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse> DeleteWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Gets the collection details.
-        /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='collectionName'>
-        /// Name of the RemoteApp collection
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<IList<CollectionUsageSummary>>> GetUsageSummaryWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
         /// Gets the list of collections details in the resource group.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// The name of the resource group
         /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
         /// </param>
-        /// <param name='apiVersion'>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse<IList<Collection>>> ListWithHttpMessagesAsync(string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Gets the collection details.
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -153,24 +47,88 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<IList<Collection>>> ListWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<Collection>> GetWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Gets the specified published application in this collection.
+        /// Create or update a collection.
         /// </summary>
+        /// <param name='details'>
+        /// The details of the created or updated collection
+        /// </param>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
         /// <param name='resourceGroupName'>
         /// The name of the resource group
         /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse<CollectionCreationDetailsWrapper>> CreateOrUpdateWithHttpMessagesAsync(CollectionCreationDetailsWrapper details, string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Create or update a collection.
+        /// </summary>
+        /// <param name='details'>
+        /// The details of the created or updated collection
         /// </param>
         /// <param name='collectionName'>
-        /// The name of the collection.
+        /// The collection name.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse<CollectionCreationDetailsWrapper>> BeginCreateOrUpdateWithHttpMessagesAsync(CollectionCreationDetailsWrapper details, string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Delete the collection
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse> DeleteWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Gets the list of published applications in this collection.
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse<IList<PublishedApplicationDetails>>> ListPublishedAppWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Gets the specified published application in this collection.
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
         /// </param>
         /// <param name='alias'>
         /// The alias for the application.
         /// </param>
-        /// <param name='apiVersion'>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -178,28 +136,22 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<PublishedApplicationDetails>> GetPublishedAppWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string alias, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<PublishedApplicationDetails>> GetPublishedAppWithHttpMessagesAsync(string collectionName, string alias, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Publishes a new application or updates a previously published
         /// application.
         /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='collectionName'>
-        /// The name of the collection.
-        /// </param>
-        /// <param name='alias'>
-        /// Alias of the application
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
         /// <param name='applicationDetails'>
         /// Details of the applicaton to publish or modify
+        /// </param>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='alias'>
+        /// The alias for the application.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -207,25 +159,19 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<PublishingOperationResult>> PublishOrUpdateApplicationWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string alias, string apiVersion, ApplicationDetails applicationDetails, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<PublishingOperationResult>> PublishOrUpdateApplicationWithHttpMessagesAsync(ApplicationDetails applicationDetails, string collectionName, string alias, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Unpublishes published application matching the application alias
         /// (short unique name) from the collection.
         /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
         /// <param name='collectionName'>
-        /// The name of the collection.
-        /// </param>
-        /// <param name='apiVersion'>
+        /// The collection name.
         /// </param>
         /// <param name='alias'>
-        /// application alias to be unpublished
+        /// The alias for the application.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -233,92 +179,84 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<PublishingOperationResult>> UnpublishWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string apiVersion, string alias, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<PublishingOperationResult>> UnpublishWithHttpMessagesAsync(string collectionName, string alias, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Gets a list of sessions on the current collection
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse<IList<SessionWrapper>>> SessionListWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Gets the list of applications available in this collection.
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse<IList<StartMenuApplication>>> ListStartMenuAppsWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets the specified Start Menu application available in this
         /// collection.
         /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='collectionName'>
-        /// The name of the collection.
-        /// </param>
         /// <param name='applicationId'>
         /// The identifier of the application.
         /// </param>
-        /// <param name='apiVersion'>
+        /// <param name='collectionName'>
+        /// The collection name.
         /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<StartMenuApplication>> GetStartMenuAppWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string applicationId, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Gets the list of published applications in this collection.
-        /// </summary>
         /// <param name='resourceGroupName'>
         /// The name of the resource group
         /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='collectionName'>
-        /// The name of the collection.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<IList<PublishedApplicationDetails>>> ListPublishedAppWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<StartMenuApplication>> GetStartMenuAppWithHttpMessagesAsync(string applicationId, string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Gets the list of applications available in this collection.
+        /// Gets the collection details.
         /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
         /// <param name='resourceGroupName'>
         /// The name of the resource group
         /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='collectionName'>
-        /// The name of the collection.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<IList<StartMenuApplication>>> ListStartMenuAppsWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<IList<CollectionUsageSummary>>> GetUsageSummaryWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets a list of all RemoteApp users associated with the given
         /// collection.
         /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
         /// <param name='resourceGroupName'>
         /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='collectionName'>
-        /// The name of the collection.
-        /// </param>
-        /// <param name='apiVersion'>
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -326,27 +264,40 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<SecurityPrincipalInfoListResult>> GetUsersWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<SecurityPrincipalInfoListResult>> GetUsersWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Gets a RemoteApp user by their UPN.
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='userUpn'>
+        /// The UPN of the user
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse<SecurityPrincipalInfo>> GetUserWithHttpMessagesAsync(string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Adds a user to the given collection.
         /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
+        /// <param name='securityPrincipal'>
+        /// A RemoteApp user to add.
         /// </param>
         /// <param name='collectionName'>
-        /// The name of the collection.
+        /// The collection name.
         /// </param>
         /// <param name='userUpn'>
-        /// The UPN of the user to be added
+        /// The UPN of the user
         /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
-        /// <param name='securityPrincipal'>
-        /// A RemoteApp principal to add.
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -354,49 +305,21 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<SecurityPrincipalOperationErrorDetails>> AddSecurityPrincipalWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, SecurityPrincipal securityPrincipal, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<SecurityPrincipalOperationErrorDetails>> AddSecurityPrincipalWithHttpMessagesAsync(SecurityPrincipal securityPrincipal, string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Deletes a user from the given collection.
         /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='collectionName'>
-        /// The name of the collection.
-        /// </param>
-        /// <param name='userUpn'>
-        /// The UPN of the user to be removed
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
         /// <param name='securityPrincipal'>
         /// The RemoteApp user to remove.
         /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<SecurityPrincipalOperationErrorDetails>> DeleteSecurityPrincipalWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, SecurityPrincipal securityPrincipal, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Gets a list of sessions on the current collection
-        /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
         /// <param name='collectionName'>
         /// The collection name.
         /// </param>
-        /// <param name='apiVersion'>
+        /// <param name='userUpn'>
+        /// The UPN of the user
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -404,24 +327,18 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<IList<SessionWrapper>>> SessionListWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<SecurityPrincipalOperationErrorDetails>> DeleteSecurityPrincipalWithHttpMessagesAsync(SecurityPrincipal securityPrincipal, string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Disconnects the specified user
         /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
         /// <param name='collectionName'>
         /// The collection name.
         /// </param>
         /// <param name='userUpn'>
-        /// User to disconnect
+        /// The UPN of the user
         /// </param>
-        /// <param name='apiVersion'>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -429,24 +346,18 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse> SessionDisconnectWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse> SessionDisconnectWithHttpMessagesAsync(string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Logs off the specified user
         /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
         /// <param name='collectionName'>
         /// The collection name.
         /// </param>
         /// <param name='userUpn'>
-        /// User to log off
+        /// The UPN of the user
         /// </param>
-        /// <param name='apiVersion'>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -454,27 +365,21 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse> SessionLogOffWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse> SessionLogOffWithHttpMessagesAsync(string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Sends a message to the specified user
         /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
+        /// <param name='messageDetails'>
+        /// Session message details
         /// </param>
         /// <param name='collectionName'>
         /// The collection name.
         /// </param>
         /// <param name='userUpn'>
-        /// User to send a message to
+        /// The UPN of the user
         /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
-        /// <param name='messageDetails'>
-        /// Session message details
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -482,46 +387,6 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse> SessionSendMessageWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, SessionSendMessageCommandParameter messageDetails, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Gets the collection details.
-        /// </summary>
-        /// <param name='nextPageLink'>
-        /// The NextLink from the previous successful call to List operation.
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<Collection>> GetNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Gets the specified published application in this collection.
-        /// </summary>
-        /// <param name='nextPageLink'>
-        /// The NextLink from the previous successful call to List operation.
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<PublishedApplicationDetails>> GetPublishedAppNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Gets the specified Start Menu application available in this
-        /// collection.
-        /// </summary>
-        /// <param name='nextPageLink'>
-        /// The NextLink from the previous successful call to List operation.
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<StartMenuApplication>> GetStartMenuAppNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse> SessionSendMessageWithHttpMessagesAsync(SessionSendMessageCommandParameter messageDetails, string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -57,5 +57,11 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         [JsonProperty(PropertyName = "officeType")]
         public OfficeType? OfficeType { get; set; }
 
+        /// <summary>
+        /// The time when the image upload was completed.
+        /// </summary>
+        [JsonProperty(PropertyName = "uploadCompleteTime")]
+        public DateTime? UploadCompleteTime { get; set; }
+
     }
 }

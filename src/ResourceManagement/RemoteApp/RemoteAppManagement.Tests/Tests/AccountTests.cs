@@ -15,11 +15,7 @@ using Xunit;
 namespace Microsoft.Azure.Management.RemoteApp.Tests
 {
     public class AccountTests : RemoteAppTestBase
-    {
-        string armNamespace = "Microsoft.RemoteApp";
-        string apiVersion = "2014-09-01";
-
-        
+    {        
         [Fact]
         public void GetAccountLocationsTest()
         {
@@ -32,7 +28,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 raClient = GetClient();
 
-                locations = raClient.Account.Locations(armNamespace, apiVersion);
+                locations = raClient.Account.Locations();
 
                 Assert.NotNull(locations);
                 Assert.NotNull(locations.Locations);
@@ -54,14 +50,13 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 undoContext.Start();
 
                 raClient = GetClient();
-
-                billingPlans = raClient.Account.Plans(armNamespace, apiVersion);
+                billingPlans = raClient.Account.Plans();
 
                 Assert.NotNull(billingPlans);
                 Assert.NotNull(billingPlans.Plans);
-                foreach (RemoteAppBillingPlan plan in billingPlans.Plans)
+                foreach (BillingPlan plan in billingPlans.Plans)
                 {
-                    Assert.IsType(typeof(RemoteAppBillingPlan), plan);
+                    Assert.IsType(typeof(BillingPlan), plan);
                 }
             }
         }
@@ -70,8 +65,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
         public void UpdateAccountTest()
         {
             RemoteAppManagementClient raClient = null;
-            GetRemoteAppAccount result = null;
-            UpdateRemoteAppAccount update = new UpdateRemoteAppAccount();
+            AccountDetailsWrapper result = null;
+            AccountDetailsWrapper update = new AccountDetailsWrapper();
             update.Tags = new Dictionary<string, string>();
 
             using (var undoContext = UndoContext.Current)
@@ -80,7 +75,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 raClient = GetClient();
 
-                result = raClient.Account.GetAccountInfo(armNamespace, apiVersion);
+                result = raClient.Account.GetAccountInfo();
 
                 update.Location = "WestUs";
                 update.WorkspaceName = result.WorkspaceName == 
@@ -90,9 +85,9 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 Assert.NotNull(result);
                 Assert.NotEqual(update.WorkspaceName, result.WorkspaceName);
 
-                result = raClient.Account.UpdateAccount(armNamespace, apiVersion, update);
+                result = raClient.Account.UpdateAccount(update);
 
-                result = raClient.Account.GetAccountInfo(armNamespace, apiVersion);
+                result = raClient.Account.GetAccountInfo();
 
                 Assert.NotNull(result);
                 Assert.Equal(update.WorkspaceName, result.WorkspaceName);
@@ -103,7 +98,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
         public void AccountActivateBillingTest()
         {
             RemoteAppManagementClient raClient = null;
-            GetRemoteAppAccount result = null;
+            AccountDetailsWrapper result = null;
 
             using (var undoContext = UndoContext.Current)
             {
@@ -111,12 +106,12 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 raClient = GetClient();
 
-                raClient.Account.ActivateAccountBilling(armNamespace, apiVersion);
+                raClient.Account.ActivateAccountBilling();
 
-                result = raClient.Account.GetAccountInfo(armNamespace, apiVersion);
+                result = raClient.Account.GetAccountInfo();
 
                 Assert.NotNull(result);
-                Assert.IsType(typeof(GetRemoteAppAccount), result);
+                Assert.IsType(typeof(AccountDetailsWrapper), result);
             }
         }
     }

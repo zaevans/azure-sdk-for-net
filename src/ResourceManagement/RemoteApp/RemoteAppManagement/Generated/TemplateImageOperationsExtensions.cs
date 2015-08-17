@@ -21,17 +21,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static IList<TemplateImage> GetTemplateImages(this ITemplateImageOperations operations, string resourceGroupName, string armNamespace, string apiVersion)
+            public static IList<TemplateImage> GetTemplateImages(this ITemplateImageOperations operations)
             {
-                return Task.Factory.StartNew(s => ((ITemplateImageOperations)s).GetTemplateImagesAsync(resourceGroupName, armNamespace, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ITemplateImageOperations)s).GetTemplateImagesAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -40,20 +32,12 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<TemplateImage>> GetTemplateImagesAsync( this ITemplateImageOperations operations, string resourceGroupName, string armNamespace, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<TemplateImage>> GetTemplateImagesAsync( this ITemplateImageOperations operations, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<IList<TemplateImage>> result = await operations.GetTemplateImagesWithHttpMessagesAsync(resourceGroupName, armNamespace, apiVersion, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<IList<TemplateImage>> result = await operations.GetTemplateImagesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 

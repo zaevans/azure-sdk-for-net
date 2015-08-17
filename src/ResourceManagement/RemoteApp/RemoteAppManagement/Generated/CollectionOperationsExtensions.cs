@@ -16,7 +16,7 @@ namespace Microsoft.Azure.Management.RemoteApp
     public static partial class CollectionOperationsExtensions
     {
             /// <summary>
-            /// Create or update a collection.
+            /// Gets the list of collections details in the resource group.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -24,246 +24,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='details'>
-            /// The details of the created or updated collection
-            /// </param>
-            public static CollectionCreationDetailsWrapper CreateOrUpdate(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CollectionCreationDetailsWrapper details)
+            public static IList<Collection> List(this ICollectionOperations operations, string resourceGroupName)
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).CreateOrUpdateAsync(resourceGroupName, armNamespace, collectionName, apiVersion, details), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Create or update a collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='details'>
-            /// The details of the created or updated collection
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<CollectionCreationDetailsWrapper> CreateOrUpdateAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CollectionCreationDetailsWrapper details, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<CollectionCreationDetailsWrapper> result = await operations.CreateOrUpdateWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, apiVersion, details, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Create or update a collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='details'>
-            /// The details of the created or updated collection
-            /// </param>
-            public static CollectionCreationDetailsWrapper BeginCreateOrUpdate(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CollectionCreationDetailsWrapper details)
-            {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).BeginCreateOrUpdateAsync(resourceGroupName, armNamespace, collectionName, apiVersion, details), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Create or update a collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='details'>
-            /// The details of the created or updated collection
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<CollectionCreationDetailsWrapper> BeginCreateOrUpdateAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CollectionCreationDetailsWrapper details, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<CollectionCreationDetailsWrapper> result = await operations.BeginCreateOrUpdateWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, apiVersion, details, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Gets the collection details.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// Name of the RemoteApp collection
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static Collection Get(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion)
-            {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetAsync(resourceGroupName, armNamespace, collectionName, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets the collection details.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// Name of the RemoteApp collection
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<Collection> GetAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<Collection> result = await operations.GetWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, apiVersion, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Delete the collection
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// Name of the RemoteApp collection
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static void Delete(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion)
-            {
-                Task.Factory.StartNew(s => ((ICollectionOperations)s).DeleteAsync(resourceGroupName, armNamespace, collectionName, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Delete the collection
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// Name of the RemoteApp collection
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task DeleteAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                await operations.DeleteWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, apiVersion, null, cancellationToken).ConfigureAwait(false);
-            }
-
-            /// <summary>
-            /// Gets the collection details.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// Name of the RemoteApp collection
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static IList<CollectionUsageSummary> GetUsageSummary(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion)
-            {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageSummaryAsync(resourceGroupName, armNamespace, collectionName, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets the collection details.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// Name of the RemoteApp collection
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<CollectionUsageSummary>> GetUsageSummaryAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<IList<CollectionUsageSummary>> result = await operations.GetUsageSummaryWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, apiVersion, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListAsync(resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -275,36 +38,213 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
             /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static IList<Collection> List(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string apiVersion)
+            public static async Task<IList<Collection>> ListAsync( this ICollectionOperations operations, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListAsync(resourceGroupName, armNamespace, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                AzureOperationResponse<IList<Collection>> result = await operations.ListWithHttpMessagesAsync(resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
             }
 
             /// <summary>
-            /// Gets the list of collections details in the resource group.
+            /// Gets the collection details.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
+            public static Collection Get(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the collection details.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
             /// </param>
-            /// <param name='apiVersion'>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<Collection>> ListAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<Collection> GetAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<IList<Collection>> result = await operations.ListWithHttpMessagesAsync(resourceGroupName, armNamespace, apiVersion, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<Collection> result = await operations.GetWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Create or update a collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='details'>
+            /// The details of the created or updated collection
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static CollectionCreationDetailsWrapper CreateOrUpdate(this ICollectionOperations operations, CollectionCreationDetailsWrapper details, string collectionName, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).CreateOrUpdateAsync(details, collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Create or update a collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='details'>
+            /// The details of the created or updated collection
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<CollectionCreationDetailsWrapper> CreateOrUpdateAsync( this ICollectionOperations operations, CollectionCreationDetailsWrapper details, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<CollectionCreationDetailsWrapper> result = await operations.CreateOrUpdateWithHttpMessagesAsync(details, collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Create or update a collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='details'>
+            /// The details of the created or updated collection
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static CollectionCreationDetailsWrapper BeginCreateOrUpdate(this ICollectionOperations operations, CollectionCreationDetailsWrapper details, string collectionName, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).BeginCreateOrUpdateAsync(details, collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Create or update a collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='details'>
+            /// The details of the created or updated collection
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<CollectionCreationDetailsWrapper> BeginCreateOrUpdateAsync( this ICollectionOperations operations, CollectionCreationDetailsWrapper details, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<CollectionCreationDetailsWrapper> result = await operations.BeginCreateOrUpdateWithHttpMessagesAsync(details, collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Delete the collection
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static void Delete(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            {
+                Task.Factory.StartNew(s => ((ICollectionOperations)s).DeleteAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Delete the collection
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task DeleteAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                await operations.DeleteWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+            }
+
+            /// <summary>
+            /// Gets the list of published applications in this collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static IList<PublishedApplicationDetails> ListPublishedApp(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListPublishedAppAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the list of published applications in this collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<PublishedApplicationDetails>> ListPublishedAppAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<IList<PublishedApplicationDetails>> result = await operations.ListPublishedAppWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -314,23 +254,18 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
             /// <param name='collectionName'>
-            /// The name of the collection.
+            /// The collection name.
             /// </param>
             /// <param name='alias'>
             /// The alias for the application.
             /// </param>
-            /// <param name='apiVersion'>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
             /// </param>
-            public static PublishedApplicationDetails GetPublishedApp(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string alias, string apiVersion)
+            public static PublishedApplicationDetails GetPublishedApp(this ICollectionOperations operations, string collectionName, string alias, string resourceGroupName)
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetPublishedAppAsync(resourceGroupName, armNamespace, collectionName, alias, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetPublishedAppAsync(collectionName, alias, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -339,26 +274,21 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
             /// <param name='collectionName'>
-            /// The name of the collection.
+            /// The collection name.
             /// </param>
             /// <param name='alias'>
             /// The alias for the application.
             /// </param>
-            /// <param name='apiVersion'>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<PublishedApplicationDetails> GetPublishedAppAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string alias, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<PublishedApplicationDetails> GetPublishedAppAsync( this ICollectionOperations operations, string collectionName, string alias, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<PublishedApplicationDetails> result = await operations.GetPublishedAppWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, alias, apiVersion, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<PublishedApplicationDetails> result = await operations.GetPublishedAppWithHttpMessagesAsync(collectionName, alias, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -368,26 +298,21 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='alias'>
-            /// Alias of the application
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
             /// <param name='applicationDetails'>
             /// Details of the applicaton to publish or modify
             /// </param>
-            public static PublishingOperationResult PublishOrUpdateApplication(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string alias, string apiVersion, ApplicationDetails applicationDetails)
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='alias'>
+            /// The alias for the application.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static PublishingOperationResult PublishOrUpdateApplication(this ICollectionOperations operations, ApplicationDetails applicationDetails, string collectionName, string alias, string resourceGroupName)
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).PublishOrUpdateApplicationAsync(resourceGroupName, armNamespace, collectionName, alias, apiVersion, applicationDetails), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).PublishOrUpdateApplicationAsync(applicationDetails, collectionName, alias, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -396,29 +321,24 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='alias'>
-            /// Alias of the application
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
             /// <param name='applicationDetails'>
             /// Details of the applicaton to publish or modify
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='alias'>
+            /// The alias for the application.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<PublishingOperationResult> PublishOrUpdateApplicationAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string alias, string apiVersion, ApplicationDetails applicationDetails, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<PublishingOperationResult> PublishOrUpdateApplicationAsync( this ICollectionOperations operations, ApplicationDetails applicationDetails, string collectionName, string alias, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<PublishingOperationResult> result = await operations.PublishOrUpdateApplicationWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, alias, apiVersion, applicationDetails, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<PublishingOperationResult> result = await operations.PublishOrUpdateApplicationWithHttpMessagesAsync(applicationDetails, collectionName, alias, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -429,23 +349,18 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='alias'>
+            /// The alias for the application.
+            /// </param>
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='alias'>
-            /// application alias to be unpublished
-            /// </param>
-            public static PublishingOperationResult Unpublish(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, string alias)
+            public static PublishingOperationResult Unpublish(this ICollectionOperations operations, string collectionName, string alias, string resourceGroupName)
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).UnpublishAsync(resourceGroupName, armNamespace, collectionName, apiVersion, alias), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).UnpublishAsync(collectionName, alias, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -455,344 +370,21 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
             /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='apiVersion'>
+            /// The collection name.
             /// </param>
             /// <param name='alias'>
-            /// application alias to be unpublished
+            /// The alias for the application.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<PublishingOperationResult> UnpublishAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, string alias, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<PublishingOperationResult> UnpublishAsync( this ICollectionOperations operations, string collectionName, string alias, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<PublishingOperationResult> result = await operations.UnpublishWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, apiVersion, alias, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Gets the specified Start Menu application available in this collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='applicationId'>
-            /// The identifier of the application.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static StartMenuApplication GetStartMenuApp(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string applicationId, string apiVersion)
-            {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetStartMenuAppAsync(resourceGroupName, armNamespace, collectionName, applicationId, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets the specified Start Menu application available in this collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='applicationId'>
-            /// The identifier of the application.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<StartMenuApplication> GetStartMenuAppAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string applicationId, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<StartMenuApplication> result = await operations.GetStartMenuAppWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, applicationId, apiVersion, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Gets the list of published applications in this collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static IList<PublishedApplicationDetails> ListPublishedApp(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion)
-            {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListPublishedAppAsync(resourceGroupName, armNamespace, collectionName, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets the list of published applications in this collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<PublishedApplicationDetails>> ListPublishedAppAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<IList<PublishedApplicationDetails>> result = await operations.ListPublishedAppWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, apiVersion, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Gets the list of applications available in this collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static IList<StartMenuApplication> ListStartMenuApps(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion)
-            {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListStartMenuAppsAsync(resourceGroupName, armNamespace, collectionName, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets the list of applications available in this collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<StartMenuApplication>> ListStartMenuAppsAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<IList<StartMenuApplication>> result = await operations.ListStartMenuAppsWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, apiVersion, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Gets a list of all RemoteApp users associated with the given collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static SecurityPrincipalInfoListResult GetUsers(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion)
-            {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsersAsync(resourceGroupName, armNamespace, collectionName, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets a list of all RemoteApp users associated with the given collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SecurityPrincipalInfoListResult> GetUsersAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<SecurityPrincipalInfoListResult> result = await operations.GetUsersWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, apiVersion, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Adds a user to the given collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='userUpn'>
-            /// The UPN of the user to be added
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='securityPrincipal'>
-            /// A RemoteApp principal to add.
-            /// </param>
-            public static SecurityPrincipalOperationErrorDetails AddSecurityPrincipal(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, SecurityPrincipal securityPrincipal)
-            {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).AddSecurityPrincipalAsync(resourceGroupName, armNamespace, collectionName, userUpn, apiVersion, securityPrincipal), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Adds a user to the given collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='userUpn'>
-            /// The UPN of the user to be added
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='securityPrincipal'>
-            /// A RemoteApp principal to add.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SecurityPrincipalOperationErrorDetails> AddSecurityPrincipalAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, SecurityPrincipal securityPrincipal, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<SecurityPrincipalOperationErrorDetails> result = await operations.AddSecurityPrincipalWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, userUpn, apiVersion, securityPrincipal, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Deletes a user from the given collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='userUpn'>
-            /// The UPN of the user to be removed
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='securityPrincipal'>
-            /// The RemoteApp user to remove.
-            /// </param>
-            public static SecurityPrincipalOperationErrorDetails DeleteSecurityPrincipal(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, SecurityPrincipal securityPrincipal)
-            {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).DeleteSecurityPrincipalAsync(resourceGroupName, armNamespace, collectionName, userUpn, apiVersion, securityPrincipal), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Deletes a user from the given collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The name of the collection.
-            /// </param>
-            /// <param name='userUpn'>
-            /// The UPN of the user to be removed
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='securityPrincipal'>
-            /// The RemoteApp user to remove.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SecurityPrincipalOperationErrorDetails> DeleteSecurityPrincipalAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, SecurityPrincipal securityPrincipal, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<SecurityPrincipalOperationErrorDetails> result = await operations.DeleteSecurityPrincipalWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, userUpn, apiVersion, securityPrincipal, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<PublishingOperationResult> result = await operations.UnpublishWithHttpMessagesAsync(collectionName, alias, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -802,20 +394,15 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
             /// <param name='collectionName'>
             /// The collection name.
             /// </param>
-            /// <param name='apiVersion'>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
             /// </param>
-            public static IList<SessionWrapper> SessionList(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion)
+            public static IList<SessionWrapper> SessionList(this ICollectionOperations operations, string collectionName, string resourceGroupName)
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionListAsync(resourceGroupName, armNamespace, collectionName, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionListAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -824,252 +411,56 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
             /// <param name='collectionName'>
             /// The collection name.
             /// </param>
-            /// <param name='apiVersion'>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<SessionWrapper>> SessionListAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<SessionWrapper>> SessionListAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<IList<SessionWrapper>> result = await operations.SessionListWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, apiVersion, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<IList<SessionWrapper>> result = await operations.SessionListWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
             /// <summary>
-            /// Disconnects the specified user
+            /// Gets the list of applications available in this collection.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
             /// <param name='collectionName'>
             /// The collection name.
             /// </param>
-            /// <param name='userUpn'>
-            /// User to disconnect
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
             /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static void SessionDisconnect(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion)
+            public static IList<StartMenuApplication> ListStartMenuApps(this ICollectionOperations operations, string collectionName, string resourceGroupName)
             {
-                Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionDisconnectAsync(resourceGroupName, armNamespace, collectionName, userUpn, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListStartMenuAppsAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Disconnects the specified user
+            /// Gets the list of applications available in this collection.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
             /// <param name='collectionName'>
             /// The collection name.
             /// </param>
-            /// <param name='userUpn'>
-            /// User to disconnect
-            /// </param>
-            /// <param name='apiVersion'>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task SessionDisconnectAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<StartMenuApplication>> ListStartMenuAppsAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                await operations.SessionDisconnectWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, userUpn, apiVersion, null, cancellationToken).ConfigureAwait(false);
-            }
-
-            /// <summary>
-            /// Logs off the specified user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The collection name.
-            /// </param>
-            /// <param name='userUpn'>
-            /// User to log off
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static void SessionLogOff(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion)
-            {
-                Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionLogOffAsync(resourceGroupName, armNamespace, collectionName, userUpn, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Logs off the specified user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The collection name.
-            /// </param>
-            /// <param name='userUpn'>
-            /// User to log off
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task SessionLogOffAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                await operations.SessionLogOffWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, userUpn, apiVersion, null, cancellationToken).ConfigureAwait(false);
-            }
-
-            /// <summary>
-            /// Sends a message to the specified user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The collection name.
-            /// </param>
-            /// <param name='userUpn'>
-            /// User to send a message to
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='messageDetails'>
-            /// Session message details
-            /// </param>
-            public static void SessionSendMessage(this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, SessionSendMessageCommandParameter messageDetails)
-            {
-                Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionSendMessageAsync(resourceGroupName, armNamespace, collectionName, userUpn, apiVersion, messageDetails), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Sends a message to the specified user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The collection name.
-            /// </param>
-            /// <param name='userUpn'>
-            /// User to send a message to
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='messageDetails'>
-            /// Session message details
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task SessionSendMessageAsync( this ICollectionOperations operations, string resourceGroupName, string armNamespace, string collectionName, string userUpn, string apiVersion, SessionSendMessageCommandParameter messageDetails, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                await operations.SessionSendMessageWithHttpMessagesAsync(resourceGroupName, armNamespace, collectionName, userUpn, apiVersion, messageDetails, null, cancellationToken).ConfigureAwait(false);
-            }
-
-            /// <summary>
-            /// Gets the collection details.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
-            /// </param>
-            public static Collection GetNext(this ICollectionOperations operations, string nextPageLink)
-            {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetNextAsync(nextPageLink), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets the collection details.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<Collection> GetNextAsync( this ICollectionOperations operations, string nextPageLink, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<Collection> result = await operations.GetNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Gets the specified published application in this collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
-            /// </param>
-            public static PublishedApplicationDetails GetPublishedAppNext(this ICollectionOperations operations, string nextPageLink)
-            {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetPublishedAppNextAsync(nextPageLink), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets the specified published application in this collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<PublishedApplicationDetails> GetPublishedAppNextAsync( this ICollectionOperations operations, string nextPageLink, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<PublishedApplicationDetails> result = await operations.GetPublishedAppNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<IList<StartMenuApplication>> result = await operations.ListStartMenuAppsWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -1079,12 +470,18 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
+            /// <param name='applicationId'>
+            /// The identifier of the application.
             /// </param>
-            public static StartMenuApplication GetStartMenuAppNext(this ICollectionOperations operations, string nextPageLink)
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static StartMenuApplication GetStartMenuApp(this ICollectionOperations operations, string applicationId, string collectionName, string resourceGroupName)
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetStartMenuAppNextAsync(nextPageLink), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetStartMenuAppAsync(applicationId, collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -1093,16 +490,377 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
+            /// <param name='applicationId'>
+            /// The identifier of the application.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<StartMenuApplication> GetStartMenuAppNextAsync( this ICollectionOperations operations, string nextPageLink, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<StartMenuApplication> GetStartMenuAppAsync( this ICollectionOperations operations, string applicationId, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<StartMenuApplication> result = await operations.GetStartMenuAppNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<StartMenuApplication> result = await operations.GetStartMenuAppWithHttpMessagesAsync(applicationId, collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
+            }
+
+            /// <summary>
+            /// Gets the collection details.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static IList<CollectionUsageSummary> GetUsageSummary(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageSummaryAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the collection details.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<CollectionUsageSummary>> GetUsageSummaryAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<IList<CollectionUsageSummary>> result = await operations.GetUsageSummaryWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Gets a list of all RemoteApp users associated with the given collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static SecurityPrincipalInfoListResult GetUsers(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsersAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets a list of all RemoteApp users associated with the given collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<SecurityPrincipalInfoListResult> GetUsersAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<SecurityPrincipalInfoListResult> result = await operations.GetUsersWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Gets a RemoteApp user by their UPN.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static SecurityPrincipalInfo GetUser(this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUserAsync(collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets a RemoteApp user by their UPN.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<SecurityPrincipalInfo> GetUserAsync( this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<SecurityPrincipalInfo> result = await operations.GetUserWithHttpMessagesAsync(collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Adds a user to the given collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='securityPrincipal'>
+            /// A RemoteApp user to add.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static SecurityPrincipalOperationErrorDetails AddSecurityPrincipal(this ICollectionOperations operations, SecurityPrincipal securityPrincipal, string collectionName, string userUpn, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).AddSecurityPrincipalAsync(securityPrincipal, collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Adds a user to the given collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='securityPrincipal'>
+            /// A RemoteApp user to add.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<SecurityPrincipalOperationErrorDetails> AddSecurityPrincipalAsync( this ICollectionOperations operations, SecurityPrincipal securityPrincipal, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<SecurityPrincipalOperationErrorDetails> result = await operations.AddSecurityPrincipalWithHttpMessagesAsync(securityPrincipal, collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Deletes a user from the given collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='securityPrincipal'>
+            /// The RemoteApp user to remove.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static SecurityPrincipalOperationErrorDetails DeleteSecurityPrincipal(this ICollectionOperations operations, SecurityPrincipal securityPrincipal, string collectionName, string userUpn, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).DeleteSecurityPrincipalAsync(securityPrincipal, collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Deletes a user from the given collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='securityPrincipal'>
+            /// The RemoteApp user to remove.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<SecurityPrincipalOperationErrorDetails> DeleteSecurityPrincipalAsync( this ICollectionOperations operations, SecurityPrincipal securityPrincipal, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<SecurityPrincipalOperationErrorDetails> result = await operations.DeleteSecurityPrincipalWithHttpMessagesAsync(securityPrincipal, collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Disconnects the specified user
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static void SessionDisconnect(this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName)
+            {
+                Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionDisconnectAsync(collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Disconnects the specified user
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task SessionDisconnectAsync( this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                await operations.SessionDisconnectWithHttpMessagesAsync(collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+            }
+
+            /// <summary>
+            /// Logs off the specified user
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static void SessionLogOff(this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName)
+            {
+                Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionLogOffAsync(collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Logs off the specified user
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task SessionLogOffAsync( this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                await operations.SessionLogOffWithHttpMessagesAsync(collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+            }
+
+            /// <summary>
+            /// Sends a message to the specified user
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='messageDetails'>
+            /// Session message details
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static void SessionSendMessage(this ICollectionOperations operations, SessionSendMessageCommandParameter messageDetails, string collectionName, string userUpn, string resourceGroupName)
+            {
+                Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionSendMessageAsync(messageDetails, collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Sends a message to the specified user
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='messageDetails'>
+            /// Session message details
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task SessionSendMessageAsync( this ICollectionOperations operations, SessionSendMessageCommandParameter messageDetails, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                await operations.SessionSendMessageWithHttpMessagesAsync(messageDetails, collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
             }
 
     }

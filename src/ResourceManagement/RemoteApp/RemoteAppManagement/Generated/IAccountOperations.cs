@@ -22,28 +22,16 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <summary>
         /// Gets the account associated with the subscription id.
         /// </summary>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<GetRemoteAppAccount>> GetAccountInfoWithHttpMessagesAsync(string armNamespace, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<AccountDetailsWrapper>> GetAccountInfoWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Updates the account PrivacyUrl and WorkspaceName.
         /// </summary>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
         /// <param name='accountInfo'>
         /// The new PrivacyUrl and WorkspaceName
         /// </param>
@@ -53,93 +41,36 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<GetRemoteAppAccount>> UpdateAccountWithHttpMessagesAsync(string armNamespace, string apiVersion, UpdateRemoteAppAccount accountInfo, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Gets the available billing plans for the account.
-        /// </summary>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<BillingPlanPropertiesWrapper>> PlansWithHttpMessagesAsync(string armNamespace, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Gets the supported locations to create collections.
-        /// </summary>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<LocationPropertiesWrapper>> LocationsWithHttpMessagesAsync(string armNamespace, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<AccountDetailsWrapper>> UpdateAccountWithHttpMessagesAsync(AccountDetailsWrapper accountInfo, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Activates billing for the account
         /// </summary>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service
-        /// environments.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse> ActivateAccountBillingWithHttpMessagesAsync(string armNamespace, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Gets the account associated with the subscription id.
-        /// </summary>
-        /// <param name='nextPageLink'>
-        /// The NextLink from the previous successful call to List operation.
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<GetRemoteAppAccount>> GetAccountInfoNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse> ActivateAccountBillingWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets the available billing plans for the account.
         /// </summary>
-        /// <param name='nextPageLink'>
-        /// The NextLink from the previous successful call to List operation.
-        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<BillingPlanPropertiesWrapper>> PlansNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<BillingPlanPropertiesWrapper>> PlansWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets the supported locations to create collections.
         /// </summary>
-        /// <param name='nextPageLink'>
-        /// The NextLink from the previous successful call to List operation.
-        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<LocationPropertiesWrapper>> LocationsNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<LocationPropertiesWrapper>> LocationsWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

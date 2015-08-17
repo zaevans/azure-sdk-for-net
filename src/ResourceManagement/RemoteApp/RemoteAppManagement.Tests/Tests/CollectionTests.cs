@@ -14,9 +14,6 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
     public class CollectionTests : RemoteAppTestBase
     {
         string groupName = "Default-RemoteApp-WestUS";
-// BUGBUG        string collectionName = "ybtest";
-        string armNamespace = "Microsoft.RemoteApp";
-        string apiVersion = "2014-09-01";
 
         [Fact]
         public void GetCollectionListTest()
@@ -29,7 +26,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 undoContext.Start();
                 raClient = GetClient();
 
-                collections = raClient.Collection.List(groupName, armNamespace, apiVersion);
+                collections = raClient.Collection.List(groupName);
 
                 Assert.NotNull(collections);
                 Assert.NotEmpty(collections);

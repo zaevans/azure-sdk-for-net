@@ -32,7 +32,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// Available billing plans
         /// </summary>
         [JsonProperty(PropertyName = "properties.plans")]
-        public IList<RemoteAppBillingPlan> Plans { get; set; }
+        public IList<BillingPlan> Plans { get; set; }
 
         /// <summary>
         /// Validate the object. Throws ArgumentException or ArgumentNullException if validation fails.

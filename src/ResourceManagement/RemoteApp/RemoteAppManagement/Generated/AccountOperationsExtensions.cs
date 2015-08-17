@@ -21,14 +21,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static GetRemoteAppAccount GetAccountInfo(this IAccountOperations operations, string armNamespace, string apiVersion)
+            public static AccountDetailsWrapper GetAccountInfo(this IAccountOperations operations)
             {
-                return Task.Factory.StartNew(s => ((IAccountOperations)s).GetAccountInfoAsync(armNamespace, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((IAccountOperations)s).GetAccountInfoAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -37,17 +32,12 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<GetRemoteAppAccount> GetAccountInfoAsync( this IAccountOperations operations, string armNamespace, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<AccountDetailsWrapper> GetAccountInfoAsync( this IAccountOperations operations, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<GetRemoteAppAccount> result = await operations.GetAccountInfoWithHttpMessagesAsync(armNamespace, apiVersion, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<AccountDetailsWrapper> result = await operations.GetAccountInfoWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -57,17 +47,12 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
             /// <param name='accountInfo'>
             /// The new PrivacyUrl and WorkspaceName
             /// </param>
-            public static GetRemoteAppAccount UpdateAccount(this IAccountOperations operations, string armNamespace, string apiVersion, UpdateRemoteAppAccount accountInfo)
+            public static AccountDetailsWrapper UpdateAccount(this IAccountOperations operations, AccountDetailsWrapper accountInfo)
             {
-                return Task.Factory.StartNew(s => ((IAccountOperations)s).UpdateAccountAsync(armNamespace, apiVersion, accountInfo), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((IAccountOperations)s).UpdateAccountAsync(accountInfo), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -76,92 +61,15 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
             /// <param name='accountInfo'>
             /// The new PrivacyUrl and WorkspaceName
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<GetRemoteAppAccount> UpdateAccountAsync( this IAccountOperations operations, string armNamespace, string apiVersion, UpdateRemoteAppAccount accountInfo, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<AccountDetailsWrapper> UpdateAccountAsync( this IAccountOperations operations, AccountDetailsWrapper accountInfo, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<GetRemoteAppAccount> result = await operations.UpdateAccountWithHttpMessagesAsync(armNamespace, apiVersion, accountInfo, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Gets the available billing plans for the account.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static BillingPlanPropertiesWrapper Plans(this IAccountOperations operations, string armNamespace, string apiVersion)
-            {
-                return Task.Factory.StartNew(s => ((IAccountOperations)s).PlansAsync(armNamespace, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets the available billing plans for the account.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<BillingPlanPropertiesWrapper> PlansAsync( this IAccountOperations operations, string armNamespace, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<BillingPlanPropertiesWrapper> result = await operations.PlansWithHttpMessagesAsync(armNamespace, apiVersion, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Gets the supported locations to create collections.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static LocationPropertiesWrapper Locations(this IAccountOperations operations, string armNamespace, string apiVersion)
-            {
-                return Task.Factory.StartNew(s => ((IAccountOperations)s).LocationsAsync(armNamespace, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets the supported locations to create collections.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<LocationPropertiesWrapper> LocationsAsync( this IAccountOperations operations, string armNamespace, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<LocationPropertiesWrapper> result = await operations.LocationsWithHttpMessagesAsync(armNamespace, apiVersion, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<AccountDetailsWrapper> result = await operations.UpdateAccountWithHttpMessagesAsync(accountInfo, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -171,14 +79,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
-            public static void ActivateAccountBilling(this IAccountOperations operations, string armNamespace, string apiVersion)
+            public static void ActivateAccountBilling(this IAccountOperations operations)
             {
-                Task.Factory.StartNew(s => ((IAccountOperations)s).ActivateAccountBillingAsync(armNamespace, apiVersion), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                Task.Factory.StartNew(s => ((IAccountOperations)s).ActivateAccountBillingAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -187,49 +90,12 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='armNamespace'>
-            /// Azure Resource Manager namespace for RemoteApp service environments.
-            /// </param>
-            /// <param name='apiVersion'>
-            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task ActivateAccountBillingAsync( this IAccountOperations operations, string armNamespace, string apiVersion, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task ActivateAccountBillingAsync( this IAccountOperations operations, CancellationToken cancellationToken = default(CancellationToken))
             {
-                await operations.ActivateAccountBillingWithHttpMessagesAsync(armNamespace, apiVersion, null, cancellationToken).ConfigureAwait(false);
-            }
-
-            /// <summary>
-            /// Gets the account associated with the subscription id.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
-            /// </param>
-            public static GetRemoteAppAccount GetAccountInfoNext(this IAccountOperations operations, string nextPageLink)
-            {
-                return Task.Factory.StartNew(s => ((IAccountOperations)s).GetAccountInfoNextAsync(nextPageLink), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets the account associated with the subscription id.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<GetRemoteAppAccount> GetAccountInfoNextAsync( this IAccountOperations operations, string nextPageLink, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<GetRemoteAppAccount> result = await operations.GetAccountInfoNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
+                await operations.ActivateAccountBillingWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
             }
 
             /// <summary>
@@ -238,12 +104,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
-            /// </param>
-            public static BillingPlanPropertiesWrapper PlansNext(this IAccountOperations operations, string nextPageLink)
+            public static BillingPlanPropertiesWrapper Plans(this IAccountOperations operations)
             {
-                return Task.Factory.StartNew(s => ((IAccountOperations)s).PlansNextAsync(nextPageLink), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((IAccountOperations)s).PlansAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -252,15 +115,12 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
-            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<BillingPlanPropertiesWrapper> PlansNextAsync( this IAccountOperations operations, string nextPageLink, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<BillingPlanPropertiesWrapper> PlansAsync( this IAccountOperations operations, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<BillingPlanPropertiesWrapper> result = await operations.PlansNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<BillingPlanPropertiesWrapper> result = await operations.PlansWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -270,12 +130,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
-            /// </param>
-            public static LocationPropertiesWrapper LocationsNext(this IAccountOperations operations, string nextPageLink)
+            public static LocationPropertiesWrapper Locations(this IAccountOperations operations)
             {
-                return Task.Factory.StartNew(s => ((IAccountOperations)s).LocationsNextAsync(nextPageLink), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((IAccountOperations)s).LocationsAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -284,15 +141,12 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
-            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<LocationPropertiesWrapper> LocationsNextAsync( this IAccountOperations operations, string nextPageLink, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<LocationPropertiesWrapper> LocationsAsync( this IAccountOperations operations, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<LocationPropertiesWrapper> result = await operations.LocationsNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<LocationPropertiesWrapper> result = await operations.LocationsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 

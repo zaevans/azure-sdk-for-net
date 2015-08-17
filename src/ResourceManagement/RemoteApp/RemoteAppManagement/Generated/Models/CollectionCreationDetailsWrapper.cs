@@ -31,8 +31,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// The collection's name
         /// </summary>
-        [JsonProperty(PropertyName = "properties.collectionName")]
-        public string CollectionName { get; set; }
+        [JsonProperty(PropertyName = "properties.name")]
+        public string CollectionCreationDetailsWrapperName { get; set; }
 
         /// <summary>
         /// A description for the collection
@@ -71,7 +71,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public string BillingPlanName { get; set; }
 
         /// <summary>
-        /// Optional customer defined RDP properties of the collection.
+        /// Optional customer-defined RDP properties of the collection.
         /// </summary>
         [JsonProperty(PropertyName = "properties.customRdpProperty")]
         public string CustomRdpProperty { get; set; }

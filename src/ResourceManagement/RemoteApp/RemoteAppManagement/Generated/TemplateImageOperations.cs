@@ -47,33 +47,21 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <summary>
         /// Gets available template images
         /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group
-        /// </param>
-        /// <param name='armNamespace'>
-        /// Azure Resource Manager namespace for RemoteApp service environments.
-        /// </param>
-        /// <param name='apiVersion'>
-        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<IList<TemplateImage>>> GetTemplateImagesWithHttpMessagesAsync(string resourceGroupName, string armNamespace, string apiVersion, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<IList<TemplateImage>>> GetTemplateImagesWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (resourceGroupName == null)
+            if (this.Client.ArmNamespace == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "resourceGroupName");
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ArmNamespace");
             }
-            if (armNamespace == null)
+            if (this.Client.ApiVersion == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "armNamespace");
-            }
-            if (apiVersion == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "apiVersion");
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ApiVersion");
             }
             if (this.Client.SubscriptionId == null)
             {
@@ -86,21 +74,17 @@ namespace Microsoft.Azure.Management.RemoteApp
             {
                 invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("resourceGroupName", resourceGroupName);
-                tracingParameters.Add("armNamespace", armNamespace);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(invocationId, this, "GetTemplateImages", tracingParameters);
             }
             // Construct URL
-            var url = new Uri(this.Client.BaseUri, "/subscriptions/{Credentials.SubscriptionId}/providers/{ArmNamespace}/templateImages").ToString();
-            url = url.Replace("{resourceGroupName}", Uri.EscapeDataString(resourceGroupName));
-            url = url.Replace("{armNamespace}", Uri.EscapeDataString(armNamespace));
+            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/templateImages").ToString();
+            url = url.Replace("{armNamespace}", Uri.EscapeDataString(this.Client.ArmNamespace));
             url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
             List<string> queryParameters = new List<string>();
-            if (apiVersion != null)
+            if (this.Client.ApiVersion != null)
             {
-                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(apiVersion)));
+                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(this.Client.ApiVersion)));
             }
             if (queryParameters.Count > 0)
             {
