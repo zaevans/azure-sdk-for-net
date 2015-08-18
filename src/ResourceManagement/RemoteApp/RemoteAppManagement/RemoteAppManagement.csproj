@@ -56,6 +56,7 @@
     <Compile Include="Generated\Models\StartMenuApplication.cs" />
     <Compile Include="Generated\Models\TemplateImage.cs" />
     <Compile Include="Generated\Models\TemplateImageType.cs" />
+    <Compile Include="Generated\Models\UsageDetailsInfo.cs" />
     <Compile Include="Generated\RemoteAppManagementClient.cs" />
     <Compile Include="Generated\RemoteAppManagementClientExtensions.cs" />
     <Compile Include="Generated\TemplateImageOperations.cs" />

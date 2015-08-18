@@ -553,7 +553,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             }
 
             /// <summary>
-            /// Gets the collection details.
+            /// Gets a summary of usage data for all users in the collection.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -564,13 +564,13 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            public static IList<CollectionUsageSummary> GetUsageSummary(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            public static IList<CollectionUsageSummary> GetUsageSummaryList(this ICollectionOperations operations, string collectionName, string resourceGroupName)
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageSummaryAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageSummaryListAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Gets the collection details.
+            /// Gets a summary of usage data for all users in the collection.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -584,9 +584,91 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<CollectionUsageSummary>> GetUsageSummaryAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<CollectionUsageSummary>> GetUsageSummaryListAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<IList<CollectionUsageSummary>> result = await operations.GetUsageSummaryWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<IList<CollectionUsageSummary>> result = await operations.GetUsageSummaryListWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Generates a CSV file of collection usage details and returns the URI
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static UsageDetailsInfo GetUsageDetails(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageDetailsAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Generates a CSV file of collection usage details and returns the URI
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<UsageDetailsInfo> GetUsageDetailsAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<UsageDetailsInfo> result = await operations.GetUsageDetailsWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Gets a summary of collection usage data for the specified user.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static CollectionUsageSummary GetUsageSummary(this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageSummaryAsync(collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets a summary of collection usage data for the specified user.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<CollectionUsageSummary> GetUsageSummaryAsync( this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<CollectionUsageSummary> result = await operations.GetUsageSummaryWithHttpMessagesAsync(collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
