@@ -2,7 +2,7 @@
 // Changes may cause incorrect behavior and will be lost if the code is
 // regenerated.
 
-namespace Microsoft.RemoteApp
+namespace Microsoft.Azure.Management.RemoteApp
 {
     using System;
     using System.Collections.Generic;
