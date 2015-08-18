@@ -2,7 +2,7 @@
 // Changes may cause incorrect behavior and will be lost if the code is
 // regenerated.
 
-namespace Microsoft.Azure.Management.RemoteApp.Models
+namespace Microsoft.RemoteApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// Definition containing details of Start Menu Applications.
+    /// Definition containing details of Start Menu applications.
     /// </summary>
     public partial class StartMenuApplication : Resource
     {

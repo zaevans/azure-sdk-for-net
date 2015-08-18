@@ -2,7 +2,7 @@
 // Changes may cause incorrect behavior and will be lost if the code is
 // regenerated.
 
-namespace Microsoft.Azure.Management.RemoteApp.Models
+namespace Microsoft.RemoteApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -85,7 +85,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public string PlanName { get; set; }
 
         /// <summary>
-        /// Optional customer defined RDP properties of the collection.
+        /// Optional customer-defined RDP properties of the collection.
         /// </summary>
         [JsonProperty(PropertyName = "properties.customRdpProperty")]
         public string CustomRdpProperty { get; set; }
@@ -98,7 +98,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public bool? ReadyForPublishing { get; set; }
 
         /// <summary>
-        /// UTC Date time of the last modification of this collection.
+        /// UTC date and time of the last modification of this collection.
         /// </summary>
         [JsonProperty(PropertyName = "properties.lastModifiedTimeUtc")]
         public DateTime? LastModifiedTimeUtc { get; set; }

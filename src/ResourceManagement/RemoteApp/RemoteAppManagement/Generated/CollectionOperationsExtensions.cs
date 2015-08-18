@@ -2,7 +2,7 @@
 // Changes may cause incorrect behavior and will be lost if the code is
 // regenerated.
 
-namespace Microsoft.Azure.Management.RemoteApp
+namespace Microsoft.RemoteApp
 {
     using System;
     using System.Collections;
@@ -423,6 +423,50 @@ namespace Microsoft.Azure.Management.RemoteApp
             public static async Task<IList<SessionWrapper>> SessionListAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
                 AzureOperationResponse<IList<SessionWrapper>> result = await operations.SessionListWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Gets a list of sessions on the current collection
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static SessionWrapper GetSession(this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetSessionAsync(collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets a list of sessions on the current collection
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<SessionWrapper> GetSessionAsync( this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<SessionWrapper> result = await operations.GetSessionWithHttpMessagesAsync(collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
