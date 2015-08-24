@@ -354,7 +354,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 ServiceClientTracing.Enter(invocationId, this, "ActivateAccountBilling", tracingParameters);
             }
             // Construct URL
-            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/account/billing").ToString();
+            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/billing").ToString();
             url = url.Replace("{armNamespace}", Uri.EscapeDataString(this.Client.ArmNamespace));
             url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
             List<string> queryParameters = new List<string>();
@@ -471,7 +471,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 ServiceClientTracing.Enter(invocationId, this, "Plans", tracingParameters);
             }
             // Construct URL
-            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/account/billingPlans").ToString();
+            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/billingPlans").ToString();
             url = url.Replace("{armNamespace}", Uri.EscapeDataString(this.Client.ArmNamespace));
             url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
             List<string> queryParameters = new List<string>();
@@ -601,7 +601,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 ServiceClientTracing.Enter(invocationId, this, "Locations", tracingParameters);
             }
             // Construct URL
-            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/account/locations").ToString();
+            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/locations").ToString();
             url = url.Replace("{armNamespace}", Uri.EscapeDataString(this.Client.ArmNamespace));
             url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
             List<string> queryParameters = new List<string>();

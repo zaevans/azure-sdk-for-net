@@ -16,6 +16,32 @@ namespace Microsoft.Azure.Management.RemoteApp
     public static partial class CollectionOperationsExtensions
     {
             /// <summary>
+            /// Gets the list of collections details for the subscription.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            public static IList<Collection> ListSubscriptionCollections(this ICollectionOperations operations)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListSubscriptionCollectionsAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the list of collections details for the subscription.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<Collection>> ListSubscriptionCollectionsAsync( this ICollectionOperations operations, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<IList<Collection>> result = await operations.ListSubscriptionCollectionsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
             /// Gets the list of collections details in the resource group.
             /// </summary>
             /// <param name='operations'>
@@ -24,9 +50,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            public static IList<Collection> List(this ICollectionOperations operations, string resourceGroupName)
+            public static IList<Collection> ListResourceGroupCollections(this ICollectionOperations operations, string resourceGroupName)
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListAsync(resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListResourceGroupCollectionsAsync(resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -41,9 +67,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<Collection>> ListAsync( this ICollectionOperations operations, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<Collection>> ListResourceGroupCollectionsAsync( this ICollectionOperations operations, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<IList<Collection>> result = await operations.ListWithHttpMessagesAsync(resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<IList<Collection>> result = await operations.ListResourceGroupCollectionsWithHttpMessagesAsync(resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -208,6 +234,43 @@ namespace Microsoft.Azure.Management.RemoteApp
             public static async Task DeleteAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
                 await operations.DeleteWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+            }
+
+            /// <summary>
+            /// Delete the collection
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static void BeginDelete(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            {
+                Task.Factory.StartNew(s => ((ICollectionOperations)s).BeginDeleteAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Delete the collection
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task BeginDeleteAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                await operations.BeginDeleteWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
             }
 
             /// <summary>
@@ -400,7 +463,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            public static IList<SessionWrapper> SessionList(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            public static SessionListResult SessionList(this ICollectionOperations operations, string collectionName, string resourceGroupName)
             {
                 return Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionListAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -420,14 +483,14 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<SessionWrapper>> SessionListAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<SessionListResult> SessionListAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<IList<SessionWrapper>> result = await operations.SessionListWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<SessionListResult> result = await operations.SessionListWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
             /// <summary>
-            /// Gets a list of sessions on the current collection
+            /// Gets the specified user's session on the current collection
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -441,13 +504,13 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            public static SessionWrapper GetSession(this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName)
+            public static Session GetSession(this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName)
             {
                 return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetSessionAsync(collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Gets a list of sessions on the current collection
+            /// Gets the specified user's session on the current collection
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -464,10 +527,145 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<SessionWrapper> GetSessionAsync( this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<Session> GetSessionAsync( this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<SessionWrapper> result = await operations.GetSessionWithHttpMessagesAsync(collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<Session> result = await operations.GetSessionWithHttpMessagesAsync(collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
+            }
+
+            /// <summary>
+            /// Disconnects the specified user
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static void SessionDisconnect(this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName)
+            {
+                Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionDisconnectAsync(collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Disconnects the specified user
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task SessionDisconnectAsync( this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                await operations.SessionDisconnectWithHttpMessagesAsync(collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+            }
+
+            /// <summary>
+            /// Logs off the specified user
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static void SessionLogOff(this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName)
+            {
+                Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionLogOffAsync(collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Logs off the specified user
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task SessionLogOffAsync( this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                await operations.SessionLogOffWithHttpMessagesAsync(collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+            }
+
+            /// <summary>
+            /// Sends a message to the specified user
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='messageDetails'>
+            /// Session message details
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static void SessionSendMessage(this ICollectionOperations operations, SessionSendMessageCommandParameter messageDetails, string collectionName, string userUpn, string resourceGroupName)
+            {
+                Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionSendMessageAsync(messageDetails, collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Sends a message to the specified user
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='messageDetails'>
+            /// Session message details
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='userUpn'>
+            /// The UPN of the user
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task SessionSendMessageAsync( this ICollectionOperations operations, SessionSendMessageCommandParameter messageDetails, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                await operations.SessionSendMessageWithHttpMessagesAsync(messageDetails, collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
             }
 
             /// <summary>
@@ -553,44 +751,6 @@ namespace Microsoft.Azure.Management.RemoteApp
             }
 
             /// <summary>
-            /// Gets a summary of usage data for all users in the collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The collection name.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            public static IList<CollectionUsageSummary> GetUsageSummaryList(this ICollectionOperations operations, string collectionName, string resourceGroupName)
-            {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageSummaryListAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets a summary of usage data for all users in the collection.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The collection name.
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<CollectionUsageSummary>> GetUsageSummaryListAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<IList<CollectionUsageSummary>> result = await operations.GetUsageSummaryListWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
             /// Generates a CSV file of collection usage details and returns the URI
             /// </summary>
             /// <param name='operations'>
@@ -625,6 +785,44 @@ namespace Microsoft.Azure.Management.RemoteApp
             public static async Task<UsageDetailsInfo> GetUsageDetailsAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
                 AzureOperationResponse<UsageDetailsInfo> result = await operations.GetUsageDetailsWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Gets a summary of usage data for all users in the collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            public static CollectionUsageSummaryListResult GetUsageSummaryList(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageSummaryListAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets a summary of usage data for all users in the collection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<CollectionUsageSummaryListResult> GetUsageSummaryListAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<CollectionUsageSummaryListResult> result = await operations.GetUsageSummaryListWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -852,141 +1050,6 @@ namespace Microsoft.Azure.Management.RemoteApp
             {
                 AzureOperationResponse<SecurityPrincipalOperationErrorDetails> result = await operations.DeleteSecurityPrincipalWithHttpMessagesAsync(securityPrincipal, collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
-            }
-
-            /// <summary>
-            /// Disconnects the specified user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The collection name.
-            /// </param>
-            /// <param name='userUpn'>
-            /// The UPN of the user
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            public static void SessionDisconnect(this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName)
-            {
-                Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionDisconnectAsync(collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Disconnects the specified user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The collection name.
-            /// </param>
-            /// <param name='userUpn'>
-            /// The UPN of the user
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task SessionDisconnectAsync( this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                await operations.SessionDisconnectWithHttpMessagesAsync(collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
-            }
-
-            /// <summary>
-            /// Logs off the specified user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The collection name.
-            /// </param>
-            /// <param name='userUpn'>
-            /// The UPN of the user
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            public static void SessionLogOff(this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName)
-            {
-                Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionLogOffAsync(collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Logs off the specified user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='collectionName'>
-            /// The collection name.
-            /// </param>
-            /// <param name='userUpn'>
-            /// The UPN of the user
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task SessionLogOffAsync( this ICollectionOperations operations, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                await operations.SessionLogOffWithHttpMessagesAsync(collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
-            }
-
-            /// <summary>
-            /// Sends a message to the specified user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='messageDetails'>
-            /// Session message details
-            /// </param>
-            /// <param name='collectionName'>
-            /// The collection name.
-            /// </param>
-            /// <param name='userUpn'>
-            /// The UPN of the user
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            public static void SessionSendMessage(this ICollectionOperations operations, SessionSendMessageCommandParameter messageDetails, string collectionName, string userUpn, string resourceGroupName)
-            {
-                Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionSendMessageAsync(messageDetails, collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Sends a message to the specified user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='messageDetails'>
-            /// Session message details
-            /// </param>
-            /// <param name='collectionName'>
-            /// The collection name.
-            /// </param>
-            /// <param name='userUpn'>
-            /// The UPN of the user
-            /// </param>
-            /// <param name='resourceGroupName'>
-            /// The name of the resource group
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task SessionSendMessageAsync( this ICollectionOperations operations, SessionSendMessageCommandParameter messageDetails, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                await operations.SessionSendMessageWithHttpMessagesAsync(messageDetails, collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
             }
 
     }

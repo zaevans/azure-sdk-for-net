@@ -66,11 +66,13 @@ namespace Microsoft.Azure.Management.RemoteApp
         int? LongRunningOperationRetryTimeout { get; set; }
 
 
+        IOperationsOperations Operations { get; }
+
         IAccountOperations Account { get; }
 
-        ITemplateImageOperations TemplateImage { get; }
-
         ICollectionOperations Collection { get; }
+
+        ITemplateImageOperations TemplateImage { get; }
 
     }
 }

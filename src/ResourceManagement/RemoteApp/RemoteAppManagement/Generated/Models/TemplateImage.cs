@@ -29,6 +29,16 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public long? Size { get; set; }
 
         /// <summary>
+        /// The status of the template image. Possible values for this
+        /// property include: 'UploadPending', 'UploadInProgress',
+        /// 'UploadComplete', 'UploadFailed', 'ImportInProgress',
+        /// 'ImportFailed', 'ImportComplete', 'ValidationFailed', 'Ready',
+        /// 'Corrupted', 'Deleting'.
+        /// </summary>
+        [JsonProperty(PropertyName = "status")]
+        public TemplateImageStatus? Status { get; set; }
+
+        /// <summary>
         /// The list of regions where the image can be used
         /// </summary>
         [JsonProperty(PropertyName = "regionList")]

@@ -26,7 +26,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 undoContext.Start();
                 raClient = GetClient();
 
-                collections = raClient.Collection.List(groupName);
+                collections = raClient.Collection.ListResourceGroupCollections(groupName);
 
                 Assert.NotNull(collections);
                 Assert.NotEmpty(collections);
