@@ -33,6 +33,7 @@
     <Compile Include="Generated\Models\BillingPlanPropertiesWrapper.cs" />
     <Compile Include="Generated\Models\Collection.cs" />
     <Compile Include="Generated\Models\CollectionCreationDetailsWrapper.cs" />
+    <Compile Include="Generated\Models\CollectionListResult.cs" />
     <Compile Include="Generated\Models\CollectionMode.cs" />
     <Compile Include="Generated\Models\CollectionUsageSummary.cs" />
     <Compile Include="Generated\Models\CollectionUsageSummaryListItemProperties.cs" />

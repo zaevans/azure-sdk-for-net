@@ -19,7 +19,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
         public void GetCollectionListTest()
         {
             RemoteAppManagementClient raClient = null;
-            IList<Collection> collections = null;
+            CollectionListResult collections = null;
 
             using (var undoContext = UndoContext.Current)
             {
@@ -29,9 +29,9 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 collections = raClient.Collection.ListResourceGroupCollections(groupName);
 
                 Assert.NotNull(collections);
-                Assert.NotEmpty(collections);
+                Assert.NotEmpty(collections.Value);
 
-                foreach (Collection col in collections)
+                foreach (Collection col in collections.Value)
                 {
                     Assert.Equal("microsoft.remoteapp/collections", col.Type);
                 }
