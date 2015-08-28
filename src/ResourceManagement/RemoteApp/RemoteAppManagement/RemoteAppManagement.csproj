@@ -29,6 +29,7 @@
     <Compile Include="Generated\Models\ApplicationDetails.cs" />
     <Compile Include="Generated\Models\ApplicationDetailsList.cs" />
     <Compile Include="Generated\Models\AppPublishingStatus.cs" />
+    <Compile Include="Generated\Models\BillingDate.cs" />
     <Compile Include="Generated\Models\BillingPlan.cs" />
     <Compile Include="Generated\Models\BillingPlanPropertiesWrapper.cs" />
     <Compile Include="Generated\Models\Collection.cs" />
