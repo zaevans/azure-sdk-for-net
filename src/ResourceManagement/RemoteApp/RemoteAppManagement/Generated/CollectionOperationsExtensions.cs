@@ -21,7 +21,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            public static IList<Collection> ListSubscriptionCollections(this ICollectionOperations operations)
+            public static CollectionListResult ListSubscriptionCollections(this ICollectionOperations operations)
             {
                 return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListSubscriptionCollectionsAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -35,9 +35,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<Collection>> ListSubscriptionCollectionsAsync( this ICollectionOperations operations, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<CollectionListResult> ListSubscriptionCollectionsAsync( this ICollectionOperations operations, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<IList<Collection>> result = await operations.ListSubscriptionCollectionsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<CollectionListResult> result = await operations.ListSubscriptionCollectionsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -50,7 +50,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            public static IList<Collection> ListResourceGroupCollections(this ICollectionOperations operations, string resourceGroupName)
+            public static CollectionListResult ListResourceGroupCollections(this ICollectionOperations operations, string resourceGroupName)
             {
                 return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListResourceGroupCollectionsAsync(resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -67,9 +67,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<Collection>> ListResourceGroupCollectionsAsync( this ICollectionOperations operations, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<CollectionListResult> ListResourceGroupCollectionsAsync( this ICollectionOperations operations, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<IList<Collection>> result = await operations.ListResourceGroupCollectionsWithHttpMessagesAsync(resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<CollectionListResult> result = await operations.ListResourceGroupCollectionsWithHttpMessagesAsync(resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
