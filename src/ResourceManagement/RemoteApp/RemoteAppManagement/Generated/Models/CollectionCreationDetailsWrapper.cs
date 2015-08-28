@@ -139,12 +139,6 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public string ResourceGroupName { get; set; }
 
         /// <summary>
-        /// A GUID for the response
-        /// </summary>
-        [JsonProperty(PropertyName = "properties.eTag")]
-        public string ETag { get; set; }
-
-        /// <summary>
         /// Validate the object. Throws ArgumentException or ArgumentNullException if validation fails.
         /// </summary>
         public override void Validate()
