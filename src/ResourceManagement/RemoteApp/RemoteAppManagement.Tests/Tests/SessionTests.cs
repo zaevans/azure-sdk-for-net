@@ -21,14 +21,14 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
         public void GetSessionTest()
         {
             RemoteAppManagementClient raClient = null;
-            IList<SessionListItemProperties> sessions = null;
+            IList<Session> sessions = null;
 
             raClient = GetClient();
 
-            sessions = raClient.Collection.SessionList(collectionName, groupName).Sessions;
+            sessions = raClient.Collection.SessionList(collectionName, groupName).Value;
 
             Assert.NotNull(sessions);
-            foreach (SessionListItemProperties session in sessions)
+            foreach (Session session in sessions)
             {
                 Assert.NotNull(session.UserUpn);
             }
@@ -38,16 +38,16 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
         public void LogOffSessionTest()
         {
             RemoteAppManagementClient raClient = null;
-            IList<SessionListItemProperties> sessions = null;
+            IList<Session> sessions = null;
 
             raClient = GetClient();
 
             raClient.Collection.SessionLogOff(collectionName, userUpn, groupName);
 
-            sessions = raClient.Collection.SessionList(collectionName, groupName).Sessions;
+            sessions = raClient.Collection.SessionList(collectionName, groupName).Value;
 
             Assert.NotNull(sessions);
-            foreach (SessionListItemProperties session in sessions)
+            foreach (Session session in sessions)
             {
                 Assert.NotNull(session.UserUpn);
             }
@@ -57,16 +57,16 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
         public void DisconnectSessionTest()
         {
             RemoteAppManagementClient raClient = null;
-            IList<SessionListItemProperties> sessions = null;
+            IList<Session> sessions = null;
 
             raClient = GetClient();
 
             raClient.Collection.SessionDisconnect(collectionName, userUpn, groupName);
 
-            sessions = raClient.Collection.SessionList(collectionName, groupName).Sessions;
+            sessions = raClient.Collection.SessionList(collectionName, groupName).Value;
 
             Assert.NotNull(sessions);
-            foreach (SessionListItemProperties session in sessions)
+            foreach (Session session in sessions)
             {
                 Assert.NotNull(session.UserUpn);
             }
@@ -76,7 +76,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
         public void MessageSessionTest()
         {
             RemoteAppManagementClient raClient = null;
-            IList<SessionListItemProperties> sessions = null;
+            IList<Session> sessions = null;
 
             raClient = GetClient();
 
@@ -85,10 +85,10 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
             raClient.Collection.SessionSendMessage(param, collectionName, userUpn, groupName);
 
-            sessions = raClient.Collection.SessionList(collectionName, groupName).Sessions;
+            sessions = raClient.Collection.SessionList(collectionName, groupName).Value;
 
             Assert.NotNull(sessions);
-            foreach (SessionListItemProperties session in sessions)
+            foreach (Session session in sessions)
             {
                 Assert.NotNull(session.UserUpn);
             }

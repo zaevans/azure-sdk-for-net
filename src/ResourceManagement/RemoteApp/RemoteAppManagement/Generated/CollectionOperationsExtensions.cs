@@ -16,18 +16,18 @@ namespace Microsoft.Azure.Management.RemoteApp
     public static partial class CollectionOperationsExtensions
     {
             /// <summary>
-            /// Gets the list of collections details for the subscription.
+            /// Gets the list of collections details in the subscription.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            public static CollectionListResult ListSubscriptionCollections(this ICollectionOperations operations)
+            public static CollectionListResult ListCollections(this ICollectionOperations operations)
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListSubscriptionCollectionsAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListCollectionsAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Gets the list of collections details for the subscription.
+            /// Gets the list of collections details in the subscription.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -35,9 +35,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<CollectionListResult> ListSubscriptionCollectionsAsync( this ICollectionOperations operations, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<CollectionListResult> ListCollectionsAsync( this ICollectionOperations operations, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<CollectionListResult> result = await operations.ListSubscriptionCollectionsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<CollectionListResult> result = await operations.ListCollectionsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -285,7 +285,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            public static IList<PublishedApplicationDetails> ListPublishedApp(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            public static PublishedApplicationDetailsListResult ListPublishedApp(this ICollectionOperations operations, string collectionName, string resourceGroupName)
             {
                 return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListPublishedAppAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -305,9 +305,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<PublishedApplicationDetails>> ListPublishedAppAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<PublishedApplicationDetailsListResult> ListPublishedAppAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<IList<PublishedApplicationDetails>> result = await operations.ListPublishedAppWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<PublishedApplicationDetailsListResult> result = await operations.ListPublishedAppWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -463,7 +463,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            public static SessionListResult SessionList(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            public static SessionList SessionList(this ICollectionOperations operations, string collectionName, string resourceGroupName)
             {
                 return Task.Factory.StartNew(s => ((ICollectionOperations)s).SessionListAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -483,9 +483,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<SessionListResult> SessionListAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<SessionList> SessionListAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<SessionListResult> result = await operations.SessionListWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<SessionList> result = await operations.SessionListWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -680,7 +680,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            public static IList<StartMenuApplication> ListStartMenuApps(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            public static StartMenuApplicationListResult ListStartMenuApps(this ICollectionOperations operations, string collectionName, string resourceGroupName)
             {
                 return Task.Factory.StartNew(s => ((ICollectionOperations)s).ListStartMenuAppsAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -700,9 +700,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<StartMenuApplication>> ListStartMenuAppsAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<StartMenuApplicationListResult> ListStartMenuAppsAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<IList<StartMenuApplication>> result = await operations.ListStartMenuAppsWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<StartMenuApplicationListResult> result = await operations.ListStartMenuAppsWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -756,18 +756,18 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='billingDate'>
-            /// The requested month and year for collection usage information
-            /// </param>
             /// <param name='collectionName'>
             /// The collection name.
             /// </param>
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            public static UsageDetailsInfo GetUsageDetails(this ICollectionOperations operations, BillingDate billingDate, string collectionName, string resourceGroupName)
+            /// <param name='date'>
+            /// The year and month to get billing for
+            /// </param>
+            public static UsageDetailsInfo GetUsageDetails(this ICollectionOperations operations, string collectionName, string resourceGroupName, BillingDate date)
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageDetailsAsync(billingDate, collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageDetailsAsync(collectionName, resourceGroupName, date), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -776,21 +776,21 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='billingDate'>
-            /// The requested month and year for collection usage information
-            /// </param>
             /// <param name='collectionName'>
             /// The collection name.
             /// </param>
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
+            /// <param name='date'>
+            /// The year and month to get billing for
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<UsageDetailsInfo> GetUsageDetailsAsync( this ICollectionOperations operations, BillingDate billingDate, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<UsageDetailsInfo> GetUsageDetailsAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, BillingDate date, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<UsageDetailsInfo> result = await operations.GetUsageDetailsWithHttpMessagesAsync(billingDate, collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<UsageDetailsInfo> result = await operations.GetUsageDetailsWithHttpMessagesAsync(collectionName, resourceGroupName, date, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -800,8 +800,11 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='billingDate'>
-            /// The requested month and year for collection usage information
+            /// <param name='usageMonth'>
+            /// The requested month for collection usage information
+            /// </param>
+            /// <param name='usageYear'>
+            /// The requested year for collection usage information
             /// </param>
             /// <param name='collectionName'>
             /// The collection name.
@@ -809,9 +812,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            public static CollectionUsageSummaryListResult GetUsageSummaryList(this ICollectionOperations operations, BillingDate billingDate, string collectionName, string resourceGroupName)
+            public static CollectionUsageSummaryList GetUsageSummaryList(this ICollectionOperations operations, string usageMonth, string usageYear, string collectionName, string resourceGroupName)
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageSummaryListAsync(billingDate, collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageSummaryListAsync(usageMonth, usageYear, collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -820,8 +823,11 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='billingDate'>
-            /// The requested month and year for collection usage information
+            /// <param name='usageMonth'>
+            /// The requested month for collection usage information
+            /// </param>
+            /// <param name='usageYear'>
+            /// The requested year for collection usage information
             /// </param>
             /// <param name='collectionName'>
             /// The collection name.
@@ -832,9 +838,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<CollectionUsageSummaryListResult> GetUsageSummaryListAsync( this ICollectionOperations operations, BillingDate billingDate, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<CollectionUsageSummaryList> GetUsageSummaryListAsync( this ICollectionOperations operations, string usageMonth, string usageYear, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<CollectionUsageSummaryListResult> result = await operations.GetUsageSummaryListWithHttpMessagesAsync(billingDate, collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<CollectionUsageSummaryList> result = await operations.GetUsageSummaryListWithHttpMessagesAsync(usageMonth, usageYear, collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -844,8 +850,11 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='billingDate'>
-            /// The requested month and year for collection usage information
+            /// <param name='usageMonth'>
+            /// The requested month for collection usage information
+            /// </param>
+            /// <param name='usageYear'>
+            /// The requested year for collection usage information
             /// </param>
             /// <param name='collectionName'>
             /// The collection name.
@@ -856,9 +865,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            public static CollectionUsageSummary GetUsageSummary(this ICollectionOperations operations, BillingDate billingDate, string collectionName, string userUpn, string resourceGroupName)
+            public static CollectionUsageSummary GetUsageSummary(this ICollectionOperations operations, string usageMonth, string usageYear, string collectionName, string userUpn, string resourceGroupName)
             {
-                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageSummaryAsync(billingDate, collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsageSummaryAsync(usageMonth, usageYear, collectionName, userUpn, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -867,8 +876,11 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='billingDate'>
-            /// The requested month and year for collection usage information
+            /// <param name='usageMonth'>
+            /// The requested month for collection usage information
+            /// </param>
+            /// <param name='usageYear'>
+            /// The requested year for collection usage information
             /// </param>
             /// <param name='collectionName'>
             /// The collection name.
@@ -882,9 +894,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<CollectionUsageSummary> GetUsageSummaryAsync( this ICollectionOperations operations, BillingDate billingDate, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<CollectionUsageSummary> GetUsageSummaryAsync( this ICollectionOperations operations, string usageMonth, string usageYear, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<CollectionUsageSummary> result = await operations.GetUsageSummaryWithHttpMessagesAsync(billingDate, collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<CollectionUsageSummary> result = await operations.GetUsageSummaryWithHttpMessagesAsync(usageMonth, usageYear, collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -900,7 +912,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='resourceGroupName'>
             /// The name of the resource group
             /// </param>
-            public static SecurityPrincipalInfoListResult GetUsers(this ICollectionOperations operations, string collectionName, string resourceGroupName)
+            public static SecurityPrincipalList GetUsers(this ICollectionOperations operations, string collectionName, string resourceGroupName)
             {
                 return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetUsersAsync(collectionName, resourceGroupName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -920,9 +932,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<SecurityPrincipalInfoListResult> GetUsersAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<SecurityPrincipalList> GetUsersAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<SecurityPrincipalInfoListResult> result = await operations.GetUsersWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<SecurityPrincipalList> result = await operations.GetUsersWithHttpMessagesAsync(collectionName, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 

@@ -20,7 +20,7 @@ namespace Microsoft.Azure.Management.RemoteApp
     public partial interface ICollectionOperations
     {
         /// <summary>
-        /// Gets the list of collections details for the subscription.
+        /// Gets the list of collections details in the subscription.
         /// </summary>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -28,7 +28,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<CollectionListResult>> ListSubscriptionCollectionsWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<CollectionListResult>> ListCollectionsWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets the list of collections details in the resource group.
         /// </summary>
@@ -143,7 +143,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<IList<PublishedApplicationDetails>>> ListPublishedAppWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<PublishedApplicationDetailsListResult>> ListPublishedAppWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets the specified published application in this collection.
         /// </summary>
@@ -221,7 +221,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<SessionListResult>> SessionListWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<SessionList>> SessionListWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets the specified user's session on the current collection
         /// </summary>
@@ -316,7 +316,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<IList<StartMenuApplication>>> ListStartMenuAppsWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<StartMenuApplicationListResult>> ListStartMenuAppsWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets the specified Start Menu application available in this
         /// collection.
@@ -341,14 +341,14 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// Generates a CSV file of collection usage details and returns the
         /// URI
         /// </summary>
-        /// <param name='billingDate'>
-        /// The requested month and year for collection usage information
-        /// </param>
         /// <param name='collectionName'>
         /// The collection name.
         /// </param>
         /// <param name='resourceGroupName'>
         /// The name of the resource group
+        /// </param>
+        /// <param name='date'>
+        /// The year and month to get billing for
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -356,12 +356,15 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<UsageDetailsInfo>> GetUsageDetailsWithHttpMessagesAsync(BillingDate billingDate, string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<UsageDetailsInfo>> GetUsageDetailsWithHttpMessagesAsync(string collectionName, string resourceGroupName, BillingDate date, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets a summary of usage data for all users in the collection.
         /// </summary>
-        /// <param name='billingDate'>
-        /// The requested month and year for collection usage information
+        /// <param name='usageMonth'>
+        /// The requested month for collection usage information
+        /// </param>
+        /// <param name='usageYear'>
+        /// The requested year for collection usage information
         /// </param>
         /// <param name='collectionName'>
         /// The collection name.
@@ -375,12 +378,15 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<CollectionUsageSummaryListResult>> GetUsageSummaryListWithHttpMessagesAsync(BillingDate billingDate, string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<CollectionUsageSummaryList>> GetUsageSummaryListWithHttpMessagesAsync(string usageMonth, string usageYear, string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets a summary of collection usage data for the specified user.
         /// </summary>
-        /// <param name='billingDate'>
-        /// The requested month and year for collection usage information
+        /// <param name='usageMonth'>
+        /// The requested month for collection usage information
+        /// </param>
+        /// <param name='usageYear'>
+        /// The requested year for collection usage information
         /// </param>
         /// <param name='collectionName'>
         /// The collection name.
@@ -397,7 +403,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<CollectionUsageSummary>> GetUsageSummaryWithHttpMessagesAsync(BillingDate billingDate, string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<CollectionUsageSummary>> GetUsageSummaryWithHttpMessagesAsync(string usageMonth, string usageYear, string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets a list of all RemoteApp users associated with the given
         /// collection.
@@ -414,7 +420,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<SecurityPrincipalInfoListResult>> GetUsersWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<SecurityPrincipalList>> GetUsersWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets a RemoteApp user by their UPN.
         /// </summary>

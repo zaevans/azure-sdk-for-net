@@ -12,21 +12,15 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// The input to get usage details.
+    /// Publishing details of remote application.
     /// </summary>
-    public partial class BillingDate
+    public partial class PublishedApplicationDetailsListResult
     {
         /// <summary>
-        /// The billing month
+        /// PublishedApplication properties.
         /// </summary>
-        [JsonProperty(PropertyName = "month")]
-        public string Month { get; set; }
-
-        /// <summary>
-        /// The billing year
-        /// </summary>
-        [JsonProperty(PropertyName = "year")]
-        public string Year { get; set; }
+        [JsonProperty(PropertyName = "value")]
+        public IList<PublishedApplicationDetails> Value { get; set; }
 
     }
 }

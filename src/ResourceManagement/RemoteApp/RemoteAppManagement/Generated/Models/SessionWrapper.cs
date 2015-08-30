@@ -12,20 +12,32 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// The details of a session.
+    /// The wrapper for the session object
     /// </summary>
-    public partial class SessionListItemProperties
+    public partial class SessionWrapper : Resource
     {
+        /// <summary>
+        /// The etag of the resource.
+        /// </summary>
+        [JsonProperty(PropertyName = "etag")]
+        public string Etag { get; set; }
+
+        /// <summary>
+        /// The URL for requesting next page of resources.
+        /// </summary>
+        [JsonProperty(PropertyName = "nextLink")]
+        public string NextLink { get; set; }
+
         /// <summary>
         /// The UTC time the session started
         /// </summary>
-        [JsonProperty(PropertyName = "logonTimeUtc")]
+        [JsonProperty(PropertyName = "properties.logonTimeUtc")]
         public DateTime? LogonTimeUtc { get; set; }
 
         /// <summary>
         /// The Upn of the currently active user
         /// </summary>
-        [JsonProperty(PropertyName = "userUpn")]
+        [JsonProperty(PropertyName = "properties.userUpn")]
         public string UserUpn { get; set; }
 
         /// <summary>
@@ -33,8 +45,15 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// 'NoSession', 'Unknown'. Possible values for this property
         /// include: 'Active', 'Disconnected', 'NoSession', 'Unknown'.
         /// </summary>
-        [JsonProperty(PropertyName = "state")]
+        [JsonProperty(PropertyName = "properties.state")]
         public SessionState? State { get; set; }
 
+        /// <summary>
+        /// Validate the object. Throws ArgumentException or ArgumentNullException if validation fails.
+        /// </summary>
+        public override void Validate()
+        {
+            base.Validate();
+        }
     }
 }

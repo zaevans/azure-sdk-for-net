@@ -22,18 +22,18 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
         public void GetUsersTest()
         {
             RemoteAppManagementClient raClient = null;
-            SecurityPrincipalInfoListResult userConsentList = null;
+            IList<SecurityPrincipalInfo> userConsentList = null;
 
             using (UndoContext undoContext = UndoContext.Current)
             {
                 undoContext.Start();
                 raClient = GetClient();
 
-                userConsentList = raClient.Collection.GetUsers(collectionName, groupName);
+                userConsentList = raClient.Collection.GetUsers(collectionName, groupName).Value;
 
                 Assert.NotNull(userConsentList);
   
-                foreach (SecurityPrincipalInfo sa in userConsentList.UserConsentStatuses)
+                foreach (SecurityPrincipalInfo sa in userConsentList)
                 {
                     Assert.Equal(remoteAppType, sa.Type);
                     Assert.Equal(location, sa.Location);
@@ -93,8 +93,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
             RemoteAppManagementClient raClient = null;
             SecurityPrincipal userToRemove = null;
             SecurityPrincipalOperationErrorDetails result = null;
-            SecurityPrincipalInfoListResult userConsentListAfterDelete = null;
-            SecurityPrincipalInfoListResult userConsentListOrig = null;
+            IList<SecurityPrincipalInfo> userConsentListAfterDelete = null;
+            IList<SecurityPrincipalInfo> userConsentListOrig = null;
 
             using (UndoContext undoContext = UndoContext.Current)
             {
@@ -108,7 +108,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                     UserIdType = PrincipalProviderType.OrgId
                 };
 
-                userConsentListOrig = raClient.Collection.GetUsers(collectionName, groupName);
+                userConsentListOrig = raClient.Collection.GetUsers(collectionName, groupName).Value;
 
                 result = raClient.Collection.AddSecurityPrincipal(userToRemove, collectionName, userToRemove.Name, groupName);
                 Assert.NotNull(result);
@@ -120,10 +120,10 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 Assert.NotNull(result);
            
 
-                userConsentListAfterDelete = raClient.Collection.GetUsers(collectionName, groupName);
+                userConsentListAfterDelete = raClient.Collection.GetUsers(collectionName, groupName).Value;
 
                 Assert.NotNull(userConsentListAfterDelete);
-                Assert.Equal(userConsentListOrig.UserConsentStatuses.Count, userConsentListAfterDelete.UserConsentStatuses.Count);
+                Assert.Equal(userConsentListOrig.Count, userConsentListAfterDelete.Count);
             }
         }
 

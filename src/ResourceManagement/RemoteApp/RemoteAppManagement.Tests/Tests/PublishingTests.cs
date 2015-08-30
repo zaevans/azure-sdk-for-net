@@ -27,7 +27,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 undoContext.Start();
                 raClient = GetClient();
 
-                startMenuList = raClient.Collection.ListStartMenuApps(collectionName, groupName);
+                startMenuList = raClient.Collection.ListStartMenuApps(collectionName, groupName).Value;
 
                 Assert.NotNull(startMenuList);
 
@@ -57,7 +57,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 undoContext.Start();
                 raClient = GetClient();
 
-                startMenuList = raClient.Collection.ListStartMenuApps(collectionName, groupName);
+                startMenuList = raClient.Collection.ListStartMenuApps(collectionName, groupName).Value;
                 appId = startMenuList[0].StartMenuApplicationId;
 
                 startMenu = raClient.Collection.GetStartMenuApp(appId, collectionName, groupName);
@@ -85,7 +85,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 undoContext.Start();
                 raClient = GetClient();
 
-                pubApps = raClient.Collection.ListPublishedApp(collectionName, groupName);
+                pubApps = raClient.Collection.ListPublishedApp(collectionName, groupName).Value;
 
                 Assert.NotNull(pubApps);
 
@@ -118,7 +118,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 undoContext.Start();
                 raClient = GetClient();
 
-                pubApps = raClient.Collection.ListPublishedApp(collectionName, groupName);
+                pubApps = raClient.Collection.ListPublishedApp(collectionName, groupName).Value;
                 alias = pubApps[0].Alias;
 
                 pubApp = raClient.Collection.GetPublishedApp(collectionName, alias, groupName);
@@ -151,7 +151,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
             {
                 undoContext.Start();
                 raClient = GetClient();
-                startMenuList = raClient.Collection.ListStartMenuApps(collectionName, groupName);
+                startMenuList = raClient.Collection.ListStartMenuApps(collectionName, groupName).Value;
                 Assert.NotNull(startMenuList);
                 appToPublish = startMenuList.Last();
 
@@ -198,7 +198,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
             {
                 undoContext.Start();
                 raClient = GetClient();
-                pubApps = raClient.Collection.ListPublishedApp(collectionName, groupName);
+                pubApps = raClient.Collection.ListPublishedApp(collectionName, groupName).Value;
                 Assert.NotNull(pubApps);
                 appToModifiy = pubApps.First();
                 arguments = appToModifiy.CommandLineArguments;
@@ -247,7 +247,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
             {
                 undoContext.Start();
                 raClient = GetClient();
-                startMenuList = raClient.Collection.ListStartMenuApps(collectionName, groupName);
+                startMenuList = raClient.Collection.ListStartMenuApps(collectionName, groupName).Value;
                 Assert.NotNull(startMenuList);
                 appToPublish = startMenuList.First();
 

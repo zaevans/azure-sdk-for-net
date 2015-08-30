@@ -18,8 +18,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     {
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "SecurityPrincipals")]
-        public IList<SecurityPrincipal> SecurityPrincipals { get; set; }
+        [JsonProperty(PropertyName = "value")]
+        public IList<SecurityPrincipalInfo> Value { get; set; }
 
     }
 }

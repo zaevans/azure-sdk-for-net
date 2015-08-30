@@ -9,24 +9,17 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Newtonsoft.Json;
     using Microsoft.Rest;
     using Microsoft.Rest.Serialization;
-    using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// The input to get usage details.
+    /// The response for the get locations operation.
     /// </summary>
-    public partial class BillingDate
+    public partial class LocationWrapper
     {
         /// <summary>
-        /// The billing month
+        /// Available Locations
         /// </summary>
-        [JsonProperty(PropertyName = "month")]
-        public string Month { get; set; }
-
-        /// <summary>
-        /// The billing year
-        /// </summary>
-        [JsonProperty(PropertyName = "year")]
-        public string Year { get; set; }
+        [JsonProperty(PropertyName = "locations")]
+        public IList<Location> Locations { get; set; }
 
     }
 }

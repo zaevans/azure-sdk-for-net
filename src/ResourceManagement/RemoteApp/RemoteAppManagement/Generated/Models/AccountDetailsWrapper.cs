@@ -12,7 +12,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// A wrapper for account details to be used as a parameter and a response.
+    /// A wrapper for account details to be used as a parameter
     /// </summary>
     public partial class AccountDetailsWrapper : Resource
     {
@@ -29,58 +29,27 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public string NextLink { get; set; }
 
         /// <summary>
-        /// The account subscriptionId
+        /// Account properties
         /// </summary>
-        [JsonProperty(PropertyName = "properties.id")]
-        public string AccountDetailsWrapperId { get; set; }
+        [JsonProperty(PropertyName = "properties.accountInfo")]
+        public AccountDetails AccountInfo { get; set; }
 
         /// <summary>
-        /// Name of the workspace
+        /// Available billing plans.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.workspaceName")]
-        public string WorkspaceName { get; set; }
+        [JsonProperty(PropertyName = "properties.billingPlans")]
+        public IList<BillingPlan> BillingPlans { get; set; }
 
         /// <summary>
-        /// The maximum number of apps per collection
+        /// List of locations for creating a collection.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.maxPublishedAppsPerService")]
-        public int? MaxPublishedAppsPerService { get; set; }
+        [JsonProperty(PropertyName = "properties.locationList")]
+        public IList<Location> LocationList { get; set; }
 
         /// <summary>
-        /// The maximum number of users per collection
         /// </summary>
-        [JsonProperty(PropertyName = "properties.maxUsersPerService")]
-        public int? MaxUsersPerService { get; set; }
-
-        /// <summary>
-        /// Whether or not desktops are enabled on this account
-        /// </summary>
-        [JsonProperty(PropertyName = "properties.isDesktopEnabled")]
-        public bool? IsDesktopEnabled { get; set; }
-
-        /// <summary>
-        /// The maximum number of collections
-        /// </summary>
-        [JsonProperty(PropertyName = "properties.maxServices")]
-        public int? MaxServices { get; set; }
-
-        /// <summary>
-        /// The URL users can go to to access available apps
-        /// </summary>
-        [JsonProperty(PropertyName = "properties.rdWebUrl")]
-        public string RdWebUrl { get; set; }
-
-        /// <summary>
-        /// Admin-defined URL to the privacy statement
-        /// </summary>
-        [JsonProperty(PropertyName = "properties.privacyUrl")]
-        public string PrivacyUrl { get; set; }
-
-        /// <summary>
-        /// The home region for the account
-        /// </summary>
-        [JsonProperty(PropertyName = "properties.location")]
-        public string AccountDetailsWrapperLocation { get; set; }
+        [JsonProperty(PropertyName = "properties.features")]
+        public IList<string> Features { get; set; }
 
         /// <summary>
         /// Validate the object. Throws ArgumentException or ArgumentNullException if validation fails.
