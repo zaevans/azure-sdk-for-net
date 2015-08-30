@@ -12,21 +12,15 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// The input to get usage details.
+    /// A wrapper for account details to be used as a response.
     /// </summary>
-    public partial class BillingDate
+    public partial class AccountDetailsWrapperList
     {
         /// <summary>
-        /// The billing month
+        /// Account properties
         /// </summary>
-        [JsonProperty(PropertyName = "month")]
-        public string Month { get; set; }
-
-        /// <summary>
-        /// The billing year
-        /// </summary>
-        [JsonProperty(PropertyName = "year")]
-        public string Year { get; set; }
+        [JsonProperty(PropertyName = "value")]
+        public IList<AccountDetailsWrapper> Value { get; set; }
 
     }
 }

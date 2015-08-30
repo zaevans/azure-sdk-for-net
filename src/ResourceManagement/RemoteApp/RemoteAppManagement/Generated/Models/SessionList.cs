@@ -12,21 +12,15 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// The input to get usage details.
+    /// The response for the get session list operation.
     /// </summary>
-    public partial class BillingDate
+    public partial class SessionList
     {
         /// <summary>
-        /// The billing month
+        /// A list of sessions
         /// </summary>
-        [JsonProperty(PropertyName = "month")]
-        public string Month { get; set; }
-
-        /// <summary>
-        /// The billing year
-        /// </summary>
-        [JsonProperty(PropertyName = "year")]
-        public string Year { get; set; }
+        [JsonProperty(PropertyName = "value")]
+        public IList<Session> Value { get; set; }
 
     }
 }

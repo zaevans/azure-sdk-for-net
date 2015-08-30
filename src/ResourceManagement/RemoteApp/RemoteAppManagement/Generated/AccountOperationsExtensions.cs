@@ -21,7 +21,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            public static AccountDetailsWrapper GetAccountInfo(this IAccountOperations operations)
+            public static AccountDetailsWrapperList GetAccountInfo(this IAccountOperations operations)
             {
                 return Task.Factory.StartNew(s => ((IAccountOperations)s).GetAccountInfoAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -35,41 +35,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<AccountDetailsWrapper> GetAccountInfoAsync( this IAccountOperations operations, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<AccountDetailsWrapperList> GetAccountInfoAsync( this IAccountOperations operations, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<AccountDetailsWrapper> result = await operations.GetAccountInfoWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Updates the account PrivacyUrl and WorkspaceName.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='accountInfo'>
-            /// The new PrivacyUrl and WorkspaceName
-            /// </param>
-            public static AccountDetailsWrapper UpdateAccount(this IAccountOperations operations, AccountDetailsWrapper accountInfo)
-            {
-                return Task.Factory.StartNew(s => ((IAccountOperations)s).UpdateAccountAsync(accountInfo), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Updates the account PrivacyUrl and WorkspaceName.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='accountInfo'>
-            /// The new PrivacyUrl and WorkspaceName
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<AccountDetailsWrapper> UpdateAccountAsync( this IAccountOperations operations, AccountDetailsWrapper accountInfo, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<AccountDetailsWrapper> result = await operations.UpdateAccountWithHttpMessagesAsync(accountInfo, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<AccountDetailsWrapperList> result = await operations.GetAccountInfoWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
@@ -99,54 +67,34 @@ namespace Microsoft.Azure.Management.RemoteApp
             }
 
             /// <summary>
-            /// Gets the available billing plans for the account.
+            /// Updates the account PrivacyUrl and WorkspaceName.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            public static BillingPlanPropertiesWrapper Plans(this IAccountOperations operations)
+            /// <param name='accountInfo'>
+            /// The new PrivacyUrl and WorkspaceName
+            /// </param>
+            public static AccountDetailsWrapperList UpdateAccount(this IAccountOperations operations, AccountDetailsWrapper accountInfo)
             {
-                return Task.Factory.StartNew(s => ((IAccountOperations)s).PlansAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((IAccountOperations)s).UpdateAccountAsync(accountInfo), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Gets the available billing plans for the account.
+            /// Updates the account PrivacyUrl and WorkspaceName.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
+            /// </param>
+            /// <param name='accountInfo'>
+            /// The new PrivacyUrl and WorkspaceName
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<BillingPlanPropertiesWrapper> PlansAsync( this IAccountOperations operations, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<AccountDetailsWrapperList> UpdateAccountAsync( this IAccountOperations operations, AccountDetailsWrapper accountInfo, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<BillingPlanPropertiesWrapper> result = await operations.PlansWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
-                return result.Body;
-            }
-
-            /// <summary>
-            /// Gets the supported locations to create collections.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static LocationPropertiesWrapper Locations(this IAccountOperations operations)
-            {
-                return Task.Factory.StartNew(s => ((IAccountOperations)s).LocationsAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Gets the supported locations to create collections.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<LocationPropertiesWrapper> LocationsAsync( this IAccountOperations operations, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                AzureOperationResponse<LocationPropertiesWrapper> result = await operations.LocationsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<AccountDetailsWrapperList> result = await operations.UpdateAccountWithHttpMessagesAsync(accountInfo, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 

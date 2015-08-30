@@ -12,21 +12,15 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// The input to get usage details.
+    /// Definition containing details of Start Menu applications.
     /// </summary>
-    public partial class BillingDate
+    public partial class StartMenuApplicationListResult
     {
         /// <summary>
-        /// The billing month
+        /// StartMenuApplication properties.
         /// </summary>
-        [JsonProperty(PropertyName = "month")]
-        public string Month { get; set; }
-
-        /// <summary>
-        /// The billing year
-        /// </summary>
-        [JsonProperty(PropertyName = "year")]
-        public string Year { get; set; }
+        [JsonProperty(PropertyName = "value")]
+        public IList<StartMenuApplication> Value { get; set; }
 
     }
 }

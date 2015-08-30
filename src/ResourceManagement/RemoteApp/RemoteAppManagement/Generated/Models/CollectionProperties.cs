@@ -9,111 +9,98 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Newtonsoft.Json;
     using Microsoft.Rest;
     using Microsoft.Rest.Serialization;
-    using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// The response for the get collection operation.
+    /// The collection details.
     /// </summary>
-    public partial class Collection : Resource
+    public partial class CollectionProperties
     {
-        /// <summary>
-        /// The etag of the resource.
-        /// </summary>
-        [JsonProperty(PropertyName = "etag")]
-        public string Etag { get; set; }
-
-        /// <summary>
-        /// The URL for requesting next page of resources.
-        /// </summary>
-        [JsonProperty(PropertyName = "nextLink")]
-        public string NextLink { get; set; }
-
         /// <summary>
         /// The collection provisioning state. Possible values for this
         /// property include: 'Failed', 'Succeeded', 'Cancelled',
         /// 'InProgress'.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.provisioningState")]
+        [JsonProperty(PropertyName = "provisioningState")]
         public ProvisioningState? ProvisioningState { get; set; }
 
         /// <summary>
         /// The collection name.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.name")]
-        public string CollectionName { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// The description of the collection.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.description")]
+        [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
 
         /// <summary>
-        /// The name of the template image associated with this collection.
+        /// The name of the gold image associated with this collection.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.templateImageName")]
-        public string TemplateImageName { get; set; }
+        [JsonProperty(PropertyName = "goldImageName")]
+        public string GoldImageName { get; set; }
 
         /// <summary>
         /// The collection status.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.status")]
+        [JsonProperty(PropertyName = "status")]
         public string Status { get; set; }
 
         /// <summary>
         /// The last operation error code on this collection.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.lastErrorCode")]
+        [JsonProperty(PropertyName = "lastErrorCode")]
         public string LastErrorCode { get; set; }
 
         /// <summary>
         /// The VNet name associated with this collection.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.vnetName")]
+        [JsonProperty(PropertyName = "vnetName")]
         public string VnetName { get; set; }
 
         /// <summary>
         /// The domain join details for this collection.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.adInfo")]
+        [JsonProperty(PropertyName = "adInfo")]
         public ActiveDirectoryConfig AdInfo { get; set; }
 
         /// <summary>
         /// The plan name associated with this collection.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.billingPlanName")]
-        public string BillingPlanName { get; set; }
+        [JsonProperty(PropertyName = "planName")]
+        public string PlanName { get; set; }
 
         /// <summary>
         /// Optional customer-defined RDP properties of the collection.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.customRdpProperty")]
+        [JsonProperty(PropertyName = "customRdpProperty")]
         public string CustomRdpProperty { get; set; }
 
         /// <summary>
         /// A flag denoting if this collection is ready for publishing
         /// operations.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.readyForPublishing")]
+        [JsonProperty(PropertyName = "readyForPublishing")]
         public bool? ReadyForPublishing { get; set; }
 
         /// <summary>
         /// UTC date and time of the last modification of this collection.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.lastModifiedTimeUtc")]
+        [JsonProperty(PropertyName = "lastModifiedTimeUtc")]
         public DateTime? LastModifiedTimeUtc { get; set; }
 
         /// <summary>
         /// The collection mode. Possible values for this property include:
         /// 'Unassigned', 'Apps', 'Desktop'.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.mode")]
+        [JsonProperty(PropertyName = "mode")]
         public CollectionMode? Mode { get; set; }
 
         /// <summary>
         /// The maximum number of concurrent users allowed for this collection.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.maxSessions")]
+        [JsonProperty(PropertyName = "maxSessions")]
         public int? MaxSessions { get; set; }
 
         /// <summary>
@@ -121,22 +108,15 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// crossing this threshold will cause a capacity warning message to
         /// be shown in the management portal.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.sessionWarningThreshold")]
+        [JsonProperty(PropertyName = "sessionWarningThreshold")]
         public int? SessionWarningThreshold { get; set; }
-
-        /// <summary>
-        /// The type of the collection. Possible values for this property
-        /// include: 'Hybrid', 'CloudOnly', 'HybridWithoutDomain'.
-        /// </summary>
-        [JsonProperty(PropertyName = "properties.type")]
-        public RemoteAppCollectionType? CollectionType { get; set; }
 
         /// <summary>
         /// If the template image for this collection includes Office this
         /// will specify the type. Possible values for this property include:
         /// 'None', 'OfficeSAL', 'Office365', 'Unknown'.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.officeType")]
+        [JsonProperty(PropertyName = "officeType")]
         public OfficeType? OfficeType { get; set; }
 
         /// <summary>
@@ -144,27 +124,20 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// your subscription. When the trial expires or you activate your
         /// subscription, these collections will be permanently disabled.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.trialOnly")]
+        [JsonProperty(PropertyName = "trialOnly")]
         public bool? TrialOnly { get; set; }
 
         /// <summary>
         /// List of the DNS Servers.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.DnsServers")]
+        [JsonProperty(PropertyName = "DnsServers")]
         public IList<string> DnsServers { get; set; }
 
         /// <summary>
         /// The subnet name of the customer created Azure VNet.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.subnetName")]
+        [JsonProperty(PropertyName = "subnetName")]
         public string SubnetName { get; set; }
 
-        /// <summary>
-        /// Validate the object. Throws ArgumentException or ArgumentNullException if validation fails.
-        /// </summary>
-        public override void Validate()
-        {
-            base.Validate();
-        }
     }
 }

@@ -45,7 +45,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         public RemoteAppManagementClient Client { get; private set; }
 
         /// <summary>
-        /// Gets the list of collections details for the subscription.
+        /// Gets the list of collections details in the subscription.
         /// </summary>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -53,7 +53,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<CollectionListResult>> ListSubscriptionCollectionsWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<CollectionListResult>> ListCollectionsWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (this.Client.ArmNamespace == null)
             {
@@ -75,7 +75,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(invocationId, this, "ListSubscriptionCollections", tracingParameters);
+                ServiceClientTracing.Enter(invocationId, this, "ListCollections", tracingParameters);
             }
             // Construct URL
             var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/providers/{armNamespace}/collections").ToString();
@@ -826,7 +826,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<IList<PublishedApplicationDetails>>> ListPublishedAppWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<PublishedApplicationDetailsListResult>> ListPublishedAppWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (this.Client.ArmNamespace == null)
             {
@@ -939,7 +939,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 throw ex;
             }
             // Create Result
-            var result = new AzureOperationResponse<IList<PublishedApplicationDetails>>();
+            var result = new AzureOperationResponse<PublishedApplicationDetailsListResult>();
             result.Request = httpRequest;
             result.Response = httpResponse;
             if (httpResponse.Headers.Contains("x-ms-request-id"))
@@ -950,7 +950,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             if (statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK"))
             {
                 string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                result.Body = JsonConvert.DeserializeObject<IList<PublishedApplicationDetails>>(responseContent, this.Client.DeserializationSettings);
+                result.Body = JsonConvert.DeserializeObject<PublishedApplicationDetailsListResult>(responseContent, this.Client.DeserializationSettings);
             }
             if (shouldTrace)
             {
@@ -1458,7 +1458,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<SessionListResult>> SessionListWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<SessionList>> SessionListWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (this.Client.ArmNamespace == null)
             {
@@ -1571,7 +1571,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 throw ex;
             }
             // Create Result
-            var result = new AzureOperationResponse<SessionListResult>();
+            var result = new AzureOperationResponse<SessionList>();
             result.Request = httpRequest;
             result.Response = httpResponse;
             if (httpResponse.Headers.Contains("x-ms-request-id"))
@@ -1582,7 +1582,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             if (statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK"))
             {
                 string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                result.Body = JsonConvert.DeserializeObject<SessionListResult>(responseContent, this.Client.DeserializationSettings);
+                result.Body = JsonConvert.DeserializeObject<SessionList>(responseContent, this.Client.DeserializationSettings);
             }
             if (shouldTrace)
             {
@@ -2207,7 +2207,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<IList<StartMenuApplication>>> ListStartMenuAppsWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<StartMenuApplicationListResult>> ListStartMenuAppsWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (this.Client.ArmNamespace == null)
             {
@@ -2320,7 +2320,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 throw ex;
             }
             // Create Result
-            var result = new AzureOperationResponse<IList<StartMenuApplication>>();
+            var result = new AzureOperationResponse<StartMenuApplicationListResult>();
             result.Request = httpRequest;
             result.Response = httpResponse;
             if (httpResponse.Headers.Contains("x-ms-request-id"))
@@ -2331,7 +2331,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             if (statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK"))
             {
                 string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                result.Body = JsonConvert.DeserializeObject<IList<StartMenuApplication>>(responseContent, this.Client.DeserializationSettings);
+                result.Body = JsonConvert.DeserializeObject<StartMenuApplicationListResult>(responseContent, this.Client.DeserializationSettings);
             }
             if (shouldTrace)
             {
@@ -2500,14 +2500,14 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <summary>
         /// Generates a CSV file of collection usage details and returns the URI
         /// </summary>
-        /// <param name='billingDate'>
-        /// The requested month and year for collection usage information
-        /// </param>
         /// <param name='collectionName'>
         /// The collection name.
         /// </param>
         /// <param name='resourceGroupName'>
         /// The name of the resource group
+        /// </param>
+        /// <param name='date'>
+        /// The year and month to get billing for
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -2515,15 +2515,11 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<UsageDetailsInfo>> GetUsageDetailsWithHttpMessagesAsync(BillingDate billingDate, string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<UsageDetailsInfo>> GetUsageDetailsWithHttpMessagesAsync(string collectionName, string resourceGroupName, BillingDate date, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (this.Client.ArmNamespace == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ArmNamespace");
-            }
-            if (billingDate == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "billingDate");
             }
             if (this.Client.ApiVersion == null)
             {
@@ -2541,6 +2537,10 @@ namespace Microsoft.Azure.Management.RemoteApp
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "resourceGroupName");
             }
+            if (date == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "date");
+            }
             // Tracing
             bool shouldTrace = ServiceClientTracing.IsEnabled;
             string invocationId = null;
@@ -2548,9 +2548,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             {
                 invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("billingDate", billingDate);
                 tracingParameters.Add("collectionName", collectionName);
                 tracingParameters.Add("resourceGroupName", resourceGroupName);
+                tracingParameters.Add("date", date);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(invocationId, this, "GetUsageDetails", tracingParameters);
             }
@@ -2602,7 +2602,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 await this.Client.Credentials.ProcessHttpRequestAsync(httpRequest, cancellationToken).ConfigureAwait(false);
             }
             // Serialize Request
-            string requestContent = JsonConvert.SerializeObject(billingDate, this.Client.SerializationSettings);
+            string requestContent = JsonConvert.SerializeObject(date, this.Client.SerializationSettings);
             httpRequest.Content = new StringContent(requestContent, Encoding.UTF8);
             httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             // Send Request
@@ -2660,8 +2660,11 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <summary>
         /// Gets a summary of usage data for all users in the collection.
         /// </summary>
-        /// <param name='billingDate'>
-        /// The requested month and year for collection usage information
+        /// <param name='usageMonth'>
+        /// The requested month for collection usage information
+        /// </param>
+        /// <param name='usageYear'>
+        /// The requested year for collection usage information
         /// </param>
         /// <param name='collectionName'>
         /// The collection name.
@@ -2675,15 +2678,19 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<CollectionUsageSummaryListResult>> GetUsageSummaryListWithHttpMessagesAsync(BillingDate billingDate, string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<CollectionUsageSummaryList>> GetUsageSummaryListWithHttpMessagesAsync(string usageMonth, string usageYear, string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (this.Client.ArmNamespace == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ArmNamespace");
             }
-            if (billingDate == null)
+            if (usageMonth == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "billingDate");
+                throw new ValidationException(ValidationRules.CannotBeNull, "usageMonth");
+            }
+            if (usageYear == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "usageYear");
             }
             if (this.Client.ApiVersion == null)
             {
@@ -2708,19 +2715,28 @@ namespace Microsoft.Azure.Management.RemoteApp
             {
                 invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("billingDate", billingDate);
+                tracingParameters.Add("usageMonth", usageMonth);
+                tracingParameters.Add("usageYear", usageYear);
                 tracingParameters.Add("collectionName", collectionName);
                 tracingParameters.Add("resourceGroupName", resourceGroupName);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(invocationId, this, "GetUsageSummaryList", tracingParameters);
             }
             // Construct URL
-            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{armNamespace}/collections/{collectionName}/usageSummary").ToString();
+            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{armNamespace}/collections/{collectionName}/usageSummaries").ToString();
             url = url.Replace("{armNamespace}", Uri.EscapeDataString(this.Client.ArmNamespace));
             url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
             url = url.Replace("{collectionName}", Uri.EscapeDataString(collectionName));
             url = url.Replace("{resourceGroupName}", Uri.EscapeDataString(resourceGroupName));
             List<string> queryParameters = new List<string>();
+            if (usageMonth != null)
+            {
+                queryParameters.Add(string.Format("usageMonth={0}", Uri.EscapeDataString(usageMonth)));
+            }
+            if (usageYear != null)
+            {
+                queryParameters.Add(string.Format("usageYear={0}", Uri.EscapeDataString(usageYear)));
+            }
             if (this.Client.ApiVersion != null)
             {
                 queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(this.Client.ApiVersion)));
@@ -2731,7 +2747,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             }
             // Create HTTP transport objects
             HttpRequestMessage httpRequest = new HttpRequestMessage();
-            httpRequest.Method = new HttpMethod("POST");
+            httpRequest.Method = new HttpMethod("GET");
             httpRequest.RequestUri = new Uri(url);
             // Set Headers
             httpRequest.Headers.TryAddWithoutValidation("x-ms-client-request-id", Guid.NewGuid().ToString());
@@ -2761,10 +2777,6 @@ namespace Microsoft.Azure.Management.RemoteApp
                 cancellationToken.ThrowIfCancellationRequested();
                 await this.Client.Credentials.ProcessHttpRequestAsync(httpRequest, cancellationToken).ConfigureAwait(false);
             }
-            // Serialize Request
-            string requestContent = JsonConvert.SerializeObject(billingDate, this.Client.SerializationSettings);
-            httpRequest.Content = new StringContent(requestContent, Encoding.UTF8);
-            httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             // Send Request
             if (shouldTrace)
             {
@@ -2797,7 +2809,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 throw ex;
             }
             // Create Result
-            var result = new AzureOperationResponse<CollectionUsageSummaryListResult>();
+            var result = new AzureOperationResponse<CollectionUsageSummaryList>();
             result.Request = httpRequest;
             result.Response = httpResponse;
             if (httpResponse.Headers.Contains("x-ms-request-id"))
@@ -2808,7 +2820,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             if (statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK"))
             {
                 string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                result.Body = JsonConvert.DeserializeObject<CollectionUsageSummaryListResult>(responseContent, this.Client.DeserializationSettings);
+                result.Body = JsonConvert.DeserializeObject<CollectionUsageSummaryList>(responseContent, this.Client.DeserializationSettings);
             }
             if (shouldTrace)
             {
@@ -2820,8 +2832,11 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <summary>
         /// Gets a summary of collection usage data for the specified user.
         /// </summary>
-        /// <param name='billingDate'>
-        /// The requested month and year for collection usage information
+        /// <param name='usageMonth'>
+        /// The requested month for collection usage information
+        /// </param>
+        /// <param name='usageYear'>
+        /// The requested year for collection usage information
         /// </param>
         /// <param name='collectionName'>
         /// The collection name.
@@ -2838,15 +2853,19 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<CollectionUsageSummary>> GetUsageSummaryWithHttpMessagesAsync(BillingDate billingDate, string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<CollectionUsageSummary>> GetUsageSummaryWithHttpMessagesAsync(string usageMonth, string usageYear, string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (this.Client.ArmNamespace == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ArmNamespace");
             }
-            if (billingDate == null)
+            if (usageMonth == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "billingDate");
+                throw new ValidationException(ValidationRules.CannotBeNull, "usageMonth");
+            }
+            if (usageYear == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "usageYear");
             }
             if (this.Client.ApiVersion == null)
             {
@@ -2875,7 +2894,8 @@ namespace Microsoft.Azure.Management.RemoteApp
             {
                 invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("billingDate", billingDate);
+                tracingParameters.Add("usageMonth", usageMonth);
+                tracingParameters.Add("usageYear", usageYear);
                 tracingParameters.Add("collectionName", collectionName);
                 tracingParameters.Add("userUpn", userUpn);
                 tracingParameters.Add("resourceGroupName", resourceGroupName);
@@ -2890,6 +2910,14 @@ namespace Microsoft.Azure.Management.RemoteApp
             url = url.Replace("{userUpn}", Uri.EscapeDataString(userUpn));
             url = url.Replace("{resourceGroupName}", Uri.EscapeDataString(resourceGroupName));
             List<string> queryParameters = new List<string>();
+            if (usageMonth != null)
+            {
+                queryParameters.Add(string.Format("usageMonth={0}", Uri.EscapeDataString(usageMonth)));
+            }
+            if (usageYear != null)
+            {
+                queryParameters.Add(string.Format("usageYear={0}", Uri.EscapeDataString(usageYear)));
+            }
             if (this.Client.ApiVersion != null)
             {
                 queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(this.Client.ApiVersion)));
@@ -2900,7 +2928,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             }
             // Create HTTP transport objects
             HttpRequestMessage httpRequest = new HttpRequestMessage();
-            httpRequest.Method = new HttpMethod("POST");
+            httpRequest.Method = new HttpMethod("GET");
             httpRequest.RequestUri = new Uri(url);
             // Set Headers
             httpRequest.Headers.TryAddWithoutValidation("x-ms-client-request-id", Guid.NewGuid().ToString());
@@ -2930,10 +2958,6 @@ namespace Microsoft.Azure.Management.RemoteApp
                 cancellationToken.ThrowIfCancellationRequested();
                 await this.Client.Credentials.ProcessHttpRequestAsync(httpRequest, cancellationToken).ConfigureAwait(false);
             }
-            // Serialize Request
-            string requestContent = JsonConvert.SerializeObject(billingDate, this.Client.SerializationSettings);
-            httpRequest.Content = new StringContent(requestContent, Encoding.UTF8);
-            httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             // Send Request
             if (shouldTrace)
             {
@@ -3001,7 +3025,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<SecurityPrincipalInfoListResult>> GetUsersWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<SecurityPrincipalList>> GetUsersWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (this.Client.ArmNamespace == null)
             {
@@ -3114,7 +3138,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 throw ex;
             }
             // Create Result
-            var result = new AzureOperationResponse<SecurityPrincipalInfoListResult>();
+            var result = new AzureOperationResponse<SecurityPrincipalList>();
             result.Request = httpRequest;
             result.Response = httpResponse;
             if (httpResponse.Headers.Contains("x-ms-request-id"))
@@ -3125,7 +3149,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             if (statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK"))
             {
                 string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                result.Body = JsonConvert.DeserializeObject<SecurityPrincipalInfoListResult>(responseContent, this.Client.DeserializationSettings);
+                result.Body = JsonConvert.DeserializeObject<SecurityPrincipalList>(responseContent, this.Client.DeserializationSettings);
             }
             if (shouldTrace)
             {
