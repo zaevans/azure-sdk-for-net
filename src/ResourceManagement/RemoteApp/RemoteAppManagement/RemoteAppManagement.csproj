@@ -47,6 +47,7 @@
     <Compile Include="Generated\Models\CollectionUsageSummary.cs" />
     <Compile Include="Generated\Models\CollectionUsageSummaryList.cs" />
     <Compile Include="Generated\Models\CollectionUsageSummaryListItemProperties.cs" />
+    <Compile Include="Generated\Models\CollectionUsageSummaryListResult.cs" />
     <Compile Include="Generated\Models\ConsentStatus.cs" />
     <Compile Include="Generated\Models\Location.cs" />
     <Compile Include="Generated\Models\LocationPropertiesWrapper.cs" />
@@ -75,6 +76,8 @@
     <Compile Include="Generated\Models\SecurityPrincipalOperationErrorDetails.cs" />
     <Compile Include="Generated\Models\Session.cs" />
     <Compile Include="Generated\Models\SessionList.cs" />
+    <Compile Include="Generated\Models\SessionListItemProperties.cs" />
+    <Compile Include="Generated\Models\SessionListResult.cs" />
     <Compile Include="Generated\Models\SessionSendMessageCommandParameter.cs" />
     <Compile Include="Generated\Models\SessionState.cs" />
     <Compile Include="Generated\Models\SessionWrapper.cs" />
