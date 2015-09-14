@@ -29,10 +29,10 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public string NextLink { get; set; }
 
         /// <summary>
-        /// The application name.
+        /// The application's display name.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.name")]
-        public string PublishedApplicationDetailsName { get; set; }
+        [JsonProperty(PropertyName = "properties.displayName")]
+        public string DisplayName { get; set; }
 
         /// <summary>
         /// Path to the application.  The path should reference default

@@ -2903,7 +2903,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 ServiceClientTracing.Enter(invocationId, this, "GetUsageSummary", tracingParameters);
             }
             // Construct URL
-            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{armNamespace}/collections/{collectionName}/usageSummary/{userUpn}").ToString();
+            var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{armNamespace}/collections/{collectionName}/usageSummaries/{userUpn}").ToString();
             url = url.Replace("{armNamespace}", Uri.EscapeDataString(this.Client.ArmNamespace));
             url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
             url = url.Replace("{collectionName}", Uri.EscapeDataString(collectionName));
