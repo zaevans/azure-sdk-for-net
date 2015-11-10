@@ -21,7 +21,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            public static IList<TemplateImage> GetTemplateImages(this ITemplateImageOperations operations)
+            public static object GetTemplateImages(this ITemplateImageOperations operations)
             {
                 return Task.Factory.StartNew(s => ((ITemplateImageOperations)s).GetTemplateImagesAsync(), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -35,9 +35,9 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<TemplateImage>> GetTemplateImagesAsync( this ITemplateImageOperations operations, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> GetTemplateImagesAsync( this ITemplateImageOperations operations, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<IList<TemplateImage>> result = await operations.GetTemplateImagesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<object> result = await operations.GetTemplateImagesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 

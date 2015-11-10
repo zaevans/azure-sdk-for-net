@@ -358,6 +358,26 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// </param>
         Task<AzureOperationResponse<UsageDetailsInfo>> GetUsageDetailsWithHttpMessagesAsync(string collectionName, string resourceGroupName, BillingDate date, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
+        /// Generates a CSV file of collection usage details and returns the
+        /// URI
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>
+        /// <param name='date'>
+        /// The year and month to get billing for
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse<UsageDetailsInfo>> BeginGetUsageDetailsWithHttpMessagesAsync(string collectionName, string resourceGroupName, BillingDate date, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
         /// Gets a summary of usage data for all users in the collection.
         /// </summary>
         /// <param name='usageMonth'>
@@ -404,6 +424,29 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// The cancellation token.
         /// </param>
         Task<AzureOperationResponse<CollectionUsageSummary>> GetUsageSummaryWithHttpMessagesAsync(string usageMonth, string usageYear, string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Gets the list of collection metric values for specified time
+        /// window.
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>
+        /// <param name='startTimeUtc'>
+        /// UTC start time for the time window formatted as 'yyyyMMdd'
+        /// </param>
+        /// <param name='endTimeUtc'>
+        /// UTC end time for the time window formatted as 'yyyyMMdd'
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse<CollectionMetricsDetailsWrapper>> GetMetricsWithHttpMessagesAsync(string collectionName, string resourceGroupName, string startTimeUtc = default(string), string endTimeUtc = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets a list of all RemoteApp users associated with the given
         /// collection.

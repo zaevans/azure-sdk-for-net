@@ -65,7 +65,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public string PrivacyUrl { get; set; }
 
         /// <summary>
-        /// The home region for the account
+        /// The home location for the account
         /// </summary>
         [JsonProperty(PropertyName = "location")]
         public string Location { get; set; }

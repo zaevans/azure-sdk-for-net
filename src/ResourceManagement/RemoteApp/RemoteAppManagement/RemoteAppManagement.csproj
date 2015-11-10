@@ -32,10 +32,14 @@
     <Compile Include="Generated\Models\ApplicationDetailsList.cs" />
     <Compile Include="Generated\Models\AppPublishingStatus.cs" />
     <Compile Include="Generated\Models\BillingDate.cs" />
+    <Compile Include="Generated\Models\BillingMeterInformation.cs" />
     <Compile Include="Generated\Models\BillingPlan.cs" />
     <Compile Include="Generated\Models\Collection.cs" />
     <Compile Include="Generated\Models\CollectionCreationDetailsWrapper.cs" />
     <Compile Include="Generated\Models\CollectionListResult.cs" />
+    <Compile Include="Generated\Models\CollectionMetric.cs" />
+    <Compile Include="Generated\Models\CollectionMetrics.cs" />
+    <Compile Include="Generated\Models\CollectionMetricsDetailsWrapper.cs" />
     <Compile Include="Generated\Models\CollectionMode.cs" />
     <Compile Include="Generated\Models\CollectionUsageSummary.cs" />
     <Compile Include="Generated\Models\CollectionUsageSummaryList.cs" />
