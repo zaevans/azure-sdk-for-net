@@ -51,13 +51,13 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// The application name.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.name")]
+        [JsonProperty(PropertyName = "properties.startMenuApplicationName")]
         public string StartMenuApplicationName { get; set; }
 
         /// <summary>
         /// The start menu application id.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.id")]
+        [JsonProperty(PropertyName = "properties.startMenuApplicationId")]
         public string StartMenuApplicationId { get; set; }
 
         /// <summary>

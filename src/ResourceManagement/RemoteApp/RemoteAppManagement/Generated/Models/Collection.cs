@@ -39,7 +39,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// The collection name.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.name")]
+        [JsonProperty(PropertyName = "properties.collectionName")]
         public string CollectionName { get; set; }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// The type of the collection. Possible values for this property
         /// include: 'Hybrid', 'CloudOnly', 'HybridWithoutDomain'.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.type")]
+        [JsonProperty(PropertyName = "properties.collectionType")]
         public RemoteAppCollectionType? CollectionType { get; set; }
 
         /// <summary>

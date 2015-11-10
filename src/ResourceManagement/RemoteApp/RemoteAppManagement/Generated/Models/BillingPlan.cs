@@ -46,5 +46,11 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         [JsonProperty(PropertyName = "minimumBilledUserCount")]
         public int? MinimumBilledUserCount { get; set; }
 
+        /// <summary>
+        /// List of meters for this billing plan
+        /// </summary>
+        [JsonProperty(PropertyName = "billingMeters")]
+        public IList<BillingMeterInformation> BillingMeters { get; set; }
+
     }
 }

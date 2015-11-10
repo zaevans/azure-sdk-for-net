@@ -17,10 +17,10 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     public partial class ApplicationDetails
     {
         /// <summary>
-        /// The application name.
+        /// The application's display name.
         /// </summary>
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        [JsonProperty(PropertyName = "displayName")]
+        public string DisplayName { get; set; }
 
         /// <summary>
         /// Path to the application.  The path should reference default

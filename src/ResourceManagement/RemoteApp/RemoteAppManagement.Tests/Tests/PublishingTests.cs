@@ -96,7 +96,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                     Assert.Equal(collectionName, app.Name);
                     Assert.NotNull(app.Id);
                     Assert.NotNull(app);
-                    Assert.NotNull(app.PublishedApplicationDetailsName);
+                    Assert.NotNull(app.DisplayName);
                     Assert.NotNull(app.Alias);
                     Assert.NotNull(app.VirtualPath);
                     Assert.Equal(AppPublishingStatus.Published, app.Status);
@@ -129,7 +129,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 Assert.Equal(collectionName, pubApp.Name);
                 Assert.NotNull(pubApp.Id);
                 Assert.NotNull(pubApp);
-                Assert.NotNull(pubApp.PublishedApplicationDetailsName);
+                Assert.NotNull(pubApp.DisplayName);
                 Assert.NotNull(pubApp.Alias);
                 Assert.NotNull(pubApp.VirtualPath);
                 Assert.Equal(AppPublishingStatus.Published, pubApp.Status);
@@ -158,7 +158,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 details = new ApplicationDetails()
                 {
                     Alias = appToPublish.StartMenuApplicationId,
-                    Name = appToPublish.StartMenuApplicationName,
+                    DisplayName = appToPublish.StartMenuApplicationName,
                     VirtualPath = appToPublish.VirtualPath,
                     AvailableToUsers = true,
                     IconPngUris = appToPublish.IconPngUris
@@ -206,7 +206,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 details = new ApplicationDetails()
                 {
                     Alias = appToModifiy.Alias,
-                    Name = appToModifiy.PublishedApplicationDetailsName,
+                    DisplayName = appToModifiy.DisplayName,
                     VirtualPath = appToModifiy.VirtualPath,
                     AvailableToUsers = appToModifiy.AvailableToUsers,
                     IconPngUris = appToModifiy.IconPngUris,
@@ -254,7 +254,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 details = new ApplicationDetails()
                 {
                     Alias = appToPublish.StartMenuApplicationId,
-                    Name = appToPublish.StartMenuApplicationName,
+                    DisplayName = appToPublish.StartMenuApplicationName,
                     VirtualPath = appToPublish.VirtualPath,
                     AvailableToUsers = true,
                     IconPngUris = appToPublish.IconPngUris

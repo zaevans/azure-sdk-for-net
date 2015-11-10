@@ -53,7 +53,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse<IList<TemplateImage>>> GetTemplateImagesWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<object>> GetTemplateImagesWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (this.Client.ArmNamespace == null)
             {
@@ -154,7 +154,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 throw ex;
             }
             // Create Result
-            var result = new AzureOperationResponse<IList<TemplateImage>>();
+            var result = new AzureOperationResponse<object>();
             result.Request = httpRequest;
             result.Response = httpResponse;
             if (httpResponse.Headers.Contains("x-ms-request-id"))
@@ -165,7 +165,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             if (statusCode == (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), "OK"))
             {
                 string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                result.Body = JsonConvert.DeserializeObject<IList<TemplateImage>>(responseContent, this.Client.DeserializationSettings);
+                result.Body = JsonConvert.DeserializeObject<object>(responseContent, this.Client.DeserializationSettings);
             }
             if (shouldTrace)
             {
