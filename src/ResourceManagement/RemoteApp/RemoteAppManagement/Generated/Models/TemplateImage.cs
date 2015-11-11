@@ -12,20 +12,26 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// Details of a template image
+    /// The wrapper for the template image object
     /// </summary>
-    public partial class TemplateImage
+    public partial class TemplateImage : Resource
     {
+        /// <summary>
+        /// The etag of the resource.
+        /// </summary>
+        [JsonProperty(PropertyName = "etag")]
+        public string Etag { get; set; }
+
         /// <summary>
         /// The friendly name for the image
         /// </summary>
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        [JsonProperty(PropertyName = "properties.name")]
+        public string TemplateImageName { get; set; }
 
         /// <summary>
         /// The image size in bytes
         /// </summary>
-        [JsonProperty(PropertyName = "size")]
+        [JsonProperty(PropertyName = "properties.size")]
         public long? Size { get; set; }
 
         /// <summary>
@@ -35,20 +41,20 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// 'ImportFailed', 'ImportComplete', 'ValidationFailed', 'Ready',
         /// 'Corrupted', 'Deleting'.
         /// </summary>
-        [JsonProperty(PropertyName = "status")]
+        [JsonProperty(PropertyName = "properties.status")]
         public TemplateImageStatus? Status { get; set; }
 
         /// <summary>
         /// The list of regions where the image can be used
         /// </summary>
-        [JsonProperty(PropertyName = "regionList")]
-        public IList<string> RegionList { get; set; }
+        [JsonProperty(PropertyName = "properties.locationList")]
+        public IList<string> LocationList { get; set; }
 
         /// <summary>
         /// The type of the template image. Possible values for this property
         /// include: 'CustomerImage', 'PlatformImage', 'Unknown'.
         /// </summary>
-        [JsonProperty(PropertyName = "templateImageType")]
+        [JsonProperty(PropertyName = "properties.templateImageType")]
         public TemplateImageType? TemplateImageType { get; set; }
 
         /// <summary>
@@ -56,7 +62,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// subscription's RemoteApp trial period. Once billing is activated,
         /// a collection using a TrialOnly image will be permanently disabled.
         /// </summary>
-        [JsonProperty(PropertyName = "trialOnly")]
+        [JsonProperty(PropertyName = "properties.trialOnly")]
         public bool? TrialOnly { get; set; }
 
         /// <summary>
@@ -64,14 +70,27 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// will specify the type. Possible values for this property include:
         /// 'None', 'OfficeSAL', 'Office365', 'Unknown'.
         /// </summary>
-        [JsonProperty(PropertyName = "officeType")]
+        [JsonProperty(PropertyName = "properties.officeType")]
         public OfficeType? OfficeType { get; set; }
+
+        /// <summary>
+        /// The number of collections linked to the template image.
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.numberOfLinkedCollections")]
+        public double? NumberOfLinkedCollections { get; set; }
 
         /// <summary>
         /// The time when the image upload was completed.
         /// </summary>
-        [JsonProperty(PropertyName = "uploadCompleteTime")]
+        [JsonProperty(PropertyName = "properties.uploadCompleteTime")]
         public DateTime? UploadCompleteTime { get; set; }
 
+        /// <summary>
+        /// Validate the object. Throws ArgumentException or ArgumentNullException if validation fails.
+        /// </summary>
+        public override void Validate()
+        {
+            base.Validate();
+        }
     }
 }

@@ -9,16 +9,18 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Newtonsoft.Json;
     using Microsoft.Rest;
     using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
+    /// The response for the get template images operation.
     /// </summary>
-    public partial class SubResource
+    public partial class TemplateImageList
     {
         /// <summary>
-        /// Resource Id
+        /// A list of template images
         /// </summary>
-        [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
+        [JsonProperty(PropertyName = "value")]
+        public IList<TemplateImage> Value { get; set; }
 
     }
 }
