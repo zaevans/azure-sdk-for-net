@@ -47,6 +47,11 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public IList<Location> LocationList { get; set; }
 
         /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.features")]
+        public IList<string> Features { get; set; }
+
+        /// <summary>
         /// Validate the object. Throws ArgumentException or ArgumentNullException if validation fails.
         /// </summary>
         public override void Validate()

@@ -31,8 +31,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// The collection's name
         /// </summary>
-        [JsonProperty(PropertyName = "properties.name")]
-        public string CollectionCreationDetailsWrapperName { get; set; }
+        [JsonProperty(PropertyName = "properties.collectionName")]
+        public string CollectionName { get; set; }
 
         /// <summary>
         /// A description for the collection
@@ -97,10 +97,10 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public int? WaitBeforeShutdownInMinutes { get; set; }
 
         /// <summary>
-        /// The home region for the account
+        /// The home location for the account
         /// </summary>
-        [JsonProperty(PropertyName = "properties.region")]
-        public string Region { get; set; }
+        [JsonProperty(PropertyName = "properties.collectionLocation")]
+        public string CollectionLocation { get; set; }
 
         /// <summary>
         /// A list of details of the published applications

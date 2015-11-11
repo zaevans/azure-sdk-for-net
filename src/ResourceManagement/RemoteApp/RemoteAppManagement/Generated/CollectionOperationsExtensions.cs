@@ -795,6 +795,50 @@ namespace Microsoft.Azure.Management.RemoteApp
             }
 
             /// <summary>
+            /// Generates a CSV file of collection usage details and returns the URI
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='date'>
+            /// The year and month to get billing for
+            /// </param>
+            public static UsageDetailsInfo BeginGetUsageDetails(this ICollectionOperations operations, string collectionName, string resourceGroupName, BillingDate date)
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).BeginGetUsageDetailsAsync(collectionName, resourceGroupName, date), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Generates a CSV file of collection usage details and returns the URI
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='date'>
+            /// The year and month to get billing for
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<UsageDetailsInfo> BeginGetUsageDetailsAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, BillingDate date, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<UsageDetailsInfo> result = await operations.BeginGetUsageDetailsWithHttpMessagesAsync(collectionName, resourceGroupName, date, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
             /// Gets a summary of usage data for all users in the collection.
             /// </summary>
             /// <param name='operations'>
@@ -897,6 +941,56 @@ namespace Microsoft.Azure.Management.RemoteApp
             public static async Task<CollectionUsageSummary> GetUsageSummaryAsync( this ICollectionOperations operations, string usageMonth, string usageYear, string collectionName, string userUpn, string resourceGroupName, CancellationToken cancellationToken = default(CancellationToken))
             {
                 AzureOperationResponse<CollectionUsageSummary> result = await operations.GetUsageSummaryWithHttpMessagesAsync(usageMonth, usageYear, collectionName, userUpn, resourceGroupName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Gets the list of collection metric values for specified time window.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='startTimeUtc'>
+            /// UTC start time for the time window formatted as 'yyyyMMdd'
+            /// </param>
+            /// <param name='endTimeUtc'>
+            /// UTC end time for the time window formatted as 'yyyyMMdd'
+            /// </param>
+            public static CollectionMetricsDetailsWrapper GetMetrics(this ICollectionOperations operations, string collectionName, string resourceGroupName, string startTimeUtc = default(string), string endTimeUtc = default(string))
+            {
+                return Task.Factory.StartNew(s => ((ICollectionOperations)s).GetMetricsAsync(collectionName, resourceGroupName, startTimeUtc, endTimeUtc), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the list of collection metric values for specified time window.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='collectionName'>
+            /// The collection name.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group
+            /// </param>
+            /// <param name='startTimeUtc'>
+            /// UTC start time for the time window formatted as 'yyyyMMdd'
+            /// </param>
+            /// <param name='endTimeUtc'>
+            /// UTC end time for the time window formatted as 'yyyyMMdd'
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<CollectionMetricsDetailsWrapper> GetMetricsAsync( this ICollectionOperations operations, string collectionName, string resourceGroupName, string startTimeUtc = default(string), string endTimeUtc = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<CollectionMetricsDetailsWrapper> result = await operations.GetMetricsWithHttpMessagesAsync(collectionName, resourceGroupName, startTimeUtc, endTimeUtc, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
