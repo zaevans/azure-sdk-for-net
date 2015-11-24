@@ -17,25 +17,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     public partial class TemplateImageCreateDetails
     {
         /// <summary>
-        /// The friendly name for the image
-        /// </summary>
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// The id of the image
-        /// </summary>
-        [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
-
-        /// <summary>
-        /// The location of the image
-        /// </summary>
-        [JsonProperty(PropertyName = "location")]
-        public string Location { get; set; }
-
-        /// <summary>
-        /// SAS URI for the image's source
+        /// SAS URI for an OS disk in the VM library
         /// </summary>
         [JsonProperty(PropertyName = "sourceImageSasUri")]
         public string SourceImageSasUri { get; set; }

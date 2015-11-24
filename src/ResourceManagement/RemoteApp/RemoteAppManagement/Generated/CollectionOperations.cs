@@ -1753,6 +1753,32 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// </summary>
         /// <param name='collectionName'>
         /// The collection name.
+        /// </param>    
+        /// <param name='userUpn'>
+        /// The UPN of the user
+        /// </param>    
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>    
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public async Task<AzureOperationResponse> SessionDisconnectWithHttpMessagesAsync(string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            // Send request
+            AzureOperationResponse response = await BeginSessionDisconnectWithHttpMessagesAsync(
+                collectionName, userUpn, resourceGroupName, customHeaders, cancellationToken);
+            return await this.Client.GetPostOrDeleteOperationResultAsync(response, customHeaders, cancellationToken);
+        }
+
+        /// <summary>
+        /// Disconnects the specified user
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
         /// </param>
         /// <param name='userUpn'>
         /// The UPN of the user
@@ -1766,7 +1792,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse> SessionDisconnectWithHttpMessagesAsync(string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse> BeginSessionDisconnectWithHttpMessagesAsync(string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (this.Client.ArmNamespace == null)
             {
@@ -1803,7 +1829,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 tracingParameters.Add("userUpn", userUpn);
                 tracingParameters.Add("resourceGroupName", resourceGroupName);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(invocationId, this, "SessionDisconnect", tracingParameters);
+                ServiceClientTracing.Enter(invocationId, this, "BeginSessionDisconnect", tracingParameters);
             }
             // Construct URL
             var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{armNamespace}/collections/{collectionName}/sessions/{userUpn}/disconnect").ToString();
@@ -1897,6 +1923,32 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// </summary>
         /// <param name='collectionName'>
         /// The collection name.
+        /// </param>    
+        /// <param name='userUpn'>
+        /// The UPN of the user
+        /// </param>    
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>    
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public async Task<AzureOperationResponse> SessionLogOffWithHttpMessagesAsync(string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            // Send request
+            AzureOperationResponse response = await BeginSessionLogOffWithHttpMessagesAsync(
+                collectionName, userUpn, resourceGroupName, customHeaders, cancellationToken);
+            return await this.Client.GetPostOrDeleteOperationResultAsync(response, customHeaders, cancellationToken);
+        }
+
+        /// <summary>
+        /// Logs off the specified user
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
         /// </param>
         /// <param name='userUpn'>
         /// The UPN of the user
@@ -1910,7 +1962,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse> SessionLogOffWithHttpMessagesAsync(string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse> BeginSessionLogOffWithHttpMessagesAsync(string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (this.Client.ArmNamespace == null)
             {
@@ -1947,7 +1999,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 tracingParameters.Add("userUpn", userUpn);
                 tracingParameters.Add("resourceGroupName", resourceGroupName);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(invocationId, this, "SessionLogOff", tracingParameters);
+                ServiceClientTracing.Enter(invocationId, this, "BeginSessionLogOff", tracingParameters);
             }
             // Construct URL
             var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{armNamespace}/collections/{collectionName}/sessions/{userUpn}/logoff").ToString();
@@ -2041,6 +2093,35 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// </summary>
         /// <param name='messageDetails'>
         /// Session message details
+        /// </param>    
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>    
+        /// <param name='userUpn'>
+        /// The UPN of the user
+        /// </param>    
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>    
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public async Task<AzureOperationResponse> SessionSendMessageWithHttpMessagesAsync(SessionSendMessageCommandParameter messageDetails, string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            // Send request
+            AzureOperationResponse response = await BeginSessionSendMessageWithHttpMessagesAsync(
+                messageDetails, collectionName, userUpn, resourceGroupName, customHeaders, cancellationToken);
+            return await this.Client.GetPostOrDeleteOperationResultAsync(response, customHeaders, cancellationToken);
+        }
+
+        /// <summary>
+        /// Sends a message to the specified user
+        /// </summary>
+        /// <param name='messageDetails'>
+        /// Session message details
         /// </param>
         /// <param name='collectionName'>
         /// The collection name.
@@ -2057,7 +2138,7 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        public async Task<AzureOperationResponse> SessionSendMessageWithHttpMessagesAsync(SessionSendMessageCommandParameter messageDetails, string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse> BeginSessionSendMessageWithHttpMessagesAsync(SessionSendMessageCommandParameter messageDetails, string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (this.Client.ArmNamespace == null)
             {
@@ -2099,7 +2180,7 @@ namespace Microsoft.Azure.Management.RemoteApp
                 tracingParameters.Add("userUpn", userUpn);
                 tracingParameters.Add("resourceGroupName", resourceGroupName);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(invocationId, this, "SessionSendMessage", tracingParameters);
+                ServiceClientTracing.Enter(invocationId, this, "BeginSessionSendMessage", tracingParameters);
             }
             // Construct URL
             var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{armNamespace}/collections/{collectionName}/sessions/{userUpn}/sendMessage").ToString();

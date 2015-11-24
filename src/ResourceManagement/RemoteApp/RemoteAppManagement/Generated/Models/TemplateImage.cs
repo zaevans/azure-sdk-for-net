@@ -60,7 +60,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// A TrialOnly platform template image may be used only during a
         /// subscription's RemoteApp trial period. Once billing is activated,
-        /// a collection using a TrialOnly image will be permanently disabled.
+        /// a collection using a TrialOnly template image will be permanently
+        /// disabled.
         /// </summary>
         [JsonProperty(PropertyName = "properties.trialOnly")]
         public bool? TrialOnly { get; set; }
@@ -80,7 +81,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public double? NumberOfLinkedCollections { get; set; }
 
         /// <summary>
-        /// The time when the image upload was completed.
+        /// The time when the template image upload was completed.
         /// </summary>
         [JsonProperty(PropertyName = "properties.uploadCompleteTime")]
         public DateTime? UploadCompleteTime { get; set; }

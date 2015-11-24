@@ -16,7 +16,7 @@ namespace Microsoft.Azure.Management.RemoteApp
     public static partial class TemplateImageOperationsExtensions
     {
             /// <summary>
-            /// Gets available template images
+            /// Gets available template images in the specified location
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -30,7 +30,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             }
 
             /// <summary>
-            /// Gets available template images
+            /// Gets available template images in the specified location
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -48,13 +48,10 @@ namespace Microsoft.Azure.Management.RemoteApp
             }
 
             /// <summary>
-            /// Uploads a template image to a subscription
+            /// Gets a template image.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
-            /// </param>
-            /// <param name='templateImageDetails'>
-            /// Details of the template image to create
             /// </param>
             /// <param name='location'>
             /// Location of the template image
@@ -62,19 +59,16 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='templateImageName'>
             /// The name of the template image
             /// </param>
-            public static TemplateImage SetTemplateImage(this ITemplateImageOperations operations, TemplateImageCreateDetails templateImageDetails, string location, string templateImageName)
+            public static TemplateImage GetTemplateImage(this ITemplateImageOperations operations, string location, string templateImageName)
             {
-                return Task.Factory.StartNew(s => ((ITemplateImageOperations)s).SetTemplateImageAsync(templateImageDetails, location, templateImageName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ITemplateImageOperations)s).GetTemplateImageAsync(location, templateImageName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Uploads a template image to a subscription
+            /// Gets a template image.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
-            /// </param>
-            /// <param name='templateImageDetails'>
-            /// Details of the template image to create
             /// </param>
             /// <param name='location'>
             /// Location of the template image
@@ -85,14 +79,14 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<TemplateImage> SetTemplateImageAsync( this ITemplateImageOperations operations, TemplateImageCreateDetails templateImageDetails, string location, string templateImageName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<TemplateImage> GetTemplateImageAsync( this ITemplateImageOperations operations, string location, string templateImageName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<TemplateImage> result = await operations.SetTemplateImageWithHttpMessagesAsync(templateImageDetails, location, templateImageName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<TemplateImage> result = await operations.GetTemplateImageWithHttpMessagesAsync(location, templateImageName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
             /// <summary>
-            /// Uploads a template image to a subscription
+            /// Creates or updates a template image.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -106,13 +100,13 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='templateImageName'>
             /// The name of the template image
             /// </param>
-            public static TemplateImage BeginSetTemplateImage(this ITemplateImageOperations operations, TemplateImageCreateDetails templateImageDetails, string location, string templateImageName)
+            public static TemplateImage CreateOrUpdate(this ITemplateImageOperations operations, TemplateImageCreateDetails templateImageDetails, string location, string templateImageName)
             {
-                return Task.Factory.StartNew(s => ((ITemplateImageOperations)s).BeginSetTemplateImageAsync(templateImageDetails, location, templateImageName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                return Task.Factory.StartNew(s => ((ITemplateImageOperations)s).CreateOrUpdateAsync(templateImageDetails, location, templateImageName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Uploads a template image to a subscription
+            /// Creates or updates a template image.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -129,9 +123,53 @@ namespace Microsoft.Azure.Management.RemoteApp
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<TemplateImage> BeginSetTemplateImageAsync( this ITemplateImageOperations operations, TemplateImageCreateDetails templateImageDetails, string location, string templateImageName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<TemplateImage> CreateOrUpdateAsync( this ITemplateImageOperations operations, TemplateImageCreateDetails templateImageDetails, string location, string templateImageName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                AzureOperationResponse<TemplateImage> result = await operations.BeginSetTemplateImageWithHttpMessagesAsync(templateImageDetails, location, templateImageName, null, cancellationToken).ConfigureAwait(false);
+                AzureOperationResponse<TemplateImage> result = await operations.CreateOrUpdateWithHttpMessagesAsync(templateImageDetails, location, templateImageName, null, cancellationToken).ConfigureAwait(false);
+                return result.Body;
+            }
+
+            /// <summary>
+            /// Creates or updates a template image.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='templateImageDetails'>
+            /// Details of the template image to create
+            /// </param>
+            /// <param name='location'>
+            /// Location of the template image
+            /// </param>
+            /// <param name='templateImageName'>
+            /// The name of the template image
+            /// </param>
+            public static TemplateImage BeginCreateOrUpdate(this ITemplateImageOperations operations, TemplateImageCreateDetails templateImageDetails, string location, string templateImageName)
+            {
+                return Task.Factory.StartNew(s => ((ITemplateImageOperations)s).BeginCreateOrUpdateAsync(templateImageDetails, location, templateImageName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Creates or updates a template image.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='templateImageDetails'>
+            /// Details of the template image to create
+            /// </param>
+            /// <param name='location'>
+            /// Location of the template image
+            /// </param>
+            /// <param name='templateImageName'>
+            /// The name of the template image
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<TemplateImage> BeginCreateOrUpdateAsync( this ITemplateImageOperations operations, TemplateImageCreateDetails templateImageDetails, string location, string templateImageName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                AzureOperationResponse<TemplateImage> result = await operations.BeginCreateOrUpdateWithHttpMessagesAsync(templateImageDetails, location, templateImageName, null, cancellationToken).ConfigureAwait(false);
                 return result.Body;
             }
 
