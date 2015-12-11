@@ -112,7 +112,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 result = raClient.Collection.AddSecurityPrincipal(userToRemove, collectionName, userToRemove.Name, groupName);
                 Assert.NotNull(result);
-                
+
 
 
                 result = raClient.Collection.DeleteSecurityPrincipal(userToRemove, collectionName, userToRemove.Name, groupName);

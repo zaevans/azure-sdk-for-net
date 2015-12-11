@@ -45,16 +45,16 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public TemplateImageStatus? Status { get; set; }
 
         /// <summary>
-        /// The list of regions where the image can be used
+        /// The list of locations where the image can be used
         /// </summary>
-        [JsonProperty(PropertyName = "properties.locationList")]
-        public IList<string> LocationList { get; set; }
+        [JsonProperty(PropertyName = "properties.regionList")]
+        public IList<string> RegionList { get; set; }
 
         /// <summary>
         /// The type of the template image. Possible values for this property
-        /// include: 'CustomerImage', 'PlatformImage', 'Unknown'.
+        /// include: 'CustomerImage', 'MicrosoftImage', 'Unknown'.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.templateImageType")]
+        [JsonProperty(PropertyName = "properties.type")]
         public TemplateImageType? TemplateImageType { get; set; }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// The number of collections linked to the template image.
         /// </summary>
         [JsonProperty(PropertyName = "properties.numberOfLinkedCollections")]
-        public double? NumberOfLinkedCollections { get; set; }
+        public long? NumberOfLinkedCollections { get; set; }
 
         /// <summary>
         /// The time when the template image upload was completed.

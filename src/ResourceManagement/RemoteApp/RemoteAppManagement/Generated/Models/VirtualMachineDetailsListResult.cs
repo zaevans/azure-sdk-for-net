@@ -12,21 +12,21 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// The location a resource can be in.
+    /// A list of virtual machine details
     /// </summary>
-    public partial class Location
+    public partial class VirtualMachineDetailsListResult
     {
         /// <summary>
-        /// The name of the location
+        /// A list of virtual machine details
         /// </summary>
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        [JsonProperty(PropertyName = "value")]
+        public IList<VmDetails> Value { get; set; }
 
         /// <summary>
-        /// The display name of the location
+        /// URL to use for request paging.
         /// </summary>
-        [JsonProperty(PropertyName = "displayName")]
-        public string DisplayName { get; set; }
+        [JsonProperty(PropertyName = "nextLink")]
+        public string NextLink { get; set; }
 
     }
 }

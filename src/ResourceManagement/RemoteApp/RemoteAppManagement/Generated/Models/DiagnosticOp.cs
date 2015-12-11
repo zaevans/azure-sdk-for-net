@@ -12,15 +12,22 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// Details needed to upload a template image
+    /// The application security principal details.
     /// </summary>
-    public partial class TemplateImageCreateDetails
+    public partial class DiagnosticOp
     {
         /// <summary>
-        /// SAS URI for an OS disk in the VM library
+        /// Id of diagnostic operation.
         /// </summary>
-        [JsonProperty(PropertyName = "sourceImageSasUri")]
-        public string SourceImageSasUri { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Result of diagnostic operation. Zero indicates success; other
+        /// values indicate errors.
+        /// </summary>
+        [JsonProperty(PropertyName = "result")]
+        public string Result { get; set; }
 
     }
 }

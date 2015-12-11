@@ -9,16 +9,20 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// Defines values for TemplateImageType.
+    /// Defines values for AccountBillingState.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum TemplateImageType
+    public enum AccountBillingState
     {
-        [EnumMember(Value = "CustomerImage")]
-        CustomerImage,
-        [EnumMember(Value = "MicrosoftImage")]
-        MicrosoftImage,
-        [EnumMember(Value = "Unknown")]
-        Unknown
+        [EnumMember(Value = "Trial")]
+        Trial,
+        [EnumMember(Value = "TrialExpired")]
+        TrialExpired,
+        [EnumMember(Value = "Active")]
+        Active,
+        [EnumMember(Value = "Inactive")]
+        Inactive,
+        [EnumMember(Value = "Preview")]
+        Preview
     }
 }

@@ -30,8 +30,9 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
 
         /// <summary>
         /// The collection provisioning state. Possible values for this
-        /// property include: 'Failed', 'Succeeded', 'Cancelled',
-        /// 'InProgress'.
+        /// property include: 'Cancelled', 'Creating', 'Deprovisioning',
+        /// 'Disabling', 'Disabled', 'Enabling', 'Failed', 'InProgress',
+        /// 'Provisioning', 'Succeeded', 'Upgrading'.
         /// </summary>
         [JsonProperty(PropertyName = "properties.provisioningState")]
         public ProvisioningState? ProvisioningState { get; set; }
@@ -158,6 +159,25 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// </summary>
         [JsonProperty(PropertyName = "properties.subnetName")]
         public string SubnetName { get; set; }
+
+        /// <summary>
+        /// List of collection health status messages
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.healthStatus")]
+        public IList<string> HealthStatus { get; set; }
+
+        /// <summary>
+        /// List of diagnostics operations for the collection.
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.diagnosticOperations")]
+        public IList<DiagnosticOp> DiagnosticOperations { get; set; }
+
+        /// <summary>
+        /// Details of diagnostics for the collection. Each entry in this list
+        /// is in the form of Key#Value.
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.diagnosticDetails")]
+        public IList<string> DiagnosticDetails { get; set; }
 
         /// <summary>
         /// Validate the object. Throws ArgumentException or ArgumentNullException if validation fails.

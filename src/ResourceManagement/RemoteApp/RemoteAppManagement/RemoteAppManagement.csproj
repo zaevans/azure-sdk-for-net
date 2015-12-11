@@ -24,6 +24,7 @@
     <Compile Include="Generated\IOperationsOperations.cs" />
     <Compile Include="Generated\IRemoteAppManagementClient.cs" />
     <Compile Include="Generated\ITemplateImageOperations.cs" />
+    <Compile Include="Generated\Models\AccountBillingState.cs" />
     <Compile Include="Generated\Models\AccountDetails.cs" />
     <Compile Include="Generated\Models\AccountDetailsWrapper.cs" />
     <Compile Include="Generated\Models\AccountDetailsWrapperList.cs" />
@@ -45,6 +46,7 @@
     <Compile Include="Generated\Models\CollectionUsageSummaryList.cs" />
     <Compile Include="Generated\Models\CollectionUsageSummaryListItemProperties.cs" />
     <Compile Include="Generated\Models\ConsentStatus.cs" />
+    <Compile Include="Generated\Models\DiagnosticOp.cs" />
     <Compile Include="Generated\Models\Location.cs" />
     <Compile Include="Generated\Models\OfficeType.cs" />
     <Compile Include="Generated\Models\OperationDisplayInfo.cs" />
@@ -70,11 +72,13 @@
     <Compile Include="Generated\Models\StartMenuApplication.cs" />
     <Compile Include="Generated\Models\StartMenuApplicationListResult.cs" />
     <Compile Include="Generated\Models\TemplateImage.cs" />
-    <Compile Include="Generated\Models\TemplateImageCreateDetails.cs" />
     <Compile Include="Generated\Models\TemplateImageList.cs" />
     <Compile Include="Generated\Models\TemplateImageStatus.cs" />
     <Compile Include="Generated\Models\TemplateImageType.cs" />
     <Compile Include="Generated\Models\UsageDetailsInfo.cs" />
+    <Compile Include="Generated\Models\VirtualMachineDetailsListResult.cs" />
+    <Compile Include="Generated\Models\VmCommandDetailsWrapper.cs" />
+    <Compile Include="Generated\Models\VmDetails.cs" />
     <Compile Include="Generated\OperationsOperations.cs" />
     <Compile Include="Generated\OperationsOperationsExtensions.cs" />
     <Compile Include="Generated\RemoteAppManagementClient.cs" />
@@ -84,7 +88,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Microsoft.Azure.Management.RemoteApp.nuget.proj" />
+    <None Include="Microsoft.Azure.Management.RemoteApp.nuget.proj">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Microsoft.Azure.Management.RemoteApp.nuspec" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

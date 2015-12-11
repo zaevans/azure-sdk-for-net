@@ -12,9 +12,9 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// The wrapper for the session object
+    /// The response for the get virtual machine operation.
     /// </summary>
-    public partial class Session : Resource
+    public partial class VmDetails : Resource
     {
         /// <summary>
         /// The etag of the resource.
@@ -23,25 +23,22 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public string Etag { get; set; }
 
         /// <summary>
-        /// The UTC time the session started
+        /// The URL for requesting next page of resources.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.logonTimeUtc")]
-        public DateTime? LogonTimeUtc { get; set; }
+        [JsonProperty(PropertyName = "nextLink")]
+        public string NextLink { get; set; }
 
         /// <summary>
-        /// The Upn of the currently active user
+        /// The virtual machine name.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.userUpn")]
-        public string UserUpn { get; set; }
+        [JsonProperty(PropertyName = "properties.virtualMachineName")]
+        public string VirtualMachineName { get; set; }
 
         /// <summary>
-        /// The session state. Possible values are 'Active', 'Disconnected',
-        /// 'NoSession', 'Unknown'. Possible values for this property
-        /// include: 'Active', 'Connected', 'Disconnected', 'NoSession',
-        /// 'Unknown'.
+        /// List of the users logged onto this virtual machine.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.state")]
-        public SessionState? State { get; set; }
+        [JsonProperty(PropertyName = "properties.loggedOnUserUpn")]
+        public IList<string> LoggedOnUserUpn { get; set; }
 
         /// <summary>
         /// Validate the object. Throws ArgumentException or ArgumentNullException if validation fails.

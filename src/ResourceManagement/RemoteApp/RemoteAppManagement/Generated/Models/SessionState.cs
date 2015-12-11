@@ -16,6 +16,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     {
         [EnumMember(Value = "Active")]
         Active,
+        [EnumMember(Value = "Connected")]
+        Connected,
         [EnumMember(Value = "Disconnected")]
         Disconnected,
         [EnumMember(Value = "NoSession")]

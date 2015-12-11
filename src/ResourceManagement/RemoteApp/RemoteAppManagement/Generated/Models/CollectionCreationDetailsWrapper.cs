@@ -31,8 +31,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// The collection's name
         /// </summary>
-        [JsonProperty(PropertyName = "properties.collectionName")]
-        public string CollectionName { get; set; }
+        [JsonProperty(PropertyName = "properties.name")]
+        public string CollectionCreationDetailsWrapperName { get; set; }
 
         /// <summary>
         /// A description for the collection
@@ -45,6 +45,12 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// </summary>
         [JsonProperty(PropertyName = "properties.templateImageName")]
         public string TemplateImageName { get; set; }
+
+        /// <summary>
+        /// SAS URI for an OS image in the VM library
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.sourceImageSasUri")]
+        public string SourceImageSasUri { get; set; }
 
         /// <summary>
         /// The name of the Vnet for the collection
@@ -99,8 +105,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// The home location for the account
         /// </summary>
-        [JsonProperty(PropertyName = "properties.collectionLocation")]
-        public string CollectionLocation { get; set; }
+        [JsonProperty(PropertyName = "properties.location")]
+        public string CollectionCreationDetailsWrapperLocation { get; set; }
 
         /// <summary>
         /// A list of details of the published applications

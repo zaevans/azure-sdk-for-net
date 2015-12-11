@@ -14,13 +14,27 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ProvisioningState
     {
-        [EnumMember(Value = "Failed")]
-        Failed,
-        [EnumMember(Value = "Succeeded")]
-        Succeeded,
         [EnumMember(Value = "Cancelled")]
         Cancelled,
+        [EnumMember(Value = "Creating")]
+        Creating,
+        [EnumMember(Value = "Deprovisioning")]
+        Deprovisioning,
+        [EnumMember(Value = "Disabling")]
+        Disabling,
+        [EnumMember(Value = "Disabled")]
+        Disabled,
+        [EnumMember(Value = "Enabling")]
+        Enabling,
+        [EnumMember(Value = "Failed")]
+        Failed,
         [EnumMember(Value = "InProgress")]
-        InProgress
+        InProgress,
+        [EnumMember(Value = "Provisioning")]
+        Provisioning,
+        [EnumMember(Value = "Succeeded")]
+        Succeeded,
+        [EnumMember(Value = "Upgrading")]
+        Upgrading
     }
 }

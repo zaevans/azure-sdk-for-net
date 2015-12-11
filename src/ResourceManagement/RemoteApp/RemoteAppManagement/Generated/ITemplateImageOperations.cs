@@ -22,22 +22,16 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <summary>
         /// Gets available template images in the specified location
         /// </summary>
-        /// <param name='location'>
-        /// Location where the template images are stored
-        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<TemplateImageList>> GetTemplateImagesWithHttpMessagesAsync(string location, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<TemplateImageList>> GetTemplateImagesWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets a template image.
         /// </summary>
-        /// <param name='location'>
-        /// Location of the template image
-        /// </param>
         /// <param name='templateImageName'>
         /// The name of the template image
         /// </param>
@@ -47,76 +41,6 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<AzureOperationResponse<TemplateImage>> GetTemplateImageWithHttpMessagesAsync(string location, string templateImageName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Creates or updates a template image.
-        /// </summary>
-        /// <param name='templateImageDetails'>
-        /// Details of the template image to create
-        /// </param>
-        /// <param name='location'>
-        /// Location of the template image
-        /// </param>
-        /// <param name='templateImageName'>
-        /// The name of the template image
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<TemplateImage>> CreateOrUpdateWithHttpMessagesAsync(TemplateImageCreateDetails templateImageDetails, string location, string templateImageName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Creates or updates a template image.
-        /// </summary>
-        /// <param name='templateImageDetails'>
-        /// Details of the template image to create
-        /// </param>
-        /// <param name='location'>
-        /// Location of the template image
-        /// </param>
-        /// <param name='templateImageName'>
-        /// The name of the template image
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse<TemplateImage>> BeginCreateOrUpdateWithHttpMessagesAsync(TemplateImageCreateDetails templateImageDetails, string location, string templateImageName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Removes a template image from a subscription
-        /// </summary>
-        /// <param name='location'>
-        /// Location of the template image
-        /// </param>
-        /// <param name='templateImageName'>
-        /// The name of the template image
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse> DeleteTemplateImageWithHttpMessagesAsync(string location, string templateImageName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Removes a template image from a subscription
-        /// </summary>
-        /// <param name='location'>
-        /// Location of the template image
-        /// </param>
-        /// <param name='templateImageName'>
-        /// The name of the template image
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<AzureOperationResponse> BeginDeleteTemplateImageWithHttpMessagesAsync(string location, string templateImageName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<TemplateImage>> GetTemplateImageWithHttpMessagesAsync(string templateImageName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

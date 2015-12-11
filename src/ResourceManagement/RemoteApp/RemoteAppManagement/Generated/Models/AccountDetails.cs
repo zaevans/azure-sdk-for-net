@@ -19,8 +19,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// The account subscriptionId
         /// </summary>
-        [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
+        [JsonProperty(PropertyName = "accountId")]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Name of the workspace
@@ -67,8 +67,22 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// The home location for the account
         /// </summary>
-        [JsonProperty(PropertyName = "location")]
-        public string Location { get; set; }
+        [JsonProperty(PropertyName = "accountLocation")]
+        public string AccountLocation { get; set; }
+
+        /// <summary>
+        /// The billing state of the account. Possible values for this
+        /// property include: 'Trial', 'TrialExpired', 'Active', 'Inactive',
+        /// 'Preview'.
+        /// </summary>
+        [JsonProperty(PropertyName = "billingState")]
+        public AccountBillingState? BillingState { get; set; }
+
+        /// <summary>
+        /// Trial end time for the account when in trial billing state
+        /// </summary>
+        [JsonProperty(PropertyName = "trialEndTime")]
+        public DateTime? TrialEndTime { get; set; }
 
     }
 }

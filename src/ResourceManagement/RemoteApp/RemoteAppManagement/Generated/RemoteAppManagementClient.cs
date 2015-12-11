@@ -189,7 +189,7 @@ namespace Microsoft.Azure.Management.RemoteApp
             this.Collection = new CollectionOperations(this);
             this.TemplateImage = new TemplateImageOperations(this);
             this.BaseUri = new Uri("https://management.azure.net");
-            this.ApiVersion = "2015-11-13";
+            this.ApiVersion = "2014-09-01";
             this.AcceptLanguage = "en-US";
             if (this.Credentials != null)
             {

@@ -587,5 +587,86 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// The cancellation token.
         /// </param>
         Task<AzureOperationResponse<SecurityPrincipalOperationErrorDetails>> DeleteSecurityPrincipalWithHttpMessagesAsync(SecurityPrincipal securityPrincipal, string collectionName, string userUpn, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Gets the list of virtual machines in this collection.
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse<VirtualMachineDetailsListResult>> ListVmsWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Gets the virtual machine in this collection.
+        /// </summary>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>
+        /// <param name='virtualMachine'>
+        /// The virtual machine name
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse<VmDetails>> GetVmWithHttpMessagesAsync(string collectionName, string resourceGroupName, string virtualMachine, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Restarts the virtual machine.
+        /// </summary>
+        /// <param name='details'>
+        /// The LogoffMessage and time to wait before restarting the virtual
+        /// machine
+        /// </param>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>
+        /// <param name='virtualMachine'>
+        /// The virtual machine name
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse> RestartVmWithHttpMessagesAsync(VmCommandDetailsWrapper details, string collectionName, string resourceGroupName, string virtualMachine, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Restarts the virtual machine.
+        /// </summary>
+        /// <param name='details'>
+        /// The LogoffMessage and time to wait before restarting the virtual
+        /// machine
+        /// </param>
+        /// <param name='collectionName'>
+        /// The collection name.
+        /// </param>
+        /// <param name='resourceGroupName'>
+        /// The name of the resource group
+        /// </param>
+        /// <param name='virtualMachine'>
+        /// The virtual machine name
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<AzureOperationResponse> BeginRestartVmWithHttpMessagesAsync(VmCommandDetailsWrapper details, string collectionName, string resourceGroupName, string virtualMachine, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

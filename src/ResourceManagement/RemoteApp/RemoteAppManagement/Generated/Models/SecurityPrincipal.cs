@@ -31,7 +31,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public PrincipalProviderType? UserIdType { get; set; }
 
         /// <summary>
-        /// The security principal name.
+        /// The security principal UPN.
         /// </summary>
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
