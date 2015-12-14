@@ -33,8 +33,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// The security principal UPN.
         /// </summary>
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        [JsonProperty(PropertyName = "upn")]
+        public string Upn { get; set; }
 
         /// <summary>
         /// For OrgId principals, the principal's Azure ActiveDirectory object

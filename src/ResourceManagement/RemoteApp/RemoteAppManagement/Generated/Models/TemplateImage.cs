@@ -25,7 +25,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// The friendly name for the image
         /// </summary>
-        [JsonProperty(PropertyName = "properties.name")]
+        [JsonProperty(PropertyName = "properties.templateImageName")]
         public string TemplateImageName { get; set; }
 
         /// <summary>
@@ -47,14 +47,14 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// The list of locations where the image can be used
         /// </summary>
-        [JsonProperty(PropertyName = "properties.regionList")]
-        public IList<string> RegionList { get; set; }
+        [JsonProperty(PropertyName = "properties.locationList")]
+        public IList<string> LocationList { get; set; }
 
         /// <summary>
         /// The type of the template image. Possible values for this property
         /// include: 'CustomerImage', 'MicrosoftImage', 'Unknown'.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.type")]
+        [JsonProperty(PropertyName = "properties.templateImageType")]
         public TemplateImageType? TemplateImageType { get; set; }
 
         /// <summary>

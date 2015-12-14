@@ -97,7 +97,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                     Assert.NotNull(app.Id);
                     Assert.NotNull(app);
                     Assert.NotNull(app.DisplayName);
-                    Assert.NotNull(app.Alias);
+                    Assert.NotNull(app.ApplicationAlias);
                     Assert.NotNull(app.VirtualPath);
                     Assert.Equal(AppPublishingStatus.Published, app.Status);
                 }
@@ -119,7 +119,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 raClient = GetClient();
 
                 pubApps = raClient.Collection.ListPublishedApp(collectionName, groupName).Value;
-                alias = pubApps[0].Alias;
+                alias = pubApps[0].ApplicationAlias;
 
                 pubApp = raClient.Collection.GetPublishedApp(collectionName, alias, groupName);
 
@@ -130,7 +130,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 Assert.NotNull(pubApp.Id);
                 Assert.NotNull(pubApp);
                 Assert.NotNull(pubApp.DisplayName);
-                Assert.NotNull(pubApp.Alias);
+                Assert.NotNull(pubApp.ApplicationAlias);
                 Assert.NotNull(pubApp.VirtualPath);
                 Assert.Equal(AppPublishingStatus.Published, pubApp.Status);
             }
@@ -157,14 +157,14 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 details = new ApplicationDetails()
                 {
-                    Alias = appToPublish.StartMenuApplicationId,
+                    ApplicationAlias = appToPublish.StartMenuApplicationId,
                     DisplayName = appToPublish.StartMenuApplicationName,
                     VirtualPath = appToPublish.VirtualPath,
                     AvailableToUsers = true,
                     IconPngUris = appToPublish.IconPngUris
                 };
 
-                pubAppResult = raClient.Collection.PublishOrUpdateApplication(details, collectionName, details.Alias, groupName);
+                pubAppResult = raClient.Collection.PublishOrUpdateApplication(details, collectionName, details.ApplicationAlias, groupName);
 
                 Assert.NotNull(pubAppResult);
                 Assert.NotNull(pubAppResult.ApplicationAlias);
@@ -174,7 +174,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 publishedApp = GetPublishedApplication(raClient, collectionName, pubAppResult.ApplicationAlias, AppPublishingStatus.Published);
 
-                Assert.Equal(pubAppResult.ApplicationAlias, publishedApp.Alias);
+                Assert.Equal(pubAppResult.ApplicationAlias, publishedApp.ApplicationAlias);
 
 
                 unPubApp = raClient.Collection.Unpublish(collectionName, pubAppResult.ApplicationAlias, groupName);
@@ -205,7 +205,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 details = new ApplicationDetails()
                 {
-                    Alias = appToModifiy.Alias,
+                    ApplicationAlias = appToModifiy.ApplicationAlias,
                     DisplayName = appToModifiy.DisplayName,
                     VirtualPath = appToModifiy.VirtualPath,
                     AvailableToUsers = appToModifiy.AvailableToUsers,
@@ -214,22 +214,22 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                     Status = appToModifiy.Status
                 };
 
-                modifyApp = raClient.Collection.PublishOrUpdateApplication(details, collectionName, details.Alias, groupName);
+                modifyApp = raClient.Collection.PublishOrUpdateApplication(details, collectionName, details.ApplicationAlias, groupName);
 
                 Assert.NotNull(modifyApp);
 
-                Assert.Equal(details.Alias, modifyApp.ApplicationAlias);
+                Assert.Equal(details.ApplicationAlias, modifyApp.ApplicationAlias);
                 Assert.Equal(details.VirtualPath, modifyApp.ApplicationVirtualPath);
                 Assert.Null(modifyApp.ErrorMessage);
                 Assert.True(modifyApp.Success.Value);
 
                 pubApp = GetPublishedApplication(raClient, collectionName, modifyApp.ApplicationAlias, AppPublishingStatus.Published);
 
-                Assert.Equal(details.Alias, pubApp.Alias);
+                Assert.Equal(details.ApplicationAlias, pubApp.ApplicationAlias);
                 Assert.Equal(details.CommandLineArguments, pubApp.CommandLineArguments);
 
                 details.CommandLineArguments = arguments;
-                raClient.Collection.PublishOrUpdateApplication(details, collectionName, appToModifiy.Alias, groupName);
+                raClient.Collection.PublishOrUpdateApplication(details, collectionName, appToModifiy.ApplicationAlias, groupName);
             }
         }
 
@@ -253,18 +253,18 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 details = new ApplicationDetails()
                 {
-                    Alias = appToPublish.StartMenuApplicationId,
+                    ApplicationAlias = appToPublish.StartMenuApplicationId,
                     DisplayName = appToPublish.StartMenuApplicationName,
                     VirtualPath = appToPublish.VirtualPath,
                     AvailableToUsers = true,
                     IconPngUris = appToPublish.IconPngUris
                 };
 
-                pubAppResult = raClient.Collection.PublishOrUpdateApplication(details, collectionName, details.Alias, groupName);
+                pubAppResult = raClient.Collection.PublishOrUpdateApplication(details, collectionName, details.ApplicationAlias, groupName);
                 Assert.NotNull(pubAppResult);
-                WaitForAppStatus(raClient, collectionName, details.Alias, AppPublishingStatus.Published);
+                WaitForAppStatus(raClient, collectionName, details.ApplicationAlias, AppPublishingStatus.Published);
 
-                unPubApp = raClient.Collection.Unpublish(collectionName, details.Alias, groupName);
+                unPubApp = raClient.Collection.Unpublish(collectionName, details.ApplicationAlias, groupName);
 
                 Assert.NotNull(unPubApp);
                 Assert.Null(unPubApp.ErrorMessage);

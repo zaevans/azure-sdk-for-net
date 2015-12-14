@@ -41,7 +41,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                     Assert.NotNull(sa.Id);
                     Assert.NotNull(sa);
                     Assert.NotNull(sa.Status);
-                    Assert.NotNull(sa.User.Name);
+                    Assert.NotNull(sa.User.Upn);
                     Assert.NotNull(sa.User.SecurityPrincipalType);
                     Assert.NotNull(sa.User.UserIdType);
                 }
@@ -65,13 +65,13 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
                 {
                     new SecurityPrincipal()
                     {
-                        Name = "test3@aztestorg068.ccsctp.net",
+                        Upn = "test3@aztestorg068.ccsctp.net",
                         SecurityPrincipalType = PrincipalType.User,
                         UserIdType = PrincipalProviderType.OrgId,
                     },
                     new SecurityPrincipal()
                     {
-                        Name = "u1@aad317.ccsctp.net",
+                        Upn = "u1@aad317.ccsctp.net",
                         SecurityPrincipalType = PrincipalType.User,
                         UserIdType = PrincipalProviderType.OrgId,
                     }
@@ -79,7 +79,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 foreach(SecurityPrincipal user in users)
                 {
-                    result = raClient.Collection.AddSecurityPrincipal(user, collectionName, user.Name, groupName);
+                    result = raClient.Collection.AddSecurityPrincipal(user, collectionName, user.Upn, groupName);
                     Assert.NotNull(result);
                     IsExpectedUser(result, user);
                 }
@@ -103,19 +103,19 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
 
                 userToRemove = new SecurityPrincipal()
                 {
-                    Name = "admin@aztestorg068.ccsctp.net",
+                    Upn = "admin@aztestorg068.ccsctp.net",
                     SecurityPrincipalType = PrincipalType.User,
                     UserIdType = PrincipalProviderType.OrgId
                 };
 
                 userConsentListOrig = raClient.Collection.GetUsers(collectionName, groupName).Value;
 
-                result = raClient.Collection.AddSecurityPrincipal(userToRemove, collectionName, userToRemove.Name, groupName);
+                result = raClient.Collection.AddSecurityPrincipal(userToRemove, collectionName, userToRemove.Upn, groupName);
                 Assert.NotNull(result);
 
 
 
-                result = raClient.Collection.DeleteSecurityPrincipal(userToRemove, collectionName, userToRemove.Name, groupName);
+                result = raClient.Collection.DeleteSecurityPrincipal(userToRemove, collectionName, userToRemove.Upn, groupName);
 
                 Assert.NotNull(result);
            
@@ -135,7 +135,7 @@ namespace Microsoft.Azure.Management.RemoteApp.Tests
             Assert.Equal(location, result.Location);
             Assert.Equal(collectionName, result.Name);
             Assert.NotNull(result.Id);
-            Assert.Equal(user.Name, result.SecurityPrincipal);
+            Assert.Equal(user.Upn, result.SecurityPrincipal);
             Assert.NotNull(result.Error);
             Assert.NotNull(result.ErrorDetails);
         }

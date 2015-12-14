@@ -47,8 +47,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// A short unique name for the application.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.alias")]
-        public string Alias { get; set; }
+        [JsonProperty(PropertyName = "properties.applicationAlias")]
+        public string ApplicationAlias { get; set; }
 
         /// <summary>
         /// A flag to denote if the application will be available to end users.

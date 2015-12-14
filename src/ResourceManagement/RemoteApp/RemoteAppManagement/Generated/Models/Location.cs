@@ -19,8 +19,8 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         /// <summary>
         /// The name of the location
         /// </summary>
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        [JsonProperty(PropertyName = "locationName")]
+        public string LocationName { get; set; }
 
         /// <summary>
         /// The display name of the location
