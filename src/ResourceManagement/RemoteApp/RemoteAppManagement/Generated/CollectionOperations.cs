@@ -3941,6 +3941,18 @@ namespace Microsoft.Azure.Management.RemoteApp
         /// </param>
         public async Task<AzureOperationResponse<VirtualMachineDetailsListResult>> ListVmsWithHttpMessagesAsync(string collectionName, string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (this.Client.ArmNamespace == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ArmNamespace");
+            }
+            if (this.Client.ApiVersion == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ApiVersion");
+            }
+            if (this.Client.SubscriptionId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.SubscriptionId");
+            }
             if (collectionName == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "collectionName");
@@ -3963,9 +3975,15 @@ namespace Microsoft.Azure.Management.RemoteApp
             }
             // Construct URL
             var url = new Uri(this.Client.BaseUri, "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{armNamespace}/collections/{collectionName}/vms").ToString();
+            url = url.Replace("{armNamespace}", Uri.EscapeDataString(this.Client.ArmNamespace));
+            url = url.Replace("{subscriptionId}", Uri.EscapeDataString(this.Client.SubscriptionId));
             url = url.Replace("{collectionName}", Uri.EscapeDataString(collectionName));
             url = url.Replace("{resourceGroupName}", Uri.EscapeDataString(resourceGroupName));
             List<string> queryParameters = new List<string>();
+            if (this.Client.ApiVersion != null)
+            {
+                queryParameters.Add(string.Format("api-version={0}", Uri.EscapeDataString(this.Client.ApiVersion)));
+            }
             if (queryParameters.Count > 0)
             {
                 url += "?" + string.Join("&", queryParameters);
