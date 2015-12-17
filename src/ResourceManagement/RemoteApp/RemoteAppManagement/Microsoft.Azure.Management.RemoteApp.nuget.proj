@@ -5,7 +5,7 @@
     Microsoft.Azure.Management.RemoteApp
     -->
     <SdkNuGetPackage Include="Microsoft.Azure.Management.RemoteApp">
-      <PackageVersion>0.0.22-prerelease</PackageVersion>
+      <PackageVersion>0.0.23-prerelease</PackageVersion>
       <Folder>$(MSBuildThisFileDirectory)</Folder>
     </SdkNuGetPackage>
   </ItemGroup>
