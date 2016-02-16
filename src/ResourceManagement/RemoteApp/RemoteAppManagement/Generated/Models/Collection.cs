@@ -68,6 +68,12 @@ namespace Microsoft.Azure.Management.RemoteApp.Models
         public string LastErrorCode { get; set; }
 
         /// <summary>
+        /// The ID of the Vnet for this collection.
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.virtualNetworkId")]
+        public string VirtualNetworkId { get; set; }
+
+        /// <summary>
         /// The VNet name associated with this collection.
         /// </summary>
         [JsonProperty(PropertyName = "properties.vnetName")]
